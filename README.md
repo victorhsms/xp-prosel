@@ -1,6 +1,6 @@
 # Configuração ESLint/Prettier
 
-Esse é um exemplo de configuração inicial do ESlint e Prettier da [Infojr]() pra projeto com React, Nextjs, Typescript, Jest e Styled-Component.
+Esse é um exemplo de configuração inicial do ESlint e Prettier da [Infojr](https://infojr.com.br/) pra projeto com React, Nextjs, Typescript, Jest e Styled-Component.
 
 ## Como fazer essa configuração:
 
@@ -12,7 +12,63 @@ Em seu terminal, rode o comando:
 npx create-next-app --example with-jest with-jest-app
 ```
 
-Após isso, instale o [styled-component](https://styled-components.com/docs/basics#installation):
+Depois que iniciar o projeto, o ideal é passar a padronizar os seus commits com o CommitLint, o Husky e o Commitizen
+
+instale o CommitLint:
+
+```bash
+npm install -D @commitlint/{config-conventional,cli}
+
+echo "module.exports = {extends: ['@commitlint/config-conventional']}" > commitlint.config.js
+```
+
+Instale, então, o Husky e ative os hooks:
+
+```bash
+npm install -D husky
+
+npx husky install
+
+cat <<EEE > .husky/commit-msg
+#!/bin/sh
+. "\$(dirname "\$0")/_/husky.sh"
+
+npx --no -- commitlint --edit "\${1}"
+EEE
+
+chmod a+x .husky/commit-msg
+```
+
+A partir daí, se você tentar fazer um commit que não siga o [padrão de commits](https://www.conventionalcommits.org/pt-br/v1.0.0/), ele será rejeitado.
+
+Pra concluir a padronização dos commits, instale o Commitizen:
+
+```bash
+npm install commitizen -g
+
+commitizen init cz-conventional-changelog --save-dev --save-exact
+```
+
+Em seu arquivo package.json adicione as seguintes linhas, caso isso ja não tenha sido feito automáticamente:
+
+```json
+"config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  }
+```
+
+#### Sempre que for fazer commit após o 'git add', digite o seguinte comando pra aparecer a interface do commitizen:
+
+```bash
+# Digite
+git cz
+# Ou apenas digite
+cz
+```
+
+Após isso, volte à configuração do projeto. Instale o [styled-component](https://styled-components.com/docs/basics#installation):
 
 ```bash
 npm install --save styled-component
