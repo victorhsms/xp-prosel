@@ -186,6 +186,18 @@ describe('Ao clicar no botão de login', () => {
   beforeEach(() => render(<Login />))
 
   test('O email e a data atual devem ser salvos no localhost', () => {
+    jest.mock('next/router', () => ({
+      useRouter() {
+        return {
+          route: '/',
+          pathname: '',
+          query: '',
+          asPath: '',
+          replace: ''
+        }
+      }
+    }))
+
     const loginBtn = screen.getByRole('button', {
       name: /Entrar/i
     })
