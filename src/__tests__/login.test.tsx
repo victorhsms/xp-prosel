@@ -15,15 +15,27 @@ describe('Ao acessar a página de login', () => {
     expect(login).toBeInTheDocument()
   })
 
+  test('Deve existir uma label pra o email', () => {
+    const labelEmail = screen.queryByLabelText('Email')
+
+    expect(labelEmail).toBeInTheDocument()
+  })
+
   test('Deve existir um input de email', () => {
     const emailInput = screen.queryByPlaceholderText('email@email.com')
 
     expect(emailInput).toBeInTheDocument()
   })
 
-  test('Deve existir uma label pra o email', () => {
-    const labelEmail = screen.queryByLabelText('Email')
+  test('Deve existir uma label para a senha', () => {
+    const passordLabel = screen.queryByLabelText('Senha')
 
-    expect(labelEmail).toBeInTheDocument()
+    expect(passordLabel).toBeInTheDocument()
+  })
+
+  test('Deve existir um input de senha', () => {
+    const passwordInput = screen.queryByPlaceholderText('Informe sua senha')
+
+    expect(passwordInput).toBeInTheDocument()
   })
 })
