@@ -181,3 +181,40 @@ describe('O botão deve ser ficar habilitado', () => {
     expect(loginBtn).toBeEnabled()
   })
 })
+
+describe('Ao clicar no botão de login', () => {
+  const originalDate = global.Date
+
+  beforeEach(() => render(<Login />))
+  afterEach(() => (global.Date = originalDate))
+
+  test('O email e a data atual devem ser salvos no localhost', () => {
+    global.Date.now = jest.fn(() => new Date('15/07/2022 18:42:05').getTime())
+
+    const loginBtn = screen.getByRole('button', {
+      name: /Entrar/i
+    })
+
+    const emailInput = screen.getByPlaceholderText('email@email.com')
+    const passwordInput = screen.getByPlaceholderText('Informe sua senha')
+
+    fireEvent.change(emailInput, {
+      target: {
+        value: 'email@email.com'
+      }
+    })
+    fireEvent.change(passwordInput, {
+      target: {
+        value: '123456'
+      }
+    })
+
+    fireEvent.click(loginBtn)
+
+    expect(window.localStorage.setItem).toHaveBeenCalledTimes(1)
+    expect(window.localStorage.setItem).toHaveBeenCalledWith(
+      'logged_user',
+      JSON.stringify(['email@email.com', '15/07/2022 18:42:05'])
+    )
+  })
+})
