@@ -1,11 +1,7 @@
 import { GetServerSideProps } from 'next'
 
 export default function Home() {
-  return (
-    <div>
-      <h1>Portfolio</h1>
-    </div>
-  )
+  return <h1>Página inicial</h1>
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {

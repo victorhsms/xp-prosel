@@ -7,7 +7,7 @@ describe('Ao acessar a página Home', () => {
     render(<Home />)
 
     const heading = screen.queryByRole('heading', {
-      name: /login/i
+      name: /Página inicial/i
     })
 
     expect(heading).toBeInTheDocument()
