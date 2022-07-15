@@ -186,8 +186,6 @@ describe('Ao clicar no botão de login', () => {
   beforeEach(() => render(<Login />))
 
   test('O email e a data atual devem ser salvos no localhost', () => {
-    global.Date.now = jest.fn(() => new Date('15/07/2022 18:42:05').getTime())
-
     const loginBtn = screen.getByRole('button', {
       name: /Entrar/i
     })
@@ -210,10 +208,8 @@ describe('Ao clicar no botão de login', () => {
 
     const data = JSON.parse(localStorage.getItem('logged_user') as string)
 
+    expect(data.length).toBe(2)
     expect(data[0]).toBe('email@email.com')
-    // expect(window.localStorage.setItem).toHaveBeenCalledWith(
-    //   'logged_user',
-    //   JSON.stringify(['email@email.com', '15/07/2022 18:42:05'])
-    // )
+    expect(data[1]).toBe(new Date().toLocaleString())
   })
 })
