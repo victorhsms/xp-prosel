@@ -11,6 +11,7 @@ export default function Login() {
         id="password-input"
         placeholder="Informe sua senha"
       />
+      <button disabled={true}>Entrar</button>
     </form>
   )
 }
