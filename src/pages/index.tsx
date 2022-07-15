@@ -6,10 +6,7 @@ export default function Home() {
 
   useEffect(() => {
     const hasLoggedUser = localStorage.getItem('logged_user#xp-prosel')
-
-    if (!hasLoggedUser) {
-      router.replace('/login')
-    }
+    if (!hasLoggedUser) router.replace('/login')
   }, [])
 
   return <h1>Página inicial</h1>

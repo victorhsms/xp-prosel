@@ -1,5 +1,5 @@
 import React from 'react'
-import validatePassword from '../../utils/validations/validatePassword'
+import validatePassword from '../../helpers/validations/validatePassword'
 
 describe('A função deve retornar "true"', () => {
   test('ao informar uma senha com 6 caracteres ou maior', () => {
