@@ -1,17 +1,23 @@
 import React from 'react'
 import validateEmail from '../../utils/validations/validateEmail'
 
-describe('Ao passar um email correto', () => {
-  test('a função deve retornar "true"', () => {
+describe('A função deve retornar "true"', () => {
+  test('ao informar um email em formato válido', () => {
     const result = validateEmail('email@email.com')
 
     expect(result).toBeTruthy()
   })
 })
 
-describe('Ao passar um email incorreto', () => {
-  test('a função deve retornar "false"', () => {
+describe('A função deve retornar "false"', () => {
+  test('ao informar um email em formato inválido', () => {
     const result = validateEmail('email@email')
+
+    expect(result).toBeFalsy()
+  })
+
+  test('ao não informar um email', () => {
+    const result = validateEmail('')
 
     expect(result).toBeFalsy()
   })
