@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import validateLogin from '../../utils/validations/validateLogin'
+import validateLogin from '../../helpers/validations/validateLogin'
 
 export default function Login() {
   const [emailValue, setEmailValue] = useState<string>('')
@@ -9,6 +9,12 @@ export default function Login() {
   useEffect(() => {
     setBtnStatus(!validateLogin(emailValue, passwordValue))
   }, [emailValue, passwordValue])
+
+  function setNewUser() {
+    const dateNow = new Date().toLocaleString()
+
+    localStorage.setItem('logged_user', JSON.stringify([emailValue, dateNow]))
+  }
 
   return (
     <form action="">
@@ -28,7 +34,9 @@ export default function Login() {
         placeholder="Informe sua senha"
         onChange={e => setPasswordValue(e.target.value)}
       />
-      <button disabled={btnStatus}>Entrar</button>
+      <button disabled={btnStatus} onClick={setNewUser}>
+        Entrar
+      </button>
     </form>
   )
 }

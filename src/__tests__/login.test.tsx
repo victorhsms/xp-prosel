@@ -186,7 +186,11 @@ describe('Ao clicar no botão de login', () => {
   const originalDate = global.Date
 
   beforeEach(() => render(<Login />))
-  afterEach(() => (global.Date = originalDate))
+  afterEach(() => {
+    global.Date = originalDate
+
+    localStorage.clear('logged_user')
+  })
 
   test('O email e a data atual devem ser salvos no localhost', () => {
     global.Date.now = jest.fn(() => new Date('15/07/2022 18:42:05').getTime())
