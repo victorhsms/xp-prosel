@@ -1,4 +1,4 @@
-import useRedirect from '../../hooks/useRedirect'
+import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import validateLogin from '../../helpers/validations/validateLogin'
 
@@ -6,7 +6,7 @@ export default function Login() {
   const [emailValue, setEmailValue] = useState<string>('')
   const [passwordValue, setPasswordValue] = useState<string>('')
   const [btnStatus, setBtnStatus] = useState<boolean>(true)
-  const redirect = useRedirect()
+  const router = useRouter()
 
   useEffect(() => {
     setBtnStatus(!validateLogin(emailValue, passwordValue))
@@ -19,7 +19,7 @@ export default function Login() {
 
     localStorage.setItem('logged_user', JSON.stringify([emailValue, dateNow]))
 
-    redirect('/')
+    router.replace('/')
   }
 
   return (
