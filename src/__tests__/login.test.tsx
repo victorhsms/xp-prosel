@@ -20,4 +20,12 @@ describe('Ao acessar a página de login', () => {
 
     expect(emailInput).toBeInTheDocument()
   })
+
+  test('Deve existir uma label pra o email', () => {
+    const labelEmail = screen.queryByRole('label', {
+      name: /Email/i
+    })
+
+    expect(labelEmail).toBeInTheDocument()
+  })
 })
