@@ -38,4 +38,20 @@ describe('Ao acessar a página de login', () => {
 
     expect(passwordInput).toBeInTheDocument()
   })
+
+  test('Deve existir um botão de login', () => {
+    const loginBtn = screen.queryByRole('button', {
+      name: /Entrar/i
+    })
+
+    expect(loginBtn).toBeInTheDocument()
+  })
+
+  test('O botão de login deve estar desabilitado', () => {
+    const loginBtn = screen.queryByRole('button', {
+      name: /Entrar/i
+    })
+
+    expect(loginBtn).toBeDisabled()
+  })
 })
