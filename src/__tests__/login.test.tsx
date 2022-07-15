@@ -7,6 +7,14 @@ describe('Ao acessar a página de login', () => {
     render(<Login />)
   })
 
+  test('Deve existir um título escrito "Login"', () => {
+    const login = screen.queryByRole('heading', {
+      name: /Login/i
+    })
+
+    expect(login).toBeInTheDocument()
+  })
+
   test('Deve existir um input de email', () => {
     const emailInput = screen.queryByPlaceholderText('email@email.com')
 
