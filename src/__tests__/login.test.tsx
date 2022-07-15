@@ -183,14 +183,7 @@ describe('O botão deve ser ficar habilitado', () => {
 })
 
 describe('Ao clicar no botão de login', () => {
-  const originalDate = global.Date
-
   beforeEach(() => render(<Login />))
-  afterEach(() => {
-    global.Date = originalDate
-
-    localStorage.clear('logged_user')
-  })
 
   test('O email e a data atual devem ser salvos no localhost', () => {
     global.Date.now = jest.fn(() => new Date('15/07/2022 18:42:05').getTime())
@@ -215,10 +208,12 @@ describe('Ao clicar no botão de login', () => {
 
     fireEvent.click(loginBtn)
 
-    expect(window.localStorage.setItem).toHaveBeenCalledTimes(1)
-    expect(window.localStorage.setItem).toHaveBeenCalledWith(
-      'logged_user',
-      JSON.stringify(['email@email.com', '15/07/2022 18:42:05'])
-    )
+    const data = JSON.parse(localStorage.getItem('logged_user') as string)
+
+    expect(data[0]).toBe('email@email.com')
+    // expect(window.localStorage.setItem).toHaveBeenCalledWith(
+    //   'logged_user',
+    //   JSON.stringify(['email@email.com', '15/07/2022 18:42:05'])
+    // )
   })
 })
