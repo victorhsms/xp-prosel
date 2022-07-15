@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import React, { FormEventHandler, useEffect, useState } from 'react'
 import validateLogin from '../../helpers/validations/validateLogin'
 
 export default function Login() {
@@ -10,14 +10,16 @@ export default function Login() {
     setBtnStatus(!validateLogin(emailValue, passwordValue))
   }, [emailValue, passwordValue])
 
-  function setNewUser() {
+  function setNewUser(event: React.FormEvent) {
+    event.preventDefault()
+
     const dateNow = new Date().toLocaleString()
 
     localStorage.setItem('logged_user', JSON.stringify([emailValue, dateNow]))
   }
 
   return (
-    <form action="">
+    <form onSubmit={setNewUser}>
       <h1>Login</h1>
       <label htmlFor="email-input">Email</label>
       <input
@@ -34,7 +36,7 @@ export default function Login() {
         placeholder="Informe sua senha"
         onChange={e => setPasswordValue(e.target.value)}
       />
-      <button disabled={btnStatus} onClick={setNewUser}>
+      <button type="submit" disabled={btnStatus}>
         Entrar
       </button>
     </form>
