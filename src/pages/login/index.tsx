@@ -1,3 +1,4 @@
+import { GetServerSideProps } from 'next'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import validateLogin from '../../helpers/validations/validateLogin'
@@ -9,6 +10,11 @@ export default function Login() {
   const router = useRouter()
 
   useEffect(() => {
+    const hasLoggedUser = localStorage.getItem('logged_user#xp-prosel')
+    if (hasLoggedUser !== null) router.replace('/')
+  }, [])
+
+  useEffect(() => {
     setBtnStatus(!validateLogin(emailValue, passwordValue))
   }, [emailValue, passwordValue])
 
@@ -17,7 +23,10 @@ export default function Login() {
 
     const dateNow = new Date().toLocaleString()
 
-    localStorage.setItem('logged_user', JSON.stringify([emailValue, dateNow]))
+    localStorage.setItem(
+      'logged_user#xp-prosel',
+      JSON.stringify([emailValue, dateNow])
+    )
 
     router.replace('/')
   }

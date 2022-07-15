@@ -1,14 +1,16 @@
-import { GetServerSideProps } from 'next'
+import { useRouter } from 'next/router'
+import { useEffect } from 'react'
 
 export default function Home() {
-  return <h1>Página inicial</h1>
-}
+  const router = useRouter()
 
-export const getServerSideProps: GetServerSideProps = async () => {
-  return {
-    redirect: {
-      destination: '/login',
-      permanent: true
+  useEffect(() => {
+    const hasLoggedUser = localStorage.getItem('logged_user#xp-prosel')
+
+    if (!hasLoggedUser) {
+      router.replace('/login')
     }
-  }
+  }, [])
+
+  return <h1>Página inicial</h1>
 }
