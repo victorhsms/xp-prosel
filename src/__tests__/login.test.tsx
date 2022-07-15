@@ -1,5 +1,5 @@
 import Login from '../pages/login'
-import { render, screen } from '@testing-library/react'
+import { fireEvent, render, screen } from '@testing-library/react'
 import React from 'react'
 
 describe('Ao acessar a página de login', () => {
@@ -53,5 +53,31 @@ describe('Ao acessar a página de login', () => {
     })
 
     expect(loginBtn).toBeDisabled()
+  })
+})
+
+describe('O botão deve ser ficar habilitado', () => {
+  test('Ao informar um email e senha válidos', () => {
+    render(<Login />)
+
+    const loginBtn = screen.queryByRole('button', {
+      name: /Entrar/i
+    })
+
+    const emailInput = screen.getByPlaceholderText('email@email.com')
+    fireEvent.change(emailInput, {
+      target: {
+        value: 'email@email.com'
+      }
+    })
+
+    const passwordInput = screen.getByPlaceholderText('Informe sua senha')
+    fireEvent.change(passwordInput, {
+      target: {
+        value: '123456'
+      }
+    })
+
+    expect(loginBtn).toBeEnabled()
   })
 })
