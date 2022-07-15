@@ -56,6 +56,106 @@ describe('Ao acessar a página de login', () => {
   })
 })
 
+describe('O botão deve ficar continuar desabilitado', () => {
+  beforeEach(() => render(<Login />))
+
+  test('Ao informar email e senha inválidos', () => {
+    const loginBtn = screen.queryByRole('button', {
+      name: /Entrar/i
+    })
+
+    const emailInput = screen.getByPlaceholderText('email@email.com')
+    const passwordInput = screen.getByPlaceholderText('Informe sua senha')
+
+    fireEvent.change(emailInput, {
+      target: {
+        value: 'email@email'
+      }
+    })
+    fireEvent.change(passwordInput, {
+      target: {
+        value: '123'
+      }
+    })
+
+    expect(loginBtn).toBeDisabled()
+  })
+
+  test('Ao informar email válido, mas senha inválida', () => {
+    const loginBtn = screen.queryByRole('button', {
+      name: /Entrar/i
+    })
+
+    const emailInput = screen.getByPlaceholderText('email@email.com')
+    const passwordInput = screen.getByPlaceholderText('Informe sua senha')
+
+    fireEvent.change(emailInput, {
+      target: {
+        value: 'email@email.com'
+      }
+    })
+    fireEvent.change(passwordInput, {
+      target: {
+        value: '123'
+      }
+    })
+
+    expect(loginBtn).toBeDisabled()
+  })
+
+  test('Ao informar senha válida, mas email inválido', () => {
+    const loginBtn = screen.queryByRole('button', {
+      name: /Entrar/i
+    })
+
+    const emailInput = screen.getByPlaceholderText('email@email.com')
+    const passwordInput = screen.getByPlaceholderText('Informe sua senha')
+
+    fireEvent.change(emailInput, {
+      target: {
+        value: 'email@email'
+      }
+    })
+    fireEvent.change(passwordInput, {
+      target: {
+        value: '123456'
+      }
+    })
+
+    expect(loginBtn).toBeDisabled()
+  })
+
+  test('Ao informar dados válidos, mas depois mudar para inválidos', () => {
+    const loginBtn = screen.queryByRole('button', {
+      name: /Entrar/i
+    })
+
+    const emailInput = screen.getByPlaceholderText('email@email.com')
+    const passwordInput = screen.getByPlaceholderText('Informe sua senha')
+
+    fireEvent.change(emailInput, {
+      target: {
+        value: 'email@email.com'
+      }
+    })
+    fireEvent.change(passwordInput, {
+      target: {
+        value: '123456'
+      }
+    })
+
+    expect(loginBtn).toBeEnabled()
+
+    fireEvent.change(emailInput, {
+      target: {
+        value: 'email@email'
+      }
+    })
+
+    expect(loginBtn).toBeDisabled()
+  })
+})
+
 describe('O botão deve ser ficar habilitado', () => {
   test('Ao informar um email e senha válidos', () => {
     render(<Login />)
@@ -65,13 +165,13 @@ describe('O botão deve ser ficar habilitado', () => {
     })
 
     const emailInput = screen.getByPlaceholderText('email@email.com')
+    const passwordInput = screen.getByPlaceholderText('Informe sua senha')
+
     fireEvent.change(emailInput, {
       target: {
         value: 'email@email.com'
       }
     })
-
-    const passwordInput = screen.getByPlaceholderText('Informe sua senha')
     fireEvent.change(passwordInput, {
       target: {
         value: '123456'
