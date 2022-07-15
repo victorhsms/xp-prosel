@@ -4,6 +4,13 @@ export default function Login() {
       <h1>Login</h1>
       <label htmlFor="email-input">Email</label>
       <input type="text" placeholder="email@email.com" id="email-input" />
+      <label htmlFor="password-input">Senha</label>
+      <input
+        type="password"
+        name="passowd"
+        id="password-input"
+        placeholder="Informe sua senha"
+      />
     </form>
   )
 }
