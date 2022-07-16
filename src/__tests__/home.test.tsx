@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import React from 'react'
+import { RecoilRoot } from 'recoil'
 import Home from '../pages'
 
 describe('Ao acessar a página Home, deve existir um header', () => {
@@ -10,7 +11,13 @@ describe('Ao acessar a página Home, deve existir um header', () => {
       JSON.stringify(['email@email.com', dateNow])
     )
   })
-  beforeEach(() => render(<Home />))
+  beforeEach(() =>
+    render(
+      <RecoilRoot>
+        <Home />
+      </RecoilRoot>
+    )
+  )
   afterAll(() => localStorage.clear())
 
   test('com um link de logoff', () => {

@@ -1,12 +1,11 @@
 import React from 'react'
 import md5 from 'crypto-js/md5'
+import { useUser } from '../../state/hooks/useUser'
 
 export default function Header() {
+  const user = useUser()
   function getGravatar() {
-    const userLogged = JSON.parse(
-      window.localStorage.getItem('logged_user#xp-prosel')
-    )[0]
-    const hashGenerated = md5(userLogged).toString()
+    const hashGenerated = md5(user).toString()
     const gravatar = `https://www.gravatar.com/avatar/${hashGenerated}`
     return gravatar
   }
@@ -15,7 +14,7 @@ export default function Header() {
     <header>
       <div>
         <span role="link">logoff</span>
-        <img src={getGravatar()} alt="Foto de perfil" width={50} height={50} />
+        <img src={getGravatar()} alt="Foto de perfil" />
       </div>
     </header>
   )

@@ -1,12 +1,14 @@
 import { GetServerSideProps } from 'next'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
+import { useAddUser } from '../../state/hooks/useAddUser'
 import validateLogin from '../../helpers/validations/validateLogin'
 
 export default function Login() {
   const [emailValue, setEmailValue] = useState<string>('')
   const [passwordValue, setPasswordValue] = useState<string>('')
   const [btnStatus, setBtnStatus] = useState<boolean>(true)
+  const addNewUser = useAddUser()
   const router = useRouter()
 
   useEffect(() => {
@@ -27,6 +29,8 @@ export default function Login() {
       'logged_user#xp-prosel',
       JSON.stringify([emailValue, dateNow])
     )
+
+    addNewUser(emailValue)
 
     router.replace('/')
   }
