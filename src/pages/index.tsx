@@ -4,6 +4,7 @@ import { useAddUser } from '../state/hooks/useAddUser'
 import Header from '../components/header'
 import WalletTable from '../components/walletTable'
 import ActionsTable from '../components/actionsTable'
+import { GetServerSideProps } from 'next'
 
 export default function Home() {
   const router = useRouter()
