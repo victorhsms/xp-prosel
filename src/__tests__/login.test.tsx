@@ -1,6 +1,38 @@
 import Login from '../pages/login'
-import { fireEvent, render, screen } from '@testing-library/react'
+import {
+  act,
+  fireEvent,
+  render,
+  renderHook,
+  screen
+} from '@testing-library/react'
 import React from 'react'
+import mockRouter from 'next-router-mock'
+import { RecoilRoot } from 'recoil'
+import { useRouter } from 'next/router'
+
+jest.mock('next/router', () => require('next-router-mock'))
+
+describe('Caso ja tenha um usuário logado', () => {
+  beforeAll(() => {
+    const dateNow = new Date().toLocaleString()
+    localStorage.setItem(
+      'logged_user#xp-prosel',
+      JSON.stringify(['email@email.com', dateNow])
+    )
+  })
+
+  test('o usuario deve ser redirecionado para a Home', () => {
+    mockRouter.setCurrentUrl('/initial')
+    render(<Login />)
+
+    const { result } = renderHook(() => {
+      return useRouter()
+    })
+
+    expect(result.current).toMatchObject({ asPath: '/' })
+  })
+})
 
 describe('Ao acessar a página de login', () => {
   beforeEach(() => {
@@ -179,5 +211,46 @@ describe('O botão deve ser ficar habilitado', () => {
     })
 
     expect(loginBtn).toBeEnabled()
+  })
+})
+
+describe('Ao clicar no botão de login', () => {
+  beforeEach(() => {
+    mockRouter.setCurrentUrl('/login')
+    render(
+      <RecoilRoot>
+        <Login />
+      </RecoilRoot>
+    )
+  })
+
+  test('O email e a data atual devem ser salvos no localhost', () => {
+    const loginBtn = screen.getByRole('button', {
+      name: /Entrar/i
+    })
+
+    const emailInput = screen.getByPlaceholderText('email@email.com')
+    const passwordInput = screen.getByPlaceholderText('Informe sua senha')
+
+    fireEvent.change(emailInput, {
+      target: {
+        value: 'email@email.com'
+      }
+    })
+    fireEvent.change(passwordInput, {
+      target: {
+        value: '123456'
+      }
+    })
+
+    fireEvent.click(loginBtn)
+
+    const data = JSON.parse(
+      localStorage.getItem('logged_user#xp-prosel') as string
+    )
+
+    expect(data.length).toBe(2)
+    expect(data[0]).toBe('email@email.com')
+    expect(data[1]).toBe(new Date().toLocaleString())
   })
 })
