@@ -9,6 +9,7 @@
     "test:ci": "jest --ci"
   },
   "dependencies": {
+    "dotenv": "^16.0.1",
     "next": "latest",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
