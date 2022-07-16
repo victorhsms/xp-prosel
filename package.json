@@ -5,6 +5,7 @@
     "build": "next build",
     "start": "next start",
     "test": "jest --watch",
+    "coverage": "jest --coverage",
     "test:ci": "jest --ci"
   },
   "dependencies": {
@@ -30,6 +31,7 @@
     "husky": "^8.0.1",
     "jest": "28.1.0",
     "jest-environment-jsdom": "28.1.0",
+    "next-router-mock": "^0.7.4",
     "prettier": "^2.6.2",
     "prettier-config-infojr": "^1.0.1",
     "typescript": "4.6.4"
