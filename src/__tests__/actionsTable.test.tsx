@@ -19,21 +19,15 @@ describe('Ao entrar na página de login', () => {
 
   it('deve existir o texto "Minhas ações"', () => {
     const myActions = screen.queryByRole('heading', {
-      name: /Minhas Ações/i
+      name: /Disponível para investir/i
     })
 
     expect(myActions).toBeInTheDocument()
   })
 
   it('deve existir uma tabela itens', () => {
-    const table = screen.queryByTestId('wallet-table')
+    const table = screen.queryByTestId('actions-table')
 
     expect(table).toBeInTheDocument()
-  })
-
-  it('deve um único TR', () => {
-    const emptyTable = screen.queryByTestId('wallet-table-empty')
-
-    expect(emptyTable).toBeInTheDocument()
   })
 })

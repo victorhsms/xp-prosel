@@ -7,13 +7,13 @@ export default function WalletTable() {
           <tr>
             <th>Ações</th>
             <th>Quantidade</th>
-            <th>{'Valor(R$)'}</th>
+            <th>{'Valor (R$)'}</th>
             <th>Negociar</th>
           </tr>
         </thead>
         <tbody>
           <tr data-testid="wallet-table-empty">
-            <td>Você não tem nenhuma ação comprada no momento!</td>
+            <td colSpan={4}>Você não tem nenhuma ação comprada no momento!</td>
           </tr>
         </tbody>
       </table>
