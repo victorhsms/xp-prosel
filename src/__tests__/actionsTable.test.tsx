@@ -17,7 +17,7 @@ describe('Ao entrar na página de login', () => {
     )
   })
 
-  it('deve existir o texto "Minhas ações"', () => {
+  it('deve existir o texto "Disponível para investir"', () => {
     const myActions = screen.queryByRole('heading', {
       name: /Disponível para investir/i
     })
@@ -25,7 +25,7 @@ describe('Ao entrar na página de login', () => {
     expect(myActions).toBeInTheDocument()
   })
 
-  it('deve existir uma tabela itens', () => {
+  it('deve existir uma tabela com itens', () => {
     const table = screen.queryByTestId('actions-table')
 
     expect(table).toBeInTheDocument()

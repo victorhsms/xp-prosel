@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import { useAddUser } from '../state/hooks/useAddUser'
 import Header from '../components/header'
 import WalletTable from '../components/walletTable'
+import ActionsTable from '../components/actionsTable'
 
 export default function Home() {
   const router = useRouter()
@@ -21,6 +22,7 @@ export default function Home() {
     <>
       <Header />
       <WalletTable />
+      <ActionsTable />
     </>
   )
 }
