@@ -35,7 +35,7 @@ describe('Ao entrar na página home', () => {
   })
 })
 
-describe('Ao clicar no botão "Depósito/Retirada"', () => {
+describe('Ao clicar no botão "Depósito/Retirada" deve exibir um modal', () => {
   beforeEach(() => {
     const dateNow = new Date().toLocaleString()
     localStorage.setItem(
@@ -55,7 +55,7 @@ describe('Ao clicar no botão "Depósito/Retirada"', () => {
     fireEvent.click(modalButton)
   })
 
-  it('deve exibir um modal com um botão "Depósitar"', () => {
+  it('com um botão "Depósitar"', () => {
     const btnDeposit = screen.queryByRole('button', {
       name: /Depositar/i
     })
@@ -63,11 +63,39 @@ describe('Ao clicar no botão "Depósito/Retirada"', () => {
     expect(btnDeposit).toBeInTheDocument()
   })
 
-  it('deve exibir um modal com um botão "Retirar"', () => {
+  it('com um botão "Retirar"', () => {
     const btnRemove = screen.queryByRole('button', {
       name: /Retirar/i
     })
 
     expect(btnRemove).toBeInTheDocument()
+  })
+
+  it('com um botão "Voltar"', () => {
+    const btnBack = screen.queryByRole('button', {
+      name: /Voltar/i
+    })
+
+    expect(btnBack).toBeInTheDocument()
+  })
+
+  it('com um botão "Confirmar"', () => {
+    const btnConfirme = screen.queryByRole('button', {
+      name: /Confirmar/i
+    })
+
+    expect(btnConfirme).toBeInTheDocument()
+  })
+
+  it('com um input de placeholder "Informe um valor"', () => {
+    const inputValue = screen.queryByPlaceholderText('Informe um valor')
+
+    expect(inputValue).toBeInTheDocument()
+  })
+
+  it('com um texto escrito "Saldo em Conta:"', () => {
+    const spanValue = screen.queryByText('Saldo em Conta:')
+
+    expect(spanValue).toBeInTheDocument()
   })
 })

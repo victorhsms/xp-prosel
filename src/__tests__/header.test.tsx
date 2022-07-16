@@ -4,6 +4,7 @@ import { RecoilRoot } from 'recoil'
 import Home from '../pages'
 import mockRouter from 'next-router-mock'
 import { useRouter } from 'next/router'
+import actions from '../mock/actions'
 
 jest.mock('next/router', () => require('next-router-mock'))
 
@@ -18,7 +19,7 @@ describe('Ao acessar a página Home, deve existir um header', () => {
   beforeEach(() =>
     render(
       <RecoilRoot>
-        <Home />
+        <Home actions={actions} />
       </RecoilRoot>
     )
   )
@@ -51,7 +52,7 @@ describe('Ao clicar no link de logoff', () => {
 
     render(
       <RecoilRoot>
-        <Home />
+        <Home actions={actions} />
       </RecoilRoot>
     )
   })

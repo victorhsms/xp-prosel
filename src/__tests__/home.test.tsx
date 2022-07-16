@@ -4,6 +4,7 @@ import { RecoilRoot } from 'recoil'
 import Home from '../pages'
 import { useRouter } from 'next/router'
 import mockRouter from 'next-router-mock'
+import actions from '../mock/actions'
 
 jest.mock('next/router', () => require('next-router-mock'))
 
@@ -12,7 +13,7 @@ describe('Caso não tenha usuário logado', () => {
     mockRouter.setCurrentUrl('/')
     render(
       <RecoilRoot>
-        <Home />
+        <Home actions={actions} />
       </RecoilRoot>
     )
   })
