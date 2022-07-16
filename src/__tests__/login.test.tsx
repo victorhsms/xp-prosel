@@ -22,7 +22,7 @@ describe('Caso ja tenha um usuário logado', () => {
     )
   })
 
-  test('o usuario deve ser redirecionado para a Home', () => {
+  it('o usuario deve ser redirecionado para a Home', () => {
     mockRouter.setCurrentUrl('/login')
     render(<Login />)
 
@@ -39,7 +39,7 @@ describe('Ao acessar a página de login', () => {
     render(<Login />)
   })
 
-  test('Deve existir um título escrito "Login"', () => {
+  it('Deve existir um título escrito "Login"', () => {
     const login = screen.queryByRole('heading', {
       name: /Login/i
     })
@@ -47,31 +47,31 @@ describe('Ao acessar a página de login', () => {
     expect(login).toBeInTheDocument()
   })
 
-  test('Deve existir uma label pra o email', () => {
+  it('Deve existir uma label pra o email', () => {
     const labelEmail = screen.queryByLabelText('Email')
 
     expect(labelEmail).toBeInTheDocument()
   })
 
-  test('Deve existir um input de email', () => {
+  it('Deve existir um input de email', () => {
     const emailInput = screen.queryByPlaceholderText('email@email.com')
 
     expect(emailInput).toBeInTheDocument()
   })
 
-  test('Deve existir uma label para a senha', () => {
+  it('Deve existir uma label para a senha', () => {
     const passordLabel = screen.queryByLabelText('Senha')
 
     expect(passordLabel).toBeInTheDocument()
   })
 
-  test('Deve existir um input de senha', () => {
+  it('Deve existir um input de senha', () => {
     const passwordInput = screen.queryByPlaceholderText('Informe sua senha')
 
     expect(passwordInput).toBeInTheDocument()
   })
 
-  test('Deve existir um botão de login', () => {
+  it('Deve existir um botão de login', () => {
     const loginBtn = screen.queryByRole('button', {
       name: /Entrar/i
     })
@@ -79,7 +79,7 @@ describe('Ao acessar a página de login', () => {
     expect(loginBtn).toBeInTheDocument()
   })
 
-  test('O botão de login deve estar desabilitado', () => {
+  it('O botão de login deve estar desabilitado', () => {
     const loginBtn = screen.queryByRole('button', {
       name: /Entrar/i
     })
@@ -91,7 +91,7 @@ describe('Ao acessar a página de login', () => {
 describe('O botão deve ficar continuar desabilitado', () => {
   beforeEach(() => render(<Login />))
 
-  test('Ao informar email e senha inválidos', () => {
+  it('Ao informar email e senha inválidos', () => {
     const loginBtn = screen.queryByRole('button', {
       name: /Entrar/i
     })
@@ -113,7 +113,7 @@ describe('O botão deve ficar continuar desabilitado', () => {
     expect(loginBtn).toBeDisabled()
   })
 
-  test('Ao informar email válido, mas senha inválida', () => {
+  it('Ao informar email válido, mas senha inválida', () => {
     const loginBtn = screen.queryByRole('button', {
       name: /Entrar/i
     })
@@ -135,7 +135,7 @@ describe('O botão deve ficar continuar desabilitado', () => {
     expect(loginBtn).toBeDisabled()
   })
 
-  test('Ao informar senha válida, mas email inválido', () => {
+  it('Ao informar senha válida, mas email inválido', () => {
     const loginBtn = screen.queryByRole('button', {
       name: /Entrar/i
     })
@@ -157,7 +157,7 @@ describe('O botão deve ficar continuar desabilitado', () => {
     expect(loginBtn).toBeDisabled()
   })
 
-  test('Ao informar dados válidos, mas depois mudar para inválidos', () => {
+  it('Ao informar dados válidos, mas depois mudar para inválidos', () => {
     const loginBtn = screen.queryByRole('button', {
       name: /Entrar/i
     })
@@ -189,7 +189,7 @@ describe('O botão deve ficar continuar desabilitado', () => {
 })
 
 describe('O botão deve ser ficar habilitado', () => {
-  test('Ao informar um email e senha válidos', () => {
+  it('Ao informar um email e senha válidos', () => {
     render(<Login />)
 
     const loginBtn = screen.queryByRole('button', {
@@ -224,7 +224,7 @@ describe('Ao clicar no botão de login', () => {
     )
   })
 
-  test('O email e a data atual devem ser salvos no localhost', () => {
+  it('O email e a data atual devem ser salvos no localhost', () => {
     const loginBtn = screen.getByRole('button', {
       name: /Entrar/i
     })

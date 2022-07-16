@@ -24,7 +24,7 @@ describe('Ao acessar a página Home, deve existir um header', () => {
   )
   afterAll(() => localStorage.clear())
 
-  test('com um link de logoff', () => {
+  it('com um link de logoff', () => {
     const logoff = screen.queryByRole('link', {
       name: /logoff/i
     })
@@ -32,7 +32,7 @@ describe('Ao acessar a página Home, deve existir um header', () => {
     expect(logoff).toBeInTheDocument()
   })
 
-  test('com um uma foto de perfil', () => {
+  it('com um uma foto de perfil', () => {
     const imgProfile = screen.queryByAltText('Foto de perfil')
 
     expect(imgProfile).toBeInTheDocument()
@@ -56,7 +56,7 @@ describe('Ao clicar no link de logoff', () => {
     )
   })
 
-  test('o usuário não deve mais existir no localStorage', () => {
+  it('o usuário não deve mais existir no localStorage', () => {
     const logoff = screen.getByRole('link', {
       name: /logoff/i
     })
@@ -68,7 +68,7 @@ describe('Ao clicar no link de logoff', () => {
     expect(userLogged).toBeNull()
   })
 
-  test('o usuário é redirecionado para página de login', () => {
+  it('o usuário é redirecionado para página de login', () => {
     const { result } = renderHook(() => {
       return useRouter()
     })

@@ -16,7 +16,8 @@ describe('Ao entrar na página de login', () => {
       </RecoilRoot>
     )
   })
-  test('deve existir o texto "Minhas ações"', () => {
+
+  it('deve existir o texto "Minhas ações"', () => {
     const myActions = screen.queryByRole('heading', {
       name: /Minhas Ações/i
     })

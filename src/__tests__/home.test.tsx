@@ -17,7 +17,7 @@ describe('Caso não tenha usuário logado', () => {
     )
   })
 
-  test('o usuario deve ser redirecionado para página de Login', () => {
+  it('o usuario deve ser redirecionado para página de Login', () => {
     const { result } = renderHook(() => {
       return useRouter()
     })
