@@ -1,4 +1,7 @@
+import { useActionStore } from '../../state/hooks/useActionStore'
+
 export default function ActionsTable() {
+  const actions = useActionStore()
   return (
     <div>
       <h3>Disponível para investir</h3>
@@ -11,7 +14,20 @@ export default function ActionsTable() {
             <th data-testid="negotiate-actions-table">Negociar</th>
           </tr>
         </thead>
-        <tbody></tbody>
+        <tbody>
+          {actions
+            ? actions.map(action => (
+                <tr key={action.name}>
+                  <th data-testid={`${action.name}-name-table`}>
+                    {action.name}
+                  </th>
+                  <th>{action.quantity}</th>
+                  <th>{action.value}</th>
+                  <th>Comprar</th>
+                </tr>
+              ))
+            : null}
+        </tbody>
       </table>
     </div>
   )

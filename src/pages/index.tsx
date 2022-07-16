@@ -5,10 +5,14 @@ import Header from '../components/header'
 import WalletTable from '../components/walletTable'
 import ActionsTable from '../components/actionsTable'
 import { GetServerSideProps } from 'next'
+import { useAddActionStore } from '../state/hooks/useAddActionStore'
+import IActions from '../interface/action'
+import { server } from '../config'
 
-export default function Home() {
+export default function Home({ actions }: { actions: IActions[] }) {
   const router = useRouter()
   const addUser = useAddUser()
+  const addActionsStore = useAddActionStore()
 
   useEffect(() => {
     const hasLoggedUser = localStorage.getItem('logged_user#xp-prosel')
@@ -16,6 +20,7 @@ export default function Home() {
       router.replace('/login')
     } else {
       addUser(JSON.parse(hasLoggedUser)[0])
+      addActionsStore(actions)
     }
   }, [])
 
@@ -29,8 +34,8 @@ export default function Home() {
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const urlSearch = process.env.API_URL
-  const result = await fetch(`${urlSearch}api/actions`)
+  const urlSearch = `${server}/api/actions`
+  const result = await fetch(urlSearch)
   const actions = await result.json()
   return {
     props: {

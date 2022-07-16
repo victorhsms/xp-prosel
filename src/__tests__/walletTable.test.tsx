@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import React from 'react'
 import { RecoilRoot } from 'recoil'
+import actions from '../mock/actions'
 import Home from '../pages'
 
 describe('Ao entrar na página home', () => {
@@ -12,7 +13,7 @@ describe('Ao entrar na página home', () => {
     )
     render(
       <RecoilRoot>
-        <Home />
+        <Home actions={actions} />
       </RecoilRoot>
     )
   })
@@ -53,7 +54,7 @@ describe('Ao acessar a página de login com um novo usuário', () => {
     )
     render(
       <RecoilRoot>
-        <Home />
+        <Home actions={actions} />
       </RecoilRoot>
     )
   })

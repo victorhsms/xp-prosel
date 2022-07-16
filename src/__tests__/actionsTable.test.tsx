@@ -13,7 +13,7 @@ describe('Ao entrar na página home', () => {
     )
     render(
       <RecoilRoot>
-        <Home />
+        <Home actions={actions} />
       </RecoilRoot>
     )
   })
@@ -54,7 +54,7 @@ describe('Ao entrar na página home com um usuário novo', () => {
     )
     render(
       <RecoilRoot>
-        <Home />
+        <Home actions={actions} />
       </RecoilRoot>
     )
   })
