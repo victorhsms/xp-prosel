@@ -27,3 +27,14 @@ export default function Home() {
     </>
   )
 }
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const urlSearch = process.env.API_URL
+  const result = await fetch(`${urlSearch}api/actions`)
+  const actions = await result.json()
+  return {
+    props: {
+      actions
+    }
+  }
+}
