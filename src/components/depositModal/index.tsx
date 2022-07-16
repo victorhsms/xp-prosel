@@ -17,8 +17,9 @@ export default function DepositModal({
       shouldCloseOnEsc={true}
       ariaHideApp={false}
       contentLabel="Interface para fazer depósito">
+      <button>Retirar</button>
+      <button>Depositar</button>
       <button onClick={() => handleShow(!show)}>Fechar</button>
-      <h3>Depósito</h3>
     </ReactModal>
   )
 }

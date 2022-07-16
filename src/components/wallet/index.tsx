@@ -8,10 +8,9 @@ export default function Wallet() {
     <aside>
       <h3>Minha carteira</h3>
       <button onClick={() => setShowModalDeposit(!showModalDeposit)}>
-        Fazer depósito
+        Depósito/Retirada
       </button>
       <DepositModal show={showModalDeposit} handleShow={setShowModalDeposit} />
-      <button>Retirar saldo</button>
     </aside>
   )
 }

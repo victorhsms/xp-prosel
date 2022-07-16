@@ -36,7 +36,7 @@ describe('Ao entrar na página home', () => {
 })
 
 describe('Ao clicar no botão "Depósito/Retirada"', () => {
-  beforeAll(() => {
+  beforeEach(() => {
     const dateNow = new Date().toLocaleString()
     localStorage.setItem(
       'logged_user#xp-prosel',
@@ -57,13 +57,13 @@ describe('Ao clicar no botão "Depósito/Retirada"', () => {
 
   it('deve exibir um modal com um botão "Depósitar"', () => {
     const btnDeposit = screen.queryByRole('button', {
-      name: /Depósitar/i
+      name: /Depositar/i
     })
 
     expect(btnDeposit).toBeInTheDocument()
   })
 
-  it('deve exibir um modal com um botão "Retirada"', () => {
+  it('deve exibir um modal com um botão "Retirar"', () => {
     const btnRemove = screen.queryByRole('button', {
       name: /Retirar/i
     })
