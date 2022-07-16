@@ -3,7 +3,7 @@ import React from 'react'
 import { RecoilRoot } from 'recoil'
 import Home from '../pages'
 
-describe('Ao entrar na página de login', () => {
+describe('Ao entrar na página home', () => {
   beforeEach(() => {
     const dateNow = new Date().toLocaleString()
     localStorage.setItem(

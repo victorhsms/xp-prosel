@@ -1,9 +1,10 @@
 import { render, screen } from '@testing-library/react'
 import React from 'react'
 import { RecoilRoot } from 'recoil'
+import actions from '../mock/actions'
 import Home from '../pages'
 
-describe('Ao entrar na página de login', () => {
+describe('Ao entrar na página home', () => {
   beforeEach(() => {
     const dateNow = new Date().toLocaleString()
     localStorage.setItem(
@@ -41,5 +42,28 @@ describe('Ao entrar na página de login', () => {
     expect(quantity).toBeInTheDocument()
     expect(value).toBeInTheDocument()
     expect(negotiate).toBeInTheDocument()
+  })
+})
+
+describe('Ao entrar na página home com um usuário novo', () => {
+  beforeEach(() => {
+    const dateNow = new Date().toLocaleString()
+    localStorage.setItem(
+      'logged_user#xp-prosel',
+      JSON.stringify(['email@email.com', dateNow])
+    )
+    render(
+      <RecoilRoot>
+        <Home />
+      </RecoilRoot>
+    )
+  })
+
+  it('deve aparecer uma lista de ações na tabela', () => {
+    actions.map(action => {
+      const tableItem = screen.queryByTestId(`${action.name}-name-table`)
+
+      expect(tableItem).toBeInTheDocument()
+    })
   })
 })
