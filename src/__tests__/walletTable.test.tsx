@@ -42,8 +42,23 @@ describe('Ao entrar na página de login', () => {
     expect(value).toBeInTheDocument()
     expect(negotiate).toBeInTheDocument()
   })
+})
 
-  it('deve um único TR', () => {
+describe('Ao acessar a página de login com um novo usuário', () => {
+  beforeEach(() => {
+    const dateNow = new Date().toLocaleString()
+    localStorage.setItem(
+      'logged_user#xp-prosel',
+      JSON.stringify(['email@email.com', dateNow])
+    )
+    render(
+      <RecoilRoot>
+        <Home />
+      </RecoilRoot>
+    )
+  })
+
+  it('deve um único TR indicando tabela vazia', () => {
     const emptyTable = screen.queryByTestId('wallet-table-empty')
 
     expect(emptyTable).toBeInTheDocument()
