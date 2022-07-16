@@ -8,6 +8,7 @@ import { GetServerSideProps } from 'next'
 import { useAddActionStore } from '../state/hooks/useAddActionStore'
 import IActions from '../interface/action'
 import { server } from '../config'
+import Wallet from '../components/wallet'
 
 export default function Home({ actions }: { actions: IActions[] }) {
   const router = useRouter()
@@ -29,6 +30,7 @@ export default function Home({ actions }: { actions: IActions[] }) {
       <Header />
       <WalletTable />
       <ActionsTable />
+      <Wallet />
     </>
   )
 }
