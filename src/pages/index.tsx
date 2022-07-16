@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
+import Header from '../components/header'
 
 export default function Home() {
   const router = useRouter()
@@ -9,5 +10,5 @@ export default function Home() {
     if (!hasLoggedUser) router.replace('/login')
   }, [])
 
-  return <h1>Página inicial</h1>
+  return <Header />
 }
