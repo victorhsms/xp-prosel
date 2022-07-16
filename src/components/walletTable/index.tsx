@@ -5,10 +5,10 @@ export default function WalletTable() {
       <table data-testid="wallet-table">
         <thead>
           <tr>
-            <th>Ações</th>
-            <th>Quantidade</th>
-            <th>{'Valor (R$)'}</th>
-            <th>Negociar</th>
+            <th data-testid="actions-wallet-table">Ações</th>
+            <th data-testid="quantity-wallet-table">Quantidade</th>
+            <th data-testid="value-wallet-table">{'Valor (R$)'}</th>
+            <th data-testid="negotiate-wallet-table">Negociar</th>
           </tr>
         </thead>
         <tbody>

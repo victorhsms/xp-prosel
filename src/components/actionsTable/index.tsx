@@ -5,10 +5,10 @@ export default function ActionsTable() {
       <table data-testid="actions-table">
         <thead>
           <tr>
-            <th>Ações</th>
-            <th>Quantidade</th>
-            <th>{'Valor (R$)'}</th>
-            <th>Negociar</th>
+            <th data-testid="actions-actions-table">Ações</th>
+            <th data-testid="quantity-actions-table">Quantidade</th>
+            <th data-testid="value-actions-table">{'Valor (R$)'}</th>
+            <th data-testid="negotiate-actions-table">Negociar</th>
           </tr>
         </thead>
         <tbody></tbody>

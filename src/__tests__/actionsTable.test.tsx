@@ -25,9 +25,21 @@ describe('Ao entrar na página de login', () => {
     expect(myActions).toBeInTheDocument()
   })
 
-  it('deve existir uma tabela com itens', () => {
+  it('deve existir uma tabela', () => {
     const table = screen.queryByTestId('actions-table')
 
     expect(table).toBeInTheDocument()
+  })
+
+  it('deve existir 4 theads na tabela', () => {
+    const name = screen.queryByTestId('actions-actions-table')
+    const quantity = screen.queryByTestId('quantity-actions-table')
+    const value = screen.queryByTestId('value-actions-table')
+    const negotiate = screen.queryByTestId('negotiate-actions-table')
+
+    expect(name).toBeInTheDocument()
+    expect(quantity).toBeInTheDocument()
+    expect(value).toBeInTheDocument()
+    expect(negotiate).toBeInTheDocument()
   })
 })
