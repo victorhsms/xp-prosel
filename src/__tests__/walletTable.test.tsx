@@ -4,17 +4,21 @@ import { RecoilRoot } from 'recoil'
 import Home from '../pages'
 
 describe('Ao entrar na página de login', () => {
+  beforeEach(() => {
+    const dateNow = new Date().toLocaleString()
+    localStorage.setItem(
+      'logged_user#xp-prosel',
+      JSON.stringify(['email@email.com', dateNow])
+    )
+    render(
+      <RecoilRoot>
+        <Home />
+      </RecoilRoot>
+    )
+  })
   test('deve existir o texto "Minhas ações"', () => {
-    beforeEach(() => {
-      render(
-        <RecoilRoot>
-          <Home />
-        </RecoilRoot>
-      )
-    })
-
     const myActions = screen.queryByRole('heading', {
-      name: 'Minhas Ações'
+      name: /Minhas Ações/i
     })
 
     expect(myActions).toBeInTheDocument()

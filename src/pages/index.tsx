@@ -2,6 +2,7 @@ import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { useAddUser } from '../state/hooks/useAddUser'
 import Header from '../components/header'
+import WalletTable from '../components/walletTable'
 
 export default function Home() {
   const router = useRouter()
@@ -16,5 +17,10 @@ export default function Home() {
     }
   }, [])
 
-  return <Header />
+  return (
+    <>
+      <Header />
+      <WalletTable />
+    </>
+  )
 }
