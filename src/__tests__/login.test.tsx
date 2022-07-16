@@ -23,7 +23,7 @@ describe('Caso ja tenha um usuário logado', () => {
   })
 
   test('o usuario deve ser redirecionado para a Home', () => {
-    mockRouter.setCurrentUrl('/initial')
+    mockRouter.setCurrentUrl('/login')
     render(<Login />)
 
     const { result } = renderHook(() => {
