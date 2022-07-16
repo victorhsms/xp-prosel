@@ -17,9 +17,12 @@ export default function WalletModal({
       shouldCloseOnEsc={true}
       ariaHideApp={false}
       contentLabel="Interface para fazer depósito">
+      <span>Saldo em Conta:</span>
       <button>Retirar</button>
       <button>Depositar</button>
-      <button onClick={() => handleShow(!show)}>Fechar</button>
+      <input type="text" placeholder="Informe um valor" />
+      <button onClick={() => handleShow(!show)}>Voltar</button>
+      <button onClick={() => handleShow(!show)}>Confirmar</button>
     </ReactModal>
   )
 }
