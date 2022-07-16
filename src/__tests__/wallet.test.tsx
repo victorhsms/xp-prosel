@@ -26,25 +26,17 @@ describe('Ao entrar na página home', () => {
     expect(myWallet).toBeInTheDocument()
   })
 
-  it('deve existir um botão com o texto "Fazer depósito"', () => {
-    const deposit = screen.queryByRole('button', {
-      name: /Fazer depósito/i
+  it('deve existir um botão com o texto "Depósito/Retirada"', () => {
+    const modalButton = screen.queryByRole('button', {
+      name: /Depósito\/Retirada/i
     })
 
-    expect(deposit).toBeInTheDocument()
-  })
-
-  it('deve existir um botão com o texto "Retirar saldo"', () => {
-    const drawBalance = screen.queryByRole('button', {
-      name: /Retirar saldo/i
-    })
-
-    expect(drawBalance).toBeInTheDocument()
+    expect(modalButton).toBeInTheDocument()
   })
 })
 
-describe('Ao clicar no botão "Fazer depósito"', () => {
-  beforeEach(() => {
+describe('Ao clicar no botão "Depósito/Retirada"', () => {
+  beforeAll(() => {
     const dateNow = new Date().toLocaleString()
     localStorage.setItem(
       'logged_user#xp-prosel',
@@ -55,19 +47,27 @@ describe('Ao clicar no botão "Fazer depósito"', () => {
         <Home actions={actions} />
       </RecoilRoot>
     )
+
+    const modalButton = screen.getByRole('button', {
+      name: /Depósito\/Retirada/i
+    })
+
+    fireEvent.click(modalButton)
   })
 
-  it('deve exibir um modal com o título "Depósito"', () => {
-    const deposit = screen.getByRole('button', {
-      name: /Fazer depósito/i
+  it('deve exibir um modal com um botão "Depósitar"', () => {
+    const btnDeposit = screen.queryByRole('button', {
+      name: /Depósitar/i
     })
 
-    fireEvent.click(deposit)
+    expect(btnDeposit).toBeInTheDocument()
+  })
 
-    const depositModal = screen.queryByRole('heading', {
-      name: /Depósito/i
+  it('deve exibir um modal com um botão "Retirada"', () => {
+    const btnRemove = screen.queryByRole('button', {
+      name: /Retirar/i
     })
 
-    expect(depositModal).toBeInTheDocument()
+    expect(btnRemove).toBeInTheDocument()
   })
 })
