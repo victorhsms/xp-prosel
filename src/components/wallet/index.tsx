@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import ReactModal from 'react-modal'
-import DepositModal from '../depositModal'
+import WalletModal from '../walletModal'
 
 export default function Wallet() {
   const [showModalDeposit, setShowModalDeposit] = useState<boolean>(false)
@@ -10,7 +10,7 @@ export default function Wallet() {
       <button onClick={() => setShowModalDeposit(!showModalDeposit)}>
         Depósito/Retirada
       </button>
-      <DepositModal show={showModalDeposit} handleShow={setShowModalDeposit} />
+      <WalletModal show={showModalDeposit} handleShow={setShowModalDeposit} />
     </aside>
   )
 }

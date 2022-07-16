@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from 'react'
 import ReactModal from 'react-modal'
 
-export default function DepositModal({
+export default function WalletModal({
   show,
   handleShow
 }: {
