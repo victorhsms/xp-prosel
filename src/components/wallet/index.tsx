@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import ReactModal from 'react-modal'
 import WalletModal from '../walletModal'
 
 export default function Wallet() {
   const [showModalDeposit, setShowModalDeposit] = useState<boolean>(false)
+
   return (
     <aside>
       <h3>Minha carteira</h3>

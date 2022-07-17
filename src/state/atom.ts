@@ -6,6 +6,16 @@ export const loggedUser = atom<string>({
   default: ''
 })
 
+export const balanceUser = atom<number>({
+  key: 'balanceUser',
+  default: 0
+})
+
+export const actionsWallet = atom<[] | IActions[]>({
+  key: 'actionsUser',
+  default: []
+})
+
 export const actionsStore = atom<[] | IActions[]>({
   key: 'actionsStore',
   default: []

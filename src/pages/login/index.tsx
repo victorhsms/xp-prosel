@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import { useAddUser } from '../../state/hooks/useAddUser'
 import validateLogin from '../../helpers/validations/validateLogin'
+import useUpdateDatabaseUser from 'src/state/hooks/useUpdateDatabaseUser'
 
 export default function Login() {
   const [emailValue, setEmailValue] = useState<string>('')
@@ -20,18 +21,19 @@ export default function Login() {
     setBtnStatus(!validateLogin(emailValue, passwordValue))
   }, [emailValue, passwordValue])
 
-  function setNewUser(event: React.FormEvent) {
-    event.preventDefault()
-
+  async function updateStateAndStorage() {
     const dateNow = new Date().toLocaleString()
-
     localStorage.setItem(
       'logged_user#xp-prosel',
       JSON.stringify([emailValue, dateNow])
     )
 
-    addNewUser(emailValue)
+    await addNewUser(emailValue)
+  }
 
+  function setNewUser(event: React.FormEvent) {
+    event.preventDefault()
+    updateStateAndStorage()
     router.replace('/')
   }
 

@@ -9,11 +9,29 @@ import { useAddActionStore } from '../state/hooks/useAddActionStore'
 import IActions from '../interface/action'
 import { server } from '../config'
 import Wallet from '../components/wallet'
+import { useRecoilValue } from 'recoil'
+import { actionsWallet, balanceUser, loggedUser } from 'src/state/atom'
+import useUpdateDatabaseUser from 'src/state/hooks/useUpdateDatabaseUser'
 
 export default function Home({ actions }: { actions: IActions[] }) {
+  const email = useRecoilValue(loggedUser)
+  const balance = useRecoilValue(balanceUser)
+  const AllActions = useRecoilValue(actionsWallet)
+  const updateUserToDatabase = useUpdateDatabaseUser()
   const router = useRouter()
   const addUser = useAddUser()
   const addActionsStore = useAddActionStore()
+
+  useEffect(() => {
+    const usersStorage = localStorage.getItem('users_database#xp-prosel')
+    const newUserStorage = updateUserToDatabase(
+      JSON.parse(usersStorage as string)
+    )
+    localStorage.setItem(
+      'users_database#xp-prosel',
+      JSON.stringify(newUserStorage)
+    )
+  }, [email, balance, AllActions])
 
   useEffect(() => {
     const hasLoggedUser = localStorage.getItem('logged_user#xp-prosel')
