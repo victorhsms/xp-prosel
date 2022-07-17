@@ -18,6 +18,7 @@ export default function useUpdateDatabaseUser() {
     const updatedStorageUsers = storageUsers.filter(
       user => user.email !== email.toString()
     )
+
     updatedStorageUsers.push(userUpdated)
 
     return updatedStorageUsers

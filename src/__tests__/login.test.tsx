@@ -253,15 +253,4 @@ describe('Ao clicar no botão de login', () => {
     expect(data[0]).toBe('email@email.com')
     expect(data[1]).toBe(new Date().toLocaleString())
   })
-
-  it('Deve ser adicionado um novo usario no database de users do localStorage', () => {
-    const data = JSON.parse(
-      localStorage.getItem('users_database#xp-prosel') as string
-    )
-
-    expect(data.length).toBe(1)
-    expect(data[0].email).toBe('email@email.com')
-    expect(data[0].balance).toBe(0)
-    expect(data[0].acions).toBe([])
-  })
 })

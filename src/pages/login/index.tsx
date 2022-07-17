@@ -1,14 +1,14 @@
-import { GetServerSideProps } from 'next'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import { useAddUser } from '../../state/hooks/useAddUser'
 import validateLogin from '../../helpers/validations/validateLogin'
-import useUpdateDatabaseUser from 'src/state/hooks/useUpdateDatabaseUser'
+import useRecouverSavedUser from '../../state/hooks/useRecouverSavedUser'
 
 export default function Login() {
   const [emailValue, setEmailValue] = useState<string>('')
   const [passwordValue, setPasswordValue] = useState<string>('')
   const [btnStatus, setBtnStatus] = useState<boolean>(true)
+  const recouverSavedUser = useRecouverSavedUser()
   const addNewUser = useAddUser()
   const router = useRouter()
 
@@ -27,6 +27,12 @@ export default function Login() {
       'logged_user#xp-prosel',
       JSON.stringify([emailValue, dateNow])
     )
+
+    const usersStorageJson = localStorage.getItem('users_database#xp-prosel')
+    if (usersStorageJson !== null) {
+      const usersStorage = JSON.parse(usersStorageJson as string)
+      await recouverSavedUser(usersStorage, emailValue)
+    }
 
     await addNewUser(emailValue)
   }

@@ -10,8 +10,8 @@ import IActions from '../interface/action'
 import { server } from '../config'
 import Wallet from '../components/wallet'
 import { useRecoilValue } from 'recoil'
-import { actionsWallet, balanceUser, loggedUser } from 'src/state/atom'
-import useUpdateDatabaseUser from 'src/state/hooks/useUpdateDatabaseUser'
+import { actionsWallet, balanceUser, loggedUser } from '../state/atom'
+import useUpdateDatabaseUser from '../state/hooks/useUpdateDatabaseUser'
 
 export default function Home({ actions }: { actions: IActions[] }) {
   const email = useRecoilValue(loggedUser)
@@ -23,10 +23,10 @@ export default function Home({ actions }: { actions: IActions[] }) {
   const addActionsStore = useAddActionStore()
 
   useEffect(() => {
-    const usersStorage = localStorage.getItem('users_database#xp-prosel')
-    const newUserStorage = updateUserToDatabase(
-      JSON.parse(usersStorage as string)
-    )
+    const usersStorageJson = localStorage.getItem('users_database#xp-prosel')
+    const usersStorage = JSON.parse(usersStorageJson as string)
+    const newUserStorage = updateUserToDatabase(usersStorage)
+
     if (email !== '') {
       localStorage.setItem(
         'users_database#xp-prosel',
@@ -51,6 +51,7 @@ export default function Home({ actions }: { actions: IActions[] }) {
       <WalletTable />
       <ActionsTable />
       <Wallet />
+      <p>{balance}</p>
     </>
   )
 }
