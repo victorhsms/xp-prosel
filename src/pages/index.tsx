@@ -51,7 +51,6 @@ export default function Home({ actions }: { actions: IActions[] }) {
       <WalletTable />
       <ActionsTable />
       <Wallet />
-      <p>{balance}</p>
     </>
   )
 }
