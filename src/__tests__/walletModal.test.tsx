@@ -69,9 +69,9 @@ describe('Ao clicar no botão "Depósito/Retirada" deve exibir um modal', () => 
   })
 
   it('com o saldo em conta zerado', () => {
-    const spanValue = screen.queryByText('R$ 0')
+    const spanValue = screen.getByTestId('balance-wallet-modal')
 
-    expect(spanValue).toBeInTheDocument()
+    expect(spanValue.textContent).toBe('R$ 0')
   })
 })
 
@@ -112,6 +112,12 @@ describe('Ao clicar em Depositar, digitar um valor e clicar em confirmar', () =>
       name: /Confirmar/i
     })
     fireEvent.click(btnConfirme)
+
+    const modalButton = screen.getByRole('button', {
+      name: /Depósito\/Retirada/i
+    })
+
+    fireEvent.click(modalButton)
 
     const balance = screen.getByTestId('balance-wallet-modal')
 
