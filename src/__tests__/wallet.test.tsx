@@ -98,4 +98,10 @@ describe('Ao clicar no botão "Depósito/Retirada" deve exibir um modal', () => 
 
     expect(spanValue).toBeInTheDocument()
   })
+
+  it('com o saldo em conta zerado', () => {
+    const spanValue = screen.queryByText('R$ 0')
+
+    expect(spanValue).toBeInTheDocument()
+  })
 })

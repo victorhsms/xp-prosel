@@ -1,7 +1,8 @@
-import { useActionStore } from '../../state/hooks/useActionStore'
+import { useRecoilValue } from 'recoil'
+import { actionsStore } from '../../state/atom'
 
 export default function ActionsTable() {
-  const actions = useActionStore()
+  const actions = useRecoilValue(actionsStore)
   return (
     <div>
       <h3>Disponível para investir</h3>

@@ -1,12 +1,13 @@
 import React from 'react'
 import md5 from 'crypto-js/md5'
-import { useUser } from '../../state/hooks/useUser'
 import { useAddUser } from '../../state/hooks/useAddUser'
 import { useRouter } from 'next/router'
+import { useRecoilValue } from 'recoil'
+import { loggedUser } from '../../state/atom'
 
 export default function Header() {
   const router = useRouter()
-  const user = useUser()
+  const user = useRecoilValue(loggedUser)
   const addUser = useAddUser()
 
   function getGravatar() {

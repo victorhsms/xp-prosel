@@ -1,5 +1,8 @@
 import { Dispatch, SetStateAction } from 'react'
 import ReactModal from 'react-modal'
+import { useRecoilValue } from 'recoil'
+import { balanceUser } from '../../state/atom'
+import { useBalance } from '../../state/hooks/useBalance'
 
 export default function WalletModal({
   show,
@@ -8,6 +11,7 @@ export default function WalletModal({
   show: boolean
   handleShow: Dispatch<SetStateAction<boolean>>
 }) {
+  const balance = useRecoilValue(balanceUser)
   return (
     <ReactModal
       isOpen={show}
@@ -18,6 +22,7 @@ export default function WalletModal({
       ariaHideApp={false}
       contentLabel="Interface para fazer depósito">
       <span>Saldo em Conta:</span>
+      <span>{`R$ ${balance}`}</span>
       <button>Retirar</button>
       <button>Depositar</button>
       <input type="text" placeholder="Informe um valor" />
