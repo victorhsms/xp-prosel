@@ -35,7 +35,7 @@ describe('Ao entrar na página home', () => {
   })
 
   it('com um texto escrito "Saldo em Conta:"', () => {
-    const spanValue = screen.queryByText('Saldo em Conta:')
+    const spanValue = screen.queryByText('Saldo:')
 
     expect(spanValue).toBeInTheDocument()
   })
