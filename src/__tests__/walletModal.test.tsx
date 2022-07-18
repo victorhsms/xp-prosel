@@ -202,12 +202,6 @@ describe('Ao clicar em Depositar, digitar um valor e clicar em confirmar', () =>
     })
     fireEvent.click(btnConfirme)
 
-    const modalButton = screen.getByRole('button', {
-      name: /Depósito\/Retirada/i
-    })
-
-    fireEvent.click(modalButton)
-
     const balance = screen.getByTestId('balance-wallet-modal')
 
     expect(balance.textContent).toBe('R$ 50')

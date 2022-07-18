@@ -34,7 +34,6 @@ export default function WalletModal({
       : balanceRecoilState - inputValue
     setBalanceReoilState(newValueToState)
     updateDatabaseUsers()
-    handleShow(!show)
   }
 
   return (
