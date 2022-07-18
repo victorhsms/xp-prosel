@@ -33,4 +33,16 @@ describe('Ao entrar na página home', () => {
 
     expect(modalButton).toBeInTheDocument()
   })
+
+  it('com um texto escrito "Saldo em Conta:"', () => {
+    const spanValue = screen.queryByText('Saldo em Conta:')
+
+    expect(spanValue).toBeInTheDocument()
+  })
+
+  it('com o saldo em conta zerado', () => {
+    const spanValue = screen.getByTestId('balance-wallet')
+
+    expect(spanValue.textContent).toBe('R$ 0')
+  })
 })

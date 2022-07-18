@@ -13,7 +13,7 @@ export default function useUpdateDatabaseUser() {
     actions
   }
 
-  return (storageUsers: IStorageUsers[] | null) => {
+  return () => {
     const usersStorageJson = localStorage.getItem('users_database#xp-prosel')
     const usersStorage: IStorageUsers[] | null = JSON.parse(
       usersStorageJson as string
@@ -23,9 +23,13 @@ export default function useUpdateDatabaseUser() {
     const updatedStorageUsers = usersStorage.filter(
       user => user.email !== email.toString()
     )
-
     updatedStorageUsers.push(userUpdated)
 
-    return updatedStorageUsers
+    if (email !== '') {
+      localStorage.setItem(
+        'users_database#xp-prosel',
+        JSON.stringify(updatedStorageUsers)
+      )
+    }
   }
 }

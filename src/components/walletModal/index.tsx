@@ -1,9 +1,10 @@
-import { Dispatch, SetStateAction, useState } from 'react'
+import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import ReactModal from 'react-modal'
 import { useRecoilValue } from 'recoil'
 import { useAddBalance } from '../../state/hooks/useAddBalance'
 import { balanceUser } from '../../state/atom'
 import ModalStyled from './style'
+import useUpdateDatabaseUser from '../../state/hooks/useUpdateDatabaseUser'
 
 export default function WalletModal({
   show,
@@ -17,6 +18,7 @@ export default function WalletModal({
   const [selectDeposit, setSelectDeposit] = useState<boolean>(true)
   const [selectWithdraw, setSelectWithdraw] = useState<boolean>(false)
   const setBalanceReoilState = useAddBalance()
+  const updateDatabaseUsers = useUpdateDatabaseUser()
 
   function changeOperation(operation: boolean) {
     if (!operation) {
@@ -31,7 +33,7 @@ export default function WalletModal({
       ? balanceRecoilState + inputValue
       : balanceRecoilState - inputValue
     setBalanceReoilState(newValueToState)
-    setBalanceInput('')
+    updateDatabaseUsers()
     handleShow(!show)
   }
 
