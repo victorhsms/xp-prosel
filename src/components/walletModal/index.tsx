@@ -38,6 +38,7 @@ export default function WalletModal({
     const newValueToState = selectDeposit
       ? balanceRecoilState + inputValue
       : balanceRecoilState - inputValue
+    if (newValueToState < 0) return
     setBalanceRecoilState(newValueToState)
     updateDatabaseUsers()
     if (newValueToState === 0) changeOperation(false) // caso retire o saldo até zerar, força a troca de operação
