@@ -5,6 +5,7 @@ import { useAddBalance } from '../../state/hooks/useAddBalance'
 import { balanceUser } from '../../state/atom'
 import ModalStyled from './style'
 import useUpdateDatabaseUser from '../../state/hooks/useUpdateDatabaseUser'
+import validateBalance from '../../helpers/validations/validateBalance'
 
 export default function WalletModal({
   show,
@@ -13,12 +14,17 @@ export default function WalletModal({
   show: boolean
   handleShow: Dispatch<SetStateAction<boolean>>
 }) {
-  const balanceRecoilState = useRecoilValue(balanceUser)
   const [balanceInput, setBalanceInput] = useState<string>('')
   const [selectDeposit, setSelectDeposit] = useState<boolean>(true)
   const [selectWithdraw, setSelectWithdraw] = useState<boolean>(false)
-  const setBalanceReoilState = useAddBalance()
+  const [btnConfirmeStatus, setBtnConfirmeStatus] = useState<boolean>(true)
+  const balanceRecoilState = useRecoilValue(balanceUser)
+  const setBalanceRecoilState = useAddBalance()
   const updateDatabaseUsers = useUpdateDatabaseUser()
+
+  useEffect(() => {
+    setBtnConfirmeStatus(!validateBalance(balanceInput))
+  }, [balanceInput])
 
   function changeOperation(operation: boolean) {
     if (!operation) {
@@ -32,8 +38,9 @@ export default function WalletModal({
     const newValueToState = selectDeposit
       ? balanceRecoilState + inputValue
       : balanceRecoilState - inputValue
-    setBalanceReoilState(newValueToState)
+    setBalanceRecoilState(newValueToState)
     updateDatabaseUsers()
+    if (newValueToState === 0) changeOperation(false) // caso retire o saldo até zerar, força a troca de operação
   }
 
   return (
@@ -55,6 +62,7 @@ export default function WalletModal({
         </button>
         <button
           className="select-operation-withdraw"
+          disabled={balanceRecoilState === 0}
           onClick={() => changeOperation(selectWithdraw)}>
           Retirar
         </button>
@@ -64,7 +72,9 @@ export default function WalletModal({
           onChange={e => setBalanceInput(e.target.value)}
         />
         <button onClick={() => handleShow(!show)}>Voltar</button>
-        <button onClick={setTransactionValue}>Confirmar</button>
+        <button disabled={btnConfirmeStatus} onClick={setTransactionValue}>
+          Confirmar
+        </button>
       </ModalStyled>
     </ReactModal>
   )
