@@ -95,7 +95,7 @@ describe('O botão confirmar deve estar desabilitado', () => {
     fireEvent.click(modalButton)
   })
 
-  it('caso não seja digitado nada ou o saldo da conta seja 0', () => {
+  it('caso não seja digitado nada', () => {
     const btnConfirme = screen.queryByRole('button', {
       name: /Confirmar/i
     })
@@ -163,8 +163,7 @@ describe('O botão confirmar deve estar desabilitado', () => {
     expect(btnConfirme).toBeDisabled()
   })
 })
-
-describe('Ao clicar em Depositar, digitar um valor e clicar em confirmar', () => {
+describe('O botão retirar deve estar desabilitado', () => {
   beforeEach(() => {
     const dateNow = new Date().toLocaleString()
     localStorage.setItem(
@@ -184,12 +183,36 @@ describe('Ao clicar em Depositar, digitar um valor e clicar em confirmar', () =>
     fireEvent.click(modalButton)
   })
 
-  it('o valor do saldo em conta deve aumentar', () => {
-    const btnDeposit = screen.getByRole('button', {
-      name: /Depositar/i
+  it('caso o saldo da conta esteja zerado', () => {
+    const btnRemove = screen.queryByRole('button', {
+      name: /Retirar/i
     })
-    fireEvent.click(btnDeposit)
 
+    expect(btnRemove).toBeDisabled()
+  })
+})
+
+describe('o valor do saldo em conta deve mudar', () => {
+  beforeEach(() => {
+    const dateNow = new Date().toLocaleString()
+    localStorage.setItem(
+      'logged_user#xp-prosel',
+      JSON.stringify(['email@email.com', dateNow])
+    )
+    render(
+      <RecoilRoot>
+        <Home actions={actions} />
+      </RecoilRoot>
+    )
+
+    const modalButton = screen.getByRole('button', {
+      name: /Depósito\/Retirada/i
+    })
+
+    fireEvent.click(modalButton)
+  })
+
+  it('Ao clicar em Depositar, digitar um valor e clicar em confirmar', () => {
     const inputValue = screen.getByPlaceholderText('Informe um valor')
     fireEvent.change(inputValue, {
       target: {
