@@ -1,3 +1,4 @@
+import React from 'react'
 import { useRecoilValue } from 'recoil'
 import IStorageUsers from '../../interface/storageUsers'
 import { actionsWallet, balanceUser, loggedUser } from '../atom'
@@ -13,9 +14,13 @@ export default function useUpdateDatabaseUser() {
   }
 
   return (storageUsers: IStorageUsers[] | null) => {
-    if (!storageUsers) return [userUpdated]
+    const usersStorageJson = localStorage.getItem('users_database#xp-prosel')
+    const usersStorage: IStorageUsers[] | null = JSON.parse(
+      usersStorageJson as string
+    )
+    if (!usersStorage) return [userUpdated]
 
-    const updatedStorageUsers = storageUsers.filter(
+    const updatedStorageUsers = usersStorage.filter(
       user => user.email !== email.toString()
     )
 

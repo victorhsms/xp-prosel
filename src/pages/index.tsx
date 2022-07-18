@@ -23,16 +23,7 @@ export default function Home({ actions }: { actions: IActions[] }) {
   const addActionsStore = useAddActionStore()
 
   useEffect(() => {
-    const usersStorageJson = localStorage.getItem('users_database#xp-prosel')
-    const usersStorage = JSON.parse(usersStorageJson as string)
-    const newUserStorage = updateUserToDatabase(usersStorage)
-
-    if (email !== '') {
-      localStorage.setItem(
-        'users_database#xp-prosel',
-        JSON.stringify(newUserStorage)
-      )
-    }
+    updateUserToDatabase()
   }, [email, balance, AllActions])
 
   useEffect(() => {
