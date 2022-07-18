@@ -1,7 +1,9 @@
-import { Dispatch, SetStateAction } from 'react'
+import { Dispatch, SetStateAction, useState } from 'react'
 import ReactModal from 'react-modal'
 import { useRecoilValue } from 'recoil'
+import { useAddBalance } from '../../state/hooks/useAddBalance'
 import { balanceUser } from '../../state/atom'
+import ModalStyled from './style'
 
 export default function WalletModal({
   show,
@@ -10,7 +12,29 @@ export default function WalletModal({
   show: boolean
   handleShow: Dispatch<SetStateAction<boolean>>
 }) {
-  const balance = useRecoilValue(balanceUser)
+  const balanceRecoilState = useRecoilValue(balanceUser)
+  const [balanceInput, setBalanceInput] = useState<string>('')
+  const [selectDeposit, setSelectDeposit] = useState<boolean>(true)
+  const [selectWithdraw, setSelectWithdraw] = useState<boolean>(false)
+  const setBalanceReoilState = useAddBalance()
+
+  function changeOperation(operation: boolean) {
+    if (!operation) {
+      setSelectDeposit(!selectDeposit)
+      setSelectWithdraw(!selectWithdraw)
+    }
+  }
+
+  function setTransactionValue() {
+    const inputValue = parseFloat(balanceInput)
+    const newValueToState = selectDeposit
+      ? balanceRecoilState + inputValue
+      : balanceRecoilState - inputValue
+    setBalanceReoilState(newValueToState)
+    setBalanceInput('')
+    handleShow(!show)
+  }
+
   return (
     <ReactModal
       isOpen={show}
@@ -20,13 +44,27 @@ export default function WalletModal({
       shouldCloseOnEsc={true}
       ariaHideApp={false}
       contentLabel="Interface para fazer depósito">
-      <span>Saldo em Conta:</span>
-      <span data-testid="balance-wallet-modal">{`R$ ${balance}`}</span>
-      <button>Retirar</button>
-      <button>Depositar</button>
-      <input type="text" placeholder="Informe um valor" />
-      <button onClick={() => handleShow(!show)}>Voltar</button>
-      <button onClick={() => handleShow(!show)}>Confirmar</button>
+      <ModalStyled deposit={selectDeposit} withdraw={selectWithdraw}>
+        <span>Saldo em Conta:</span>
+        <span data-testid="balance-wallet-modal">{`R$ ${balanceRecoilState}`}</span>
+        <button
+          className="select-operation-deposit"
+          onClick={() => changeOperation(selectDeposit)}>
+          Depositar
+        </button>
+        <button
+          className="select-operation-withdraw"
+          onClick={() => changeOperation(selectWithdraw)}>
+          Retirar
+        </button>
+        <input
+          type="number"
+          placeholder="Informe um valor"
+          onChange={e => setBalanceInput(e.target.value)}
+        />
+        <button onClick={() => handleShow(!show)}>Voltar</button>
+        <button onClick={setTransactionValue}>Confirmar</button>
+      </ModalStyled>
     </ReactModal>
   )
 }
