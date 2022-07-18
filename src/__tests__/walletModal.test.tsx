@@ -75,6 +75,95 @@ describe('Ao clicar no botão "Depósito/Retirada" deve exibir um modal', () => 
   })
 })
 
+describe('O botão confirmar deve estar desabilitado', () => {
+  beforeEach(() => {
+    const dateNow = new Date().toLocaleString()
+    localStorage.setItem(
+      'logged_user#xp-prosel',
+      JSON.stringify(['email@email.com', dateNow])
+    )
+    render(
+      <RecoilRoot>
+        <Home actions={actions} />
+      </RecoilRoot>
+    )
+
+    const modalButton = screen.getByRole('button', {
+      name: /Depósito\/Retirada/i
+    })
+
+    fireEvent.click(modalButton)
+  })
+
+  it('caso não seja digitado nada ou o saldo da conta seja 0', () => {
+    const btnConfirme = screen.queryByRole('button', {
+      name: /Confirmar/i
+    })
+
+    expect(btnConfirme).toBeDisabled()
+  })
+
+  it('caso o valor seja 0', () => {
+    const inputValue = screen.getByPlaceholderText('Informe um valor')
+    fireEvent.change(inputValue, {
+      target: {
+        value: '0'
+      }
+    })
+
+    const btnConfirme = screen.queryByRole('button', {
+      name: /Confirmar/i
+    })
+
+    expect(btnConfirme).toBeDisabled()
+  })
+
+  it('caso o valor seja .', () => {
+    const inputValue = screen.getByPlaceholderText('Informe um valor')
+    fireEvent.change(inputValue, {
+      target: {
+        value: '.'
+      }
+    })
+
+    const btnConfirme = screen.queryByRole('button', {
+      name: /Confirmar/i
+    })
+
+    expect(btnConfirme).toBeDisabled()
+  })
+
+  it('caso o valor seja 0.', () => {
+    const inputValue = screen.getByPlaceholderText('Informe um valor')
+    fireEvent.change(inputValue, {
+      target: {
+        value: '0.'
+      }
+    })
+
+    const btnConfirme = screen.queryByRole('button', {
+      name: /Confirmar/i
+    })
+
+    expect(btnConfirme).toBeDisabled()
+  })
+
+  it('caso o valor seja .0', () => {
+    const inputValue = screen.getByPlaceholderText('Informe um valor')
+    fireEvent.change(inputValue, {
+      target: {
+        value: '.0'
+      }
+    })
+
+    const btnConfirme = screen.queryByRole('button', {
+      name: /Confirmar/i
+    })
+
+    expect(btnConfirme).toBeDisabled()
+  })
+})
+
 describe('Ao clicar em Depositar, digitar um valor e clicar em confirmar', () => {
   beforeEach(() => {
     const dateNow = new Date().toLocaleString()
