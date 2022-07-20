@@ -18,6 +18,15 @@ export default function TransactionModal({
       ariaHideApp={false}
       contentLabel="Interface para fazer depósito">
       <h1>Comprar ação</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>Ação</th>
+            <th>Quantidade</th>
+            <th>{'Valor'}</th>
+          </tr>
+        </thead>
+      </table>
     </ReactModal>
   )
 }
