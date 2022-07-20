@@ -21,7 +21,9 @@ export default function ActionsTable() {
               <th data-testid={`${action.name}-name-table`}>{action.name}</th>
               <th>{action.quantity}</th>
               <th>{action.value}</th>
-              <th>Comprar</th>
+              <th>
+                <button>Comprar</button>
+              </th>
             </tr>
           ))}
         </tbody>
