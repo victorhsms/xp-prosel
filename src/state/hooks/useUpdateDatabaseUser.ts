@@ -17,7 +17,7 @@ export default function useUpdateDatabaseUser() {
 
   return () => {
     const usersStorage = getDatabase()
-    if (!usersStorage) return [userUpdated]
+    if (!usersStorage) return setDatabase([userUpdated])
     const updatedStorageUsers = usersStorage.filter(
       user => user.email !== email.toString()
     )

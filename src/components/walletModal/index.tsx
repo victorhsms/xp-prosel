@@ -26,6 +26,10 @@ export default function WalletModal({
     setBtnConfirmeStatus(!validateBalance(balanceInput))
   }, [balanceInput])
 
+  useEffect(() => {
+    updateDatabaseUsers()
+  }, [balanceRecoilState])
+
   function changeOperation(operation: boolean) {
     if (!operation) {
       setSelectDeposit(!selectDeposit)
@@ -40,7 +44,6 @@ export default function WalletModal({
       : balanceRecoilState - inputValue
     if (newValueToState < 0) return
     setBalanceRecoilState(newValueToState)
-    updateDatabaseUsers()
     if (newValueToState === 0) changeOperation(false) // caso retire o saldo até zerar, força a troca de operação
   }
 
