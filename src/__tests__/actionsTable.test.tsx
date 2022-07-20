@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { fireEvent, render, screen } from '@testing-library/react'
 import React from 'react'
 import { RecoilRoot } from 'recoil'
 import actions from '../mock/actions'
@@ -65,5 +65,32 @@ describe('Ao entrar na página home com um usuário novo', () => {
 
       expect(tableItem).toBeInTheDocument()
     })
+  })
+})
+
+describe('Ao clicar em "Comprar" alguma ação', () => {
+  beforeEach(() => {
+    const dateNow = new Date().toLocaleString()
+    localStorage.setItem(
+      'logged_user#xp-prosel',
+      JSON.stringify(['email@email.com', dateNow])
+    )
+    render(
+      <RecoilRoot>
+        <Home actions={actions} />
+      </RecoilRoot>
+    )
+  })
+
+  it('Deve abrir um modal com título "Comprar ação"', () => {
+    const tableItem = screen.getByTestId(`XP-buy-table`)
+
+    fireEvent.click(tableItem)
+
+    const titleBuy = screen.queryByRole('heading', {
+      name: /Comprar ação/i
+    })
+
+    expect(titleBuy).toBeInTheDocument()
   })
 })

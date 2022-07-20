@@ -22,7 +22,9 @@ export default function ActionsTable() {
               <th>{action.quantity}</th>
               <th>{action.value}</th>
               <th>
-                <button>Comprar</button>
+                <button data-testid={`${action.name}-buy-table`}>
+                  Comprar
+                </button>
               </th>
             </tr>
           ))}
