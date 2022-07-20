@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from 'react'
 import ReactModal from 'react-modal'
 
-export default function transactionModal({
+export default function TransactionModal({
   show,
   handleShow
 }: {
@@ -17,7 +17,7 @@ export default function transactionModal({
       shouldCloseOnEsc={true}
       ariaHideApp={false}
       contentLabel="Interface para fazer depósito">
-      <h1>Compra</h1>
+      <h1>Comprar ação</h1>
     </ReactModal>
   )
 }

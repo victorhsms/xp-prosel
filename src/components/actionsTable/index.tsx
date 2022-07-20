@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useRecoilValue } from 'recoil'
 import { actionsStore } from '../../state/atom'
+import TransactionModal from '../transactionModal'
 
 export default function ActionsTable() {
   const [showModalBuy, setShowModalBuy] = useState<boolean>(false)
@@ -24,7 +25,11 @@ export default function ActionsTable() {
               <th>{action.quantity}</th>
               <th>{action.value}</th>
               <th>
-                <button data-testid={`${action.name}-buy-table`}>
+                <button
+                  data-testid={`${action.name}-buy-table`}
+                  onClick={() => {
+                    setShowModalBuy(!showModalBuy)
+                  }}>
                   Comprar
                 </button>
               </th>
@@ -32,6 +37,7 @@ export default function ActionsTable() {
           ))}
         </tbody>
       </table>
+      <TransactionModal show={showModalBuy} handleShow={setShowModalBuy} />
     </div>
   )
 }
