@@ -16,18 +16,14 @@ export default function ActionsTable() {
           </tr>
         </thead>
         <tbody>
-          {actions
-            ? actions.map(action => (
-                <tr key={action.name}>
-                  <th data-testid={`${action.name}-name-table`}>
-                    {action.name}
-                  </th>
-                  <th>{action.quantity}</th>
-                  <th>{action.value}</th>
-                  <th>Comprar</th>
-                </tr>
-              ))
-            : null}
+          {actions.map(action => (
+            <tr key={action.name}>
+              <th data-testid={`${action.name}-name-table`}>{action.name}</th>
+              <th>{action.quantity}</th>
+              <th>{action.value}</th>
+              <th>Comprar</th>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
