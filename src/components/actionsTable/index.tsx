@@ -1,7 +1,9 @@
+import { useState } from 'react'
 import { useRecoilValue } from 'recoil'
 import { actionsStore } from '../../state/atom'
 
 export default function ActionsTable() {
+  const [showModalBuy, setShowModalBuy] = useState<boolean>(false)
   const actions = useRecoilValue(actionsStore)
   return (
     <div>
