@@ -30,8 +30,8 @@ export default function ActionsTable() {
                 <button
                   data-testid={`${action.name}-buy-table`}
                   onClick={() => {
-                    setShowModalBuy(!showModalBuy)
                     setActionSelected(action)
+                    setShowModalBuy(!showModalBuy)
                   }}>
                   Comprar
                 </button>
