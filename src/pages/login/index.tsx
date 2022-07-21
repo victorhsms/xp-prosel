@@ -21,7 +21,7 @@ export default function Login() {
     setBtnStatus(!validateLogin(emailValue, passwordValue))
   }, [emailValue, passwordValue])
 
-  async function updateStateAndStorage() {
+  function updateStateAndStorage() {
     const dateNow = new Date().toLocaleString()
     localStorage.setItem(
       'logged_user#xp-prosel',
@@ -31,10 +31,10 @@ export default function Login() {
     const usersStorageJson = localStorage.getItem('users_database#xp-prosel')
     if (usersStorageJson !== null) {
       const usersStorage = JSON.parse(usersStorageJson as string)
-      await recouverSavedUser(usersStorage, emailValue)
+      recouverSavedUser(usersStorage, emailValue)
     }
 
-    await addNewUser(emailValue)
+    addNewUser(emailValue)
   }
 
   function setNewUser(event: React.FormEvent) {
