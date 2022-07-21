@@ -1,11 +1,13 @@
 import { useState } from 'react'
 import { useRecoilValue } from 'recoil'
+import IActions from 'src/interface/action'
 import { actionsStore } from '../../state/atom'
 import TransactionModal from '../transactionModal'
 
 export default function ActionsTable() {
   const [showModalBuy, setShowModalBuy] = useState<boolean>(false)
   const actions = useRecoilValue(actionsStore)
+  const [actionSelected, setActionSelected] = useState<IActions>(actions[0])
   return (
     <div>
       <h3>Disponível para investir</h3>
@@ -29,6 +31,7 @@ export default function ActionsTable() {
                   data-testid={`${action.name}-buy-table`}
                   onClick={() => {
                     setShowModalBuy(!showModalBuy)
+                    setActionSelected(action)
                   }}>
                   Comprar
                 </button>
@@ -37,7 +40,11 @@ export default function ActionsTable() {
           ))}
         </tbody>
       </table>
-      <TransactionModal show={showModalBuy} handleShow={setShowModalBuy} />
+      <TransactionModal
+        show={showModalBuy}
+        handleShow={setShowModalBuy}
+        action={actionSelected}
+      />
     </div>
   )
 }

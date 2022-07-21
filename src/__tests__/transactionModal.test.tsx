@@ -13,7 +13,11 @@ describe('Ao exibir o modal de transações, deve existir', () => {
 
     render(
       <RecoilRoot>
-        <TransactionModal show={true} handleShow={mockHandleShow} />
+        <TransactionModal
+          show={true}
+          handleShow={mockHandleShow}
+          action={actions[0]}
+        />
       </RecoilRoot>
     )
   })
@@ -65,7 +69,11 @@ describe('O modal deve ser fechado ao', () => {
   beforeEach(() => {
     render(
       <RecoilRoot>
-        <TransactionModal show={true} handleShow={mockHandleShow} />
+        <TransactionModal
+          show={true}
+          handleShow={mockHandleShow}
+          action={actions[0]}
+        />
       </RecoilRoot>
     )
   })

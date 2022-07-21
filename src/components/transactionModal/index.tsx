@@ -1,12 +1,15 @@
 import { Dispatch, SetStateAction } from 'react'
 import ReactModal from 'react-modal'
+import IActions from '../../interface/action'
 
 export default function TransactionModal({
   show,
-  handleShow
+  handleShow,
+  action
 }: {
   show: boolean
   handleShow: Dispatch<SetStateAction<boolean>>
+  action: IActions | undefined
 }) {
   return (
     <ReactModal
@@ -26,6 +29,15 @@ export default function TransactionModal({
             <th>{'Valor'}</th>
           </tr>
         </thead>
+        {action && (
+          <tbody>
+            <tr>
+              <th>{action.name}</th>
+              <th>{action.quantity}</th>
+              <th>{action.value}</th>
+            </tr>
+          </tbody>
+        )}
       </table>
       <input type="text" placeholder="Informe um valor" />
       <button>Comprar</button>
