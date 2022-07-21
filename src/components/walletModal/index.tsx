@@ -57,6 +57,7 @@ export default function WalletModal({
       ariaHideApp={false}
       contentLabel="Interface para fazer depósito">
       <ModalStyled deposit={selectDeposit} withdraw={selectWithdraw}>
+        <h1>Minha conta:</h1>
         <span>Saldo em Conta:</span>
         <span data-testid="balance-wallet-modal">{`R$ ${balanceRecoilState}`}</span>
         <button
