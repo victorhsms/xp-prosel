@@ -160,6 +160,12 @@ describe('Ao informar uma quantidade de ações e clicar em comprar', () => {
       }
     })
 
+    const btnBuy = screen.getByRole('button', {
+      name: /Comprar/i
+    })
+
+    fireEvent.click(btnBuy)
+
     expect(onChange).toHaveBeenCalledTimes(2)
     expect(onChange).toHaveBeenCalledWith(1000)
     expect(onChange).toHaveBeenCalledWith(100)
