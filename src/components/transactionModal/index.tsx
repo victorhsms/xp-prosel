@@ -1,6 +1,9 @@
-import { Dispatch, SetStateAction } from 'react'
+import { Dispatch, SetStateAction, useState } from 'react'
 import ReactModal from 'react-modal'
+import { useAddBalance } from '../../state/hooks/useAddBalance'
 import IActions from '../../interface/action'
+import { balanceUser } from '../../state/atom'
+import { useRecoilValue } from 'recoil'
 
 export default function TransactionModal({
   show,
@@ -11,6 +14,18 @@ export default function TransactionModal({
   handleShow: Dispatch<SetStateAction<boolean>>
   action: IActions | undefined
 }) {
+  const [valueInput, setValueInput] = useState<string>('')
+  const balance = useRecoilValue(balanceUser)
+  const addBalance = useAddBalance()
+
+  function buyAction() {
+    if (action) {
+      const value = parseInt(valueInput)
+      const total = balance - action.value * value
+      addBalance(total)
+    }
+  }
+
   return (
     <ReactModal
       isOpen={show}
@@ -39,8 +54,12 @@ export default function TransactionModal({
           </tbody>
         )}
       </table>
-      <input type="text" placeholder="Informe a quantidade" />
-      <button>Comprar</button>
+      <input
+        type="number"
+        placeholder="Informe a quantidade"
+        onChange={e => setValueInput(e.target.value)}
+      />
+      <button onClick={buyAction}>Comprar</button>
       <button onClick={() => handleShow(!show)}>Fechar</button>
     </ReactModal>
   )
