@@ -1,6 +1,8 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import React from 'react'
 import { RecoilRoot } from 'recoil'
+import { RecoilObserver } from '../mock/recoilObserver'
+import { balanceUser } from '../state/atom'
 import WalletModal from '../components/walletModal'
 
 describe('Ao clicar no botão "Depósito/Retirada" deve exibir um modal', () => {
@@ -174,20 +176,25 @@ describe('O botão retirar deve estar desabilitado', () => {
 })
 
 describe('o valor do saldo em conta deve mudar', () => {
-  beforeEach(() => {
+  it('Ao clicar em Depositar, digitar um valor e clicar em confirmar', () => {
     let show = true
     function mockHandleShow() {
       show = !show
     }
 
+    const onChange = jest.fn()
+
+    const initializeState = ({ set }: any) => {
+      set(balanceUser, 50)
+    }
+
     render(
-      <RecoilRoot>
+      <RecoilRoot initializeState={initializeState}>
+        <RecoilObserver node={balanceUser} onChange={onChange} />
         <WalletModal show={show} handleShow={mockHandleShow} />
       </RecoilRoot>
     )
-  })
 
-  it('Ao clicar em Depositar, digitar um valor e clicar em confirmar', () => {
     const inputValue = screen.getByPlaceholderText('Informe um valor')
     fireEvent.change(inputValue, {
       target: {
@@ -201,7 +208,9 @@ describe('o valor do saldo em conta deve mudar', () => {
     fireEvent.click(btnConfirme)
 
     const balance = screen.getByTestId('balance-wallet-modal')
-
-    expect(balance.textContent).toBe('R$ 50')
+    expect(balance.textContent).toBe('R$ 100')
+    expect(onChange).toHaveBeenCalledTimes(2)
+    expect(onChange).toHaveBeenCalledWith(50)
+    expect(onChange).toHaveBeenCalledWith(100)
   })
 })
