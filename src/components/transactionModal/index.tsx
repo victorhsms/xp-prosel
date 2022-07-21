@@ -4,6 +4,7 @@ import { useAddBalance } from '../../state/hooks/useAddBalance'
 import IActions from '../../interface/action'
 import { balanceUser } from '../../state/atom'
 import { useRecoilValue } from 'recoil'
+import { useAddActionWallet } from '../../state/hooks/useAddActionWallet'
 
 export default function TransactionModal({
   show,
@@ -17,12 +18,21 @@ export default function TransactionModal({
   const [valueInput, setValueInput] = useState<string>('')
   const balance = useRecoilValue(balanceUser)
   const addBalance = useAddBalance()
+  const addActionWallet = useAddActionWallet()
 
   function buyAction() {
     if (action) {
-      const value = parseInt(valueInput)
-      const total = balance - action.value * value
+      const quantity = parseInt(valueInput)
+      const total = balance - action.value * quantity
+
+      const newActionWallet = {
+        name: action.name,
+        quantity,
+        value: action.value
+      }
+
       addBalance(total)
+      addActionWallet(newActionWallet)
     }
   }
 
