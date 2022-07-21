@@ -1,27 +1,20 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import React from 'react'
 import { RecoilRoot } from 'recoil'
-import actions from '../mock/actions'
-import Home from '../pages'
+import WalletModal from '../components/walletModal'
 
 describe('Ao clicar no botão "Depósito/Retirada" deve exibir um modal', () => {
   beforeEach(() => {
-    const dateNow = new Date().toLocaleString()
-    localStorage.setItem(
-      'logged_user#xp-prosel',
-      JSON.stringify(['email@email.com', dateNow])
-    )
+    let show = true
+    function mockHandleShow() {
+      show = !show
+    }
+
     render(
       <RecoilRoot>
-        <Home actions={actions} />
+        <WalletModal show={show} handleShow={mockHandleShow} />
       </RecoilRoot>
     )
-
-    const modalButton = screen.getByRole('button', {
-      name: /Depósito\/Retirada/i
-    })
-
-    fireEvent.click(modalButton)
   })
 
   it('com um botão "Depósitar"', () => {
@@ -77,22 +70,16 @@ describe('Ao clicar no botão "Depósito/Retirada" deve exibir um modal', () => 
 
 describe('O botão confirmar deve estar desabilitado', () => {
   beforeEach(() => {
-    const dateNow = new Date().toLocaleString()
-    localStorage.setItem(
-      'logged_user#xp-prosel',
-      JSON.stringify(['email@email.com', dateNow])
-    )
+    let show = true
+    function mockHandleShow() {
+      show = !show
+    }
+
     render(
       <RecoilRoot>
-        <Home actions={actions} />
+        <WalletModal show={show} handleShow={mockHandleShow} />
       </RecoilRoot>
     )
-
-    const modalButton = screen.getByRole('button', {
-      name: /Depósito\/Retirada/i
-    })
-
-    fireEvent.click(modalButton)
   })
 
   it('caso não seja digitado nada', () => {
@@ -165,22 +152,16 @@ describe('O botão confirmar deve estar desabilitado', () => {
 })
 describe('O botão retirar deve estar desabilitado', () => {
   beforeEach(() => {
-    const dateNow = new Date().toLocaleString()
-    localStorage.setItem(
-      'logged_user#xp-prosel',
-      JSON.stringify(['email@email.com', dateNow])
-    )
+    let show = true
+    function mockHandleShow() {
+      show = !show
+    }
+
     render(
       <RecoilRoot>
-        <Home actions={actions} />
+        <WalletModal show={show} handleShow={mockHandleShow} />
       </RecoilRoot>
     )
-
-    const modalButton = screen.getByRole('button', {
-      name: /Depósito\/Retirada/i
-    })
-
-    fireEvent.click(modalButton)
   })
 
   it('caso o saldo da conta esteja zerado', () => {
@@ -194,22 +175,16 @@ describe('O botão retirar deve estar desabilitado', () => {
 
 describe('o valor do saldo em conta deve mudar', () => {
   beforeEach(() => {
-    const dateNow = new Date().toLocaleString()
-    localStorage.setItem(
-      'logged_user#xp-prosel',
-      JSON.stringify(['email@email.com', dateNow])
-    )
+    let show = true
+    function mockHandleShow() {
+      show = !show
+    }
+
     render(
       <RecoilRoot>
-        <Home actions={actions} />
+        <WalletModal show={show} handleShow={mockHandleShow} />
       </RecoilRoot>
     )
-
-    const modalButton = screen.getByRole('button', {
-      name: /Depósito\/Retirada/i
-    })
-
-    fireEvent.click(modalButton)
   })
 
   it('Ao clicar em Depositar, digitar um valor e clicar em confirmar', () => {
