@@ -77,17 +77,16 @@ describe('O modal deve ser fechado ao', () => {
 
     fireEvent.click(btnClose)
 
-    expect(mockHandleShow).toBeCalled()
     expect(show).toBeFalsy()
   })
 })
 
 describe('Ao receber uma ação por parâmetro', () => {
-  let show = true
-  function mockHandleShow() {
-    show = !show
-  }
   beforeEach(() => {
+    let show = true
+    function mockHandleShow() {
+      show = !show
+    }
     render(
       <RecoilRoot>
         <TransactionModal
