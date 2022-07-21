@@ -4,7 +4,7 @@ import { RecoilRoot } from 'recoil'
 import actions from '../mock/actions'
 import TransactionModal from '../components/transactionModal'
 import { RecoilObserver } from '../mock/recoilObserver'
-import { balanceUser } from '../state/atom'
+import { actionsWallet, balanceUser } from '../state/atom'
 
 describe('Ao exibir o modal de transações, deve existir', () => {
   beforeEach(() => {
@@ -169,5 +169,54 @@ describe('Ao informar uma quantidade de ações e clicar em comprar', () => {
     expect(onChange).toHaveBeenCalledTimes(2)
     expect(onChange).toHaveBeenCalledWith(1000)
     expect(onChange).toHaveBeenCalledWith(100)
+  })
+
+  it('as ações compradas devem ser adicionadas ao state actionswallet', () => {
+    let show = true
+    function mockHandleShow() {
+      show = !show
+    }
+
+    const onChange = jest.fn()
+
+    const initializeState = ({ set }: any) => {
+      set(balanceUser, 1000)
+      set(actionsWallet, [])
+    }
+
+    render(
+      <RecoilRoot initializeState={initializeState}>
+        <RecoilObserver node={actionsWallet} onChange={onChange} />
+        <TransactionModal
+          show={show}
+          handleShow={mockHandleShow}
+          action={actions[0]}
+        />
+      </RecoilRoot>
+    )
+
+    const inputQuantity = screen.getByPlaceholderText('Informe a quantidade')
+
+    fireEvent.change(inputQuantity, {
+      target: {
+        value: '2'
+      }
+    })
+
+    const btnBuy = screen.getByRole('button', {
+      name: /Comprar/i
+    })
+
+    fireEvent.click(btnBuy)
+
+    expect(onChange).toHaveBeenCalledTimes(2)
+    expect(onChange).toHaveBeenCalledWith([])
+    expect(onChange).toHaveBeenCalledWith([
+      {
+        name: actions[0].name,
+        quantity: 2,
+        value: 450
+      }
+    ])
   })
 })
