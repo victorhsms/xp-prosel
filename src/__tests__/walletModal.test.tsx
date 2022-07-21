@@ -151,6 +151,21 @@ describe('O botão confirmar deve estar desabilitado', () => {
 
     expect(btnConfirme).toBeDisabled()
   })
+
+  it('caso o valor seja negativo', () => {
+    const inputValue = screen.getByPlaceholderText('Informe um valor')
+    fireEvent.change(inputValue, {
+      target: {
+        value: '-100'
+      }
+    })
+
+    const btnConfirme = screen.queryByRole('button', {
+      name: /Confirmar/i
+    })
+
+    expect(btnConfirme).toBeDisabled()
+  })
 })
 describe('O botão retirar deve estar desabilitado', () => {
   beforeEach(() => {
