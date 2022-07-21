@@ -55,3 +55,28 @@ describe('Ao exibir o modal de transações, deve existir', () => {
     expect(btnClose).toBeInTheDocument()
   })
 })
+
+describe('O modal deve ser fechado ao', () => {
+  let show = true
+  function mockHandleShow() {
+    show = !show
+  }
+  beforeEach(() => {
+    render(
+      <RecoilRoot>
+        <TransactionModal show={true} handleShow={mockHandleShow} />
+      </RecoilRoot>
+    )
+  })
+
+  it('clicar no botão "Fechar"', () => {
+    const btnClose = screen.getByRole('button', {
+      name: /Fechar/i
+    })
+
+    fireEvent.click(btnClose)
+
+    expect(mockHandleShow).toBeCalled()
+    expect(show).toBeFalsy()
+  })
+})
