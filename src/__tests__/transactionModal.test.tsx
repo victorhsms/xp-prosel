@@ -5,7 +5,7 @@ import TransactionModal from '../components/transactionModal'
 
 describe('Ao exibir o modal de transações, deve existir', () => {
   beforeEach(() => {
-    let show = false
+    let show = true
     function mockHandleShow() {
       show = !show
     }
@@ -18,9 +18,7 @@ describe('Ao exibir o modal de transações, deve existir', () => {
   })
 
   it('Um título escrito "Comprar ação"', () => {
-    const titleBuy = screen.queryByRole('heading', {
-      name: /Comprar ação/i
-    })
+    const titleBuy = screen.getByText('Comprar ação')
 
     expect(titleBuy).toBeInTheDocument()
   })
