@@ -16,7 +16,7 @@ export default function WalletTable() {
           </tr>
         </thead>
         <tbody>
-          {actions && actions !== [] ? (
+          {actions.length > 0 ? (
             actions.map(action => (
               <tr key={action.name}>
                 <td data-testid={`${action.name}-name-wallet-table`}>
