@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import React from 'react'
 import { RecoilRoot } from 'recoil'
+import { actionsWallet } from '../state/atom'
 import actions from '../mock/actions'
 import Home from '../pages'
 
@@ -63,5 +64,36 @@ describe('Ao acessar a página de login com um novo usuário', () => {
     const emptyTable = screen.queryByTestId('wallet-table-empty')
 
     expect(emptyTable).toBeInTheDocument()
+  })
+})
+
+describe('Deverá ser exibida uma action na tabela', () => {
+  it('ao existir uma action no estado actionswallet', () => {
+    const initializeState = ({ set }: any) => {
+      set(actionsWallet, [
+        {
+          name: actions[0].name,
+          quantity: 2,
+          value: 450
+        }
+      ])
+    }
+
+    render(
+      <RecoilRoot initializeState={initializeState}>
+        <Home actions={actions} />
+      </RecoilRoot>
+    )
+
+    const firstActionName = screen.getByTestId('XP-name-wallet-table')
+    const firstActionQuantity = screen.getByTestId('XP-quantity-wallet-table')
+    const firstActionValue = screen.getByTestId('XP-value-wallet-table')
+
+    expect(firstActionName).toBeInTheDocument()
+    expect(firstActionQuantity).toBeInTheDocument()
+    expect(firstActionValue).toBeInTheDocument()
+    expect(firstActionName.textContent).toBe('XP')
+    expect(firstActionQuantity.textContent).toBe('2')
+    expect(firstActionValue).toBe('450')
   })
 })
