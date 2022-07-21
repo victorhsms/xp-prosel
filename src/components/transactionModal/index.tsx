@@ -29,7 +29,7 @@ export default function TransactionModal({
       </table>
       <input type="text" placeholder="Informe um valor" />
       <button>Comprar</button>
-      <button>Fechar</button>
+      <button onClick={() => handleShow(!show)}>Fechar</button>
     </ReactModal>
   )
 }
