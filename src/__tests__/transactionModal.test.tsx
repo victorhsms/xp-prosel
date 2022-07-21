@@ -34,4 +34,26 @@ describe('Ao exibir o modal de transações, deve existir', () => {
     expect(quantityHeader).toBeInTheDocument()
     expect(valueHeader).toBeInTheDocument()
   })
+
+  it('um input com o placeholder "Informe a quantidade"', () => {
+    const inputQuantity = screen.queryByPlaceholderText('Informe um valor')
+
+    expect(inputQuantity).toBeInTheDocument()
+  })
+
+  it('um botão escrito "Comprar"', () => {
+    const btnBuy = screen.queryByRole('button', {
+      name: /Comprar/i
+    })
+
+    expect(btnBuy).toBeInTheDocument()
+  })
+
+  it('um botão escrito "Fechar"', () => {
+    const btnClose = screen.queryByRole('button', {
+      name: /Fechar/i
+    })
+
+    expect(btnClose).toBeInTheDocument()
+  })
 })
