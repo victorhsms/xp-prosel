@@ -27,6 +27,9 @@ export default function TransactionModal({
           </tr>
         </thead>
       </table>
+      <input type="text" placeholder="Informe um valor" />
+      <button>Comprar</button>
+      <button>Fechar</button>
     </ReactModal>
   )
 }
