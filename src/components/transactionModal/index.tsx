@@ -1,10 +1,11 @@
-import { Dispatch, SetStateAction, useState } from 'react'
+import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import ReactModal from 'react-modal'
 import { useAddBalance } from '../../state/hooks/useAddBalance'
 import IActions from '../../interface/action'
-import { balanceUser } from '../../state/atom'
+import { actionsWallet, balanceUser } from '../../state/atom'
 import { useRecoilValue } from 'recoil'
 import { useAddActionWallet } from '../../state/hooks/useAddActionWallet'
+import useUpdateDatabaseUser from '../../state/hooks/useUpdateDatabaseUser'
 
 export default function TransactionModal({
   show,
@@ -17,8 +18,14 @@ export default function TransactionModal({
 }) {
   const [valueInput, setValueInput] = useState<string>('')
   const balance = useRecoilValue(balanceUser)
+  const actionsWalletState = useRecoilValue(actionsWallet)
   const addBalance = useAddBalance()
   const addActionWallet = useAddActionWallet()
+  const updateDatabaseUsers = useUpdateDatabaseUser()
+
+  useEffect(() => {
+    updateDatabaseUsers()
+  }, [actionsWalletState])
 
   function buyAction() {
     if (action) {
@@ -32,7 +39,7 @@ export default function TransactionModal({
       }
 
       addBalance(total)
-      addActionWallet(newActionWallet)
+      addActionWallet([newActionWallet])
     }
   }
 

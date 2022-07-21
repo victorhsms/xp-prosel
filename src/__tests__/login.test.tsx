@@ -18,7 +18,11 @@ describe('Caso ja tenha um usuário logado', () => {
 
   it('o usuario deve ser redirecionado para a Home', () => {
     mockRouter.setCurrentUrl('/login')
-    render(<Login />)
+    render(
+      <RecoilRoot>
+        <Login />
+      </RecoilRoot>
+    )
 
     const { result } = renderHook(() => {
       return useRouter()
@@ -30,7 +34,11 @@ describe('Caso ja tenha um usuário logado', () => {
 
 describe('Ao acessar a página de login', () => {
   beforeEach(() => {
-    render(<Login />)
+    render(
+      <RecoilRoot>
+        <Login />
+      </RecoilRoot>
+    )
   })
 
   it('Deve existir um título escrito "Login"', () => {
@@ -83,7 +91,13 @@ describe('Ao acessar a página de login', () => {
 })
 
 describe('O botão deve ficar continuar desabilitado', () => {
-  beforeEach(() => render(<Login />))
+  beforeEach(() =>
+    render(
+      <RecoilRoot>
+        <Login />
+      </RecoilRoot>
+    )
+  )
 
   it('Ao informar email e senha inválidos', () => {
     const loginBtn = screen.queryByRole('button', {
@@ -184,7 +198,11 @@ describe('O botão deve ficar continuar desabilitado', () => {
 
 describe('O botão deve ser ficar habilitado', () => {
   it('Ao informar um email e senha válidos', () => {
-    render(<Login />)
+    render(
+      <RecoilRoot>
+        <Login />
+      </RecoilRoot>
+    )
 
     const loginBtn = screen.queryByRole('button', {
       name: /Entrar/i

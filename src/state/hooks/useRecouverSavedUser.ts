@@ -1,10 +1,12 @@
-import IStorageUsers from 'src/interface/storageUsers'
+import IStorageUsers from '../../interface/storageUsers'
+import { useAddActionWallet } from './useAddActionWallet'
 import { useAddBalance } from './useAddBalance'
 import { useAddUser } from './useAddUser'
 
 export default function useRecouverSavedUser() {
   const setEmail = useAddUser()
   const setBalance = useAddBalance()
+  const setActions = useAddActionWallet()
 
   return (storageUsers: IStorageUsers[], loggedUser: string) => {
     if (loggedUser !== null) {
@@ -12,6 +14,7 @@ export default function useRecouverSavedUser() {
 
       setEmail(findUser[findUser.length - 1].email)
       setBalance(findUser[findUser.length - 1].balance)
+      setActions(findUser[findUser.length - 1].actions)
     }
   }
 }

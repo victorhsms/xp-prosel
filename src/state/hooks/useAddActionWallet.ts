@@ -5,7 +5,7 @@ import { actionsWallet } from '../atom'
 export const useAddActionWallet = () => {
   const setActions = useSetRecoilState(actionsWallet)
   const actionsInState = useRecoilValue(actionsWallet)
-  return (action: IActions) => {
-    return setActions([...actionsInState, action])
+  return (actions: IActions[]) => {
+    return setActions([...actionsInState, ...actions])
   }
 }
