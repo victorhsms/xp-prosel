@@ -167,6 +167,7 @@ describe('O botão confirmar deve estar desabilitado', () => {
     expect(btnConfirme).toBeDisabled()
   })
 })
+
 describe('O botão retirar deve estar desabilitado', () => {
   beforeEach(() => {
     let show = true

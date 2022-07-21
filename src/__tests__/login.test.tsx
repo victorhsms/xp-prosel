@@ -1,11 +1,5 @@
 import Login from '../pages/login'
-import {
-  act,
-  fireEvent,
-  render,
-  renderHook,
-  screen
-} from '@testing-library/react'
+import { fireEvent, render, renderHook, screen } from '@testing-library/react'
 import React from 'react'
 import mockRouter from 'next-router-mock'
 import { RecoilRoot } from 'recoil'
