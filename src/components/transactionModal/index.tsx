@@ -26,7 +26,7 @@ export default function TransactionModal({
           <tr>
             <th>Ação</th>
             <th>Quantidade</th>
-            <th>{'Valor'}</th>
+            <th>{'Valor (R$)'}</th>
           </tr>
         </thead>
         {action && (
@@ -39,7 +39,7 @@ export default function TransactionModal({
           </tbody>
         )}
       </table>
-      <input type="text" placeholder="Informe um valor" />
+      <input type="text" placeholder="Informe a quantidade" />
       <button>Comprar</button>
       <button onClick={() => handleShow(!show)}>Fechar</button>
     </ReactModal>

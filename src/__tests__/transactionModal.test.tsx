@@ -28,10 +28,10 @@ describe('Ao exibir o modal de transações, deve existir', () => {
     expect(titleBuy).toBeInTheDocument()
   })
 
-  it('uma tabela com os headers "ação", "quantidade" e "valor"', () => {
+  it('uma tabela com os headers "Ação", "Quantidade" e "Valor (R$)"', () => {
     const actionHeader = screen.queryByText('Ação')
     const quantityHeader = screen.queryByText('Quantidade')
-    const valueHeader = screen.queryByText('Valor')
+    const valueHeader = screen.queryByText('Valor (R$)')
 
     expect(actionHeader).toBeInTheDocument()
     expect(quantityHeader).toBeInTheDocument()
@@ -39,7 +39,7 @@ describe('Ao exibir o modal de transações, deve existir', () => {
   })
 
   it('um input com o placeholder "Informe a quantidade"', () => {
-    const inputQuantity = screen.queryByPlaceholderText('Informe um valor')
+    const inputQuantity = screen.queryByPlaceholderText('Informe a quantidade')
 
     expect(inputQuantity).toBeInTheDocument()
   })
