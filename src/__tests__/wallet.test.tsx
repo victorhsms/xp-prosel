@@ -46,3 +46,32 @@ describe('Ao entrar na página home', () => {
     expect(spanValue.textContent).toBe('R$ 0')
   })
 })
+
+describe('Ao clicar no botão "Depósito/Retirada" deve exibir um modal', () => {
+  beforeEach(() => {
+    const dateNow = new Date().toLocaleString()
+    localStorage.setItem(
+      'logged_user#xp-prosel',
+      JSON.stringify(['email@email.com', dateNow])
+    )
+    render(
+      <RecoilRoot>
+        <Home actions={actions} />
+      </RecoilRoot>
+    )
+
+    const modalButton = screen.getByRole('button', {
+      name: /Depósito\/Retirada/i
+    })
+
+    fireEvent.click(modalButton)
+  })
+
+  it('deverá exibir um modal com o título "Minha conta"', () => {
+    const myAccount = screen.queryByRole('heading', {
+      name: /Minha conta:/i
+    })
+
+    expect(myAccount).toBeInTheDocument()
+  })
+})
