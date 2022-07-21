@@ -62,15 +62,13 @@ describe('Ao exibir o modal de transações, deve existir', () => {
 })
 
 describe('O modal deve ser fechado ao', () => {
-  let show = true
-  function mockHandleShow() {
-    show = !show
-  }
+  const show = true
+  const mockHandleShow = jest.fn()
   beforeEach(() => {
     render(
       <RecoilRoot>
         <TransactionModal
-          show={true}
+          show={show}
           handleShow={mockHandleShow}
           action={actions[0]}
         />
@@ -85,7 +83,22 @@ describe('O modal deve ser fechado ao', () => {
 
     fireEvent.click(btnClose)
 
-    expect(show).toBeFalsy()
+    expect(mockHandleShow).toHaveBeenCalled()
+  })
+
+  it('ao pressionar a tecla ESC', () => {
+    const titleBuy = screen.getByRole('heading', {
+      name: /Comprar ação/i
+    })
+
+    fireEvent.keyDown(titleBuy, {
+      key: 'Escape',
+      code: 'Escape',
+      keyCode: 27,
+      charCode: 27
+    })
+
+    expect(mockHandleShow).toBeCalled()
   })
 })
 
