@@ -34,6 +34,7 @@
     "husky": "^8.0.1",
     "jest": "28.1.0",
     "jest-environment-jsdom": "28.1.0",
+    "jest-fetch-mock": "^3.0.3",
     "next-router-mock": "^0.7.4",
     "prettier": "^2.6.2",
     "prettier-config-infojr": "^1.0.1",
