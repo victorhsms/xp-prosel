@@ -94,6 +94,6 @@ describe('Deverá ser exibida uma action na tabela', () => {
     expect(firstActionValue).toBeInTheDocument()
     expect(firstActionName.textContent).toBe('XP')
     expect(firstActionQuantity.textContent).toBe('2')
-    expect(firstActionValue).toBe('450')
+    expect(firstActionValue.textContent).toBe('450')
   })
 })
