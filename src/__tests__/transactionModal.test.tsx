@@ -1,6 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import React from 'react'
 import { RecoilRoot } from 'recoil'
+import actions from '../mock/actions'
 import TransactionModal from '../components/transactionModal'
 
 describe('Ao exibir o modal de transações, deve existir', () => {
@@ -78,5 +79,29 @@ describe('O modal deve ser fechado ao', () => {
 
     expect(mockHandleShow).toBeCalled()
     expect(show).toBeFalsy()
+  })
+})
+
+describe('Ao receber uma ação por parâmetro', () => {
+  let show = true
+  function mockHandleShow() {
+    show = !show
+  }
+  beforeEach(() => {
+    render(
+      <RecoilRoot>
+        <TransactionModal
+          show={true}
+          handleShow={mockHandleShow}
+          action={actions[0]}
+        />
+      </RecoilRoot>
+    )
+  })
+
+  it('Essa ação deve ser exibida na tabela do modal', () => {
+    const action = screen.queryByText('XP')
+
+    expect(action).toBeInTheDocument()
   })
 })
