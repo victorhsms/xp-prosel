@@ -46,6 +46,7 @@ export default function TransactionModal({
         }
         addBalance(total)
         sell ? removeActionWallet(newAction) : addActionWallet([newAction])
+        handleShow(!show)
       }
     }
   }
