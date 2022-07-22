@@ -76,6 +76,7 @@ describe('Ao exibir o modal de transações pela carteira, deve existir também'
           show={true}
           handleShow={mockHandleShow}
           action={actions[0]}
+          walletBuyAndSell={true}
         />
       </RecoilRoot>
     )
