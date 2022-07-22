@@ -7,18 +7,17 @@ import { useRecoilValue } from 'recoil'
 import { useAddActionWallet } from '../../state/hooks/useAddActionWallet'
 import useUpdateDatabaseUser from '../../state/hooks/useUpdateDatabaseUser'
 
-export default function TransactionModal(
-  {
-    show,
-    handleShow,
-    action
-  }: {
-    show: boolean
-    handleShow: Dispatch<SetStateAction<boolean>>
-    action: IActions | undefined
-  },
+export default function TransactionModal({
+  show,
+  handleShow,
+  action,
   walletBuyAndSell = false
-) {
+}: {
+  show: boolean
+  handleShow: Dispatch<SetStateAction<boolean>>
+  action: IActions | undefined
+  walletBuyAndSell?: boolean
+}) {
   const [valueInput, setValueInput] = useState<string>('')
   const balance = useRecoilValue(balanceUser)
   const actionsWalletState = useRecoilValue(actionsWallet)
