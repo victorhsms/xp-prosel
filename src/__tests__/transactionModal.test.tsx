@@ -263,6 +263,173 @@ describe('Ao informar uma quantidade de ações e clicar em comprar', () => {
   })
 })
 
+describe('Ao informar uma quantidade de ações e clicar em vender', () => {
+  it('o valor total vendido deve ser adicionado ao saldo do usuário', () => {
+    let show = true
+    function mockHandleShow() {
+      show = !show
+    }
+
+    const onChange = jest.fn()
+
+    const initializeState = ({ set }: any) => {
+      set(actionsWallet, [
+        {
+          name: actions[0].name,
+          quantity: 2,
+          value: 450
+        }
+      ])
+    }
+
+    render(
+      <RecoilRoot initializeState={initializeState}>
+        <RecoilObserver node={balanceUser} onChange={onChange} />
+        <TransactionModal
+          show={show}
+          handleShow={mockHandleShow}
+          action={actions[0]}
+          walletBuyAndSell={true}
+        />
+      </RecoilRoot>
+    )
+
+    const inputQuantity = screen.getAllByPlaceholderText('Informe a quantidade')
+
+    fireEvent.change(inputQuantity[1], {
+      target: {
+        value: '2'
+      }
+    })
+
+    const btnSell = screen.getByRole('button', {
+      name: /Vender/i
+    })
+
+    fireEvent.click(btnSell)
+
+    expect(onChange).toHaveBeenCalledTimes(2)
+    expect(onChange).toHaveBeenCalledWith(0)
+    expect(onChange).toHaveBeenCalledWith(900)
+  })
+
+  it('a quantidade total daquela ações deve ser subtraída no state actionswallet', () => {
+    let show = true
+    function mockHandleShow() {
+      show = !show
+    }
+
+    const onChange = jest.fn()
+
+    const initializeState = ({ set }: any) => {
+      set(actionsWallet, [
+        {
+          name: actions[0].name,
+          quantity: 2,
+          value: 450
+        }
+      ])
+    }
+
+    render(
+      <RecoilRoot initializeState={initializeState}>
+        <RecoilObserver node={actionsWallet} onChange={onChange} />
+        <TransactionModal
+          show={show}
+          handleShow={mockHandleShow}
+          action={actions[0]}
+          walletBuyAndSell={true}
+        />
+      </RecoilRoot>
+    )
+
+    const inputQuantity = screen.getAllByPlaceholderText('Informe a quantidade')
+
+    fireEvent.change(inputQuantity[1], {
+      target: {
+        value: '1'
+      }
+    })
+
+    const btnSell = screen.getByRole('button', {
+      name: /Vender/i
+    })
+
+    fireEvent.click(btnSell)
+
+    expect(onChange).toHaveBeenCalledTimes(2)
+    expect(onChange).toHaveBeenCalledWith([
+      {
+        name: actions[0].name,
+        quantity: 2,
+        value: 450
+      }
+    ])
+    expect(onChange).toHaveBeenCalledWith([
+      {
+        name: actions[0].name,
+        quantity: 1,
+        value: 450
+      }
+    ])
+  })
+
+  it('a ação deve ser retirada do state actionswallet se forem vendidas todas as unidades', () => {
+    let show = true
+    function mockHandleShow() {
+      show = !show
+    }
+
+    const onChange = jest.fn()
+
+    const initializeState = ({ set }: any) => {
+      set(actionsWallet, [
+        {
+          name: actions[0].name,
+          quantity: 2,
+          value: 450
+        }
+      ])
+    }
+
+    render(
+      <RecoilRoot initializeState={initializeState}>
+        <RecoilObserver node={actionsWallet} onChange={onChange} />
+        <TransactionModal
+          show={show}
+          handleShow={mockHandleShow}
+          action={actions[0]}
+          walletBuyAndSell={true}
+        />
+      </RecoilRoot>
+    )
+
+    const inputQuantity = screen.getAllByPlaceholderText('Informe a quantidade')
+
+    fireEvent.change(inputQuantity[1], {
+      target: {
+        value: '2'
+      }
+    })
+
+    const btnSell = screen.getByRole('button', {
+      name: /Vender/i
+    })
+
+    fireEvent.click(btnSell)
+
+    expect(onChange).toHaveBeenCalledTimes(2)
+    expect(onChange).toHaveBeenCalledWith([
+      {
+        name: actions[0].name,
+        quantity: 2,
+        value: 450
+      }
+    ])
+    expect(onChange).toHaveBeenCalledWith([])
+  })
+})
+
 describe('O saldo do cliente não deve ser alterado se', () => {
   it('for digitado uma quantidade maior do que ele pode comprar', () => {
     let show = true
