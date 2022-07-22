@@ -63,6 +63,47 @@ describe('Ao exibir o modal de transações, deve existir', () => {
   })
 })
 
+describe('Ao exibir o modal de transações pela carteira, deve existir também', () => {
+  beforeEach(() => {
+    let show = true
+    function mockHandleShow() {
+      show = !show
+    }
+
+    render(
+      <RecoilRoot>
+        <TransactionModal
+          show={true}
+          handleShow={mockHandleShow}
+          action={actions[0]}
+        />
+      </RecoilRoot>
+    )
+  })
+
+  it('Um título escrito "Comprar ou Vender ação"', () => {
+    const titleBuyOrSell = screen.queryByText('Comprar ou Vender ação')
+
+    expect(titleBuyOrSell).toBeInTheDocument()
+  })
+
+  it('dois inputs com o placeholder "Informe a quantidade"', () => {
+    const inputQuantity = screen.queryAllByPlaceholderText(
+      'Informe a quantidade'
+    )
+
+    expect(inputQuantity.length).toBe(2)
+  })
+
+  it('um botão escrito "Vender"', () => {
+    const btnSell = screen.queryByRole('button', {
+      name: /Vender/i
+    })
+
+    expect(btnSell).toBeInTheDocument()
+  })
+})
+
 describe('O modal deve ser fechado ao', () => {
   const show = true
   const mockHandleShow = jest.fn()

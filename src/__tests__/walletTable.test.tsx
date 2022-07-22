@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { fireEvent, render, screen } from '@testing-library/react'
 import React from 'react'
 import { RecoilRoot } from 'recoil'
 import { actionsWallet } from '../state/atom'
@@ -95,5 +95,33 @@ describe('Deverá ser exibida uma action na tabela', () => {
     expect(firstActionName.textContent).toBe('XP')
     expect(firstActionQuantity.textContent).toBe('2')
     expect(firstActionValue.textContent).toBe('450')
+  })
+})
+
+describe('Ao clicar em uma action na tabela', () => {
+  it('deverá ser exibido um modal com o título "Comprar ou Vender ação"', () => {
+    const initializeState = ({ set }: any) => {
+      set(actionsWallet, [
+        {
+          name: actions[0].name,
+          quantity: 2,
+          value: 450
+        }
+      ])
+    }
+
+    render(
+      <RecoilRoot initializeState={initializeState}>
+        <Home actions={actions} />
+      </RecoilRoot>
+    )
+
+    const firstAction = screen.getByTestId('XP-action-wallet-table')
+
+    fireEvent.click(firstAction)
+
+    const titleBuyOrSell = screen.queryByText('Comprar ou Vender ação')
+
+    expect(titleBuyOrSell).toBeInTheDocument()
   })
 })
