@@ -1,7 +1,12 @@
+import { useState } from 'react'
 import { useRecoilValue } from 'recoil'
+import IActions from 'src/interface/action'
 import { actionsWallet } from '../../state/atom'
+import TransactionModal from '../transactionModal'
 
 export default function WalletTable() {
+  const [showModal, setShowModal] = useState<boolean>(false)
+  const [actionSelected, setActionSelected] = useState<IActions>()
   const actions = useRecoilValue(actionsWallet)
   return (
     <div>
@@ -20,7 +25,11 @@ export default function WalletTable() {
             actions.map(action => (
               <tr
                 key={action.name}
-                data-testid={`${action.name}-action-wallet-table`}>
+                data-testid={`${action.name}-action-wallet-table`}
+                onClick={() => {
+                  setActionSelected(action)
+                  setShowModal(!showModal)
+                }}>
                 <td data-testid={`${action.name}-name-wallet-table`}>
                   {action.name}
                 </td>
@@ -41,6 +50,12 @@ export default function WalletTable() {
           )}
         </tbody>
       </table>
+      <TransactionModal
+        show={showModal}
+        handleShow={setShowModal}
+        action={actionSelected}
+        walletBuyAndSell={true}
+      />
     </div>
   )
 }
