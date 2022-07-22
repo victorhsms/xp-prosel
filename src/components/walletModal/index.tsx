@@ -44,7 +44,8 @@ export default function WalletModal({
       : balanceRecoilState - inputValue
     if (newValueToState < 0) return
     setBalanceRecoilState(newValueToState)
-    if (newValueToState === 0) changeOperation(false) // caso retire o saldo até zerar, força a troca de operação
+    if (newValueToState === 0) changeOperation(false)
+    handleShow(!show)
   }
 
   return (
