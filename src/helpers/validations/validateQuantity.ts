@@ -10,5 +10,5 @@ export default function validateQuantity(
   const quantity = parseInt(valueInput)
   const amount = actionValue * quantity
   const total = sell ? amount + balance : balance - amount
-  return total > 0 ? total : null
+  return total >= 0 ? total : null
 }

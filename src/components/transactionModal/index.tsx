@@ -37,7 +37,7 @@ export default function TransactionModal({
     if (action) {
       const total = validateQuantity(valueInput, action.value, balance, sell)
 
-      if (total) {
+      if (total || total === 0) {
         const newAction = {
           name: action.name,
           quantity: parseInt(valueInput),

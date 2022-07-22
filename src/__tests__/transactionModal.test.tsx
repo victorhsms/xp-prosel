@@ -180,7 +180,7 @@ describe('Ao informar uma quantidade de ações e clicar em comprar', () => {
     const onChange = jest.fn()
 
     const initializeState = ({ set }: any) => {
-      set(balanceUser, 1000)
+      set(balanceUser, 900)
     }
 
     render(
@@ -209,8 +209,8 @@ describe('Ao informar uma quantidade de ações e clicar em comprar', () => {
     fireEvent.click(btnBuy)
 
     expect(onChange).toHaveBeenCalledTimes(2)
-    expect(onChange).toHaveBeenCalledWith(1000)
-    expect(onChange).toHaveBeenCalledWith(100)
+    expect(onChange).toHaveBeenCalledWith(900)
+    expect(onChange).toHaveBeenCalledWith(0)
   })
 
   it('as ações compradas devem ser adicionadas ao state actionswallet', () => {
