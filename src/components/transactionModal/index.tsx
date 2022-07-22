@@ -6,6 +6,8 @@ import { actionsWallet, balanceUser } from '../../state/atom'
 import { useRecoilValue } from 'recoil'
 import { useAddActionWallet } from '../../state/hooks/useAddActionWallet'
 import useUpdateDatabaseUser from '../../state/hooks/useUpdateDatabaseUser'
+import validateQuantity from '../../helpers/validations/validateQuantity'
+import { useRemoveActionWallet } from '../../state/hooks/useRemoveActionWallet'
 
 export default function TransactionModal({
   show,
@@ -18,34 +20,32 @@ export default function TransactionModal({
   action: IActions | undefined
   walletBuyAndSell?: boolean
 }) {
-  const [valueInput, setValueInput] = useState<string>('')
+  const [quantityBuy, setQuantityBuy] = useState<string>('')
+  const [quantitySell, setQuantitySell] = useState<string>('')
   const balance = useRecoilValue(balanceUser)
   const actionsWalletState = useRecoilValue(actionsWallet)
   const addBalance = useAddBalance()
   const addActionWallet = useAddActionWallet()
+  const removeActionWallet = useRemoveActionWallet()
   const updateDatabaseUsers = useUpdateDatabaseUser()
 
   useEffect(() => {
     updateDatabaseUsers()
   }, [actionsWalletState])
 
-  function buyAction() {
+  function negotiateAction(valueInput: string, sell?: boolean) {
     if (action) {
-      const integerRegex = /^[0-9]*[1-9][0-9]*$/
-      if (!integerRegex.test(valueInput)) return
+      const total = validateQuantity(valueInput, action.value, balance, sell)
 
-      const quantity = parseInt(valueInput)
-      const total = balance - action.value * quantity
-      if (total < 0) return
-
-      addBalance(total)
-      addActionWallet([
-        {
+      if (total) {
+        const newAction = {
           name: action.name,
-          quantity,
+          quantity: parseInt(valueInput),
           value: action.value
         }
-      ])
+        addBalance(total)
+        sell ? removeActionWallet(newAction) : addActionWallet([newAction])
+      }
     }
   }
 
@@ -81,18 +81,20 @@ export default function TransactionModal({
         <input
           type="number"
           placeholder="Informe a quantidade"
-          onChange={e => setValueInput(e.target.value)}
+          onChange={e => setQuantityBuy(e.target.value)}
         />
-        <button onClick={buyAction}>Comprar</button>
+        <button onClick={() => negotiateAction(quantityBuy)}>Comprar</button>
       </div>
       {walletBuyAndSell && (
         <div>
           <input
             type="number"
             placeholder="Informe a quantidade"
-            onChange={e => setValueInput(e.target.value)}
+            onChange={e => setQuantitySell(e.target.value)}
           />
-          <button onClick={buyAction}>Vender</button>
+          <button onClick={() => negotiateAction(quantitySell, true)}>
+            Vender
+          </button>
         </div>
       )}
       <button onClick={() => handleShow(!show)}>Fechar</button>
