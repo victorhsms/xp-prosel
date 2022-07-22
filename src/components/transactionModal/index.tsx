@@ -29,17 +29,21 @@ export default function TransactionModal({
 
   function buyAction() {
     if (action) {
+      const integerRegex = /^[0-9]*[1-9][0-9]*$/
+      if (!integerRegex.test(valueInput)) return
+
       const quantity = parseInt(valueInput)
       const total = balance - action.value * quantity
-
-      const newActionWallet = {
-        name: action.name,
-        quantity,
-        value: action.value
-      }
+      if (total < 0) return
 
       addBalance(total)
-      addActionWallet([newActionWallet])
+      addActionWallet([
+        {
+          name: action.name,
+          quantity,
+          value: action.value
+        }
+      ])
     }
   }
 
