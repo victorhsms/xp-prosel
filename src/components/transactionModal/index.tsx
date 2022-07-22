@@ -37,8 +37,7 @@ export default function TransactionModal({
     if (action) {
       const total = validateQuantity(valueInput, action.value, balance, sell)
 
-      if (sell && parseInt(valueInput) > action.quantity)
-        return console.log(parseInt(valueInput), action.quantity)
+      if (sell && parseInt(valueInput) > action.quantity) return
       if (total || total === 0) {
         const newAction = {
           name: action.name,
