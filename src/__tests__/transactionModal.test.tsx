@@ -220,3 +220,188 @@ describe('Ao informar uma quantidade de ações e clicar em comprar', () => {
     ])
   })
 })
+
+describe('O saldo do cliente não deve ser alterado se', () => {
+  it('for digitado uma quantidade maior do que ele pode comprar', () => {
+    let show = true
+    function mockHandleShow() {
+      show = !show
+    }
+
+    const onChange = jest.fn()
+
+    const initializeState = ({ set }: any) => {
+      set(balanceUser, 1000)
+    }
+
+    render(
+      <RecoilRoot initializeState={initializeState}>
+        <RecoilObserver node={balanceUser} onChange={onChange} />
+        <TransactionModal
+          show={show}
+          handleShow={mockHandleShow}
+          action={actions[0]}
+        />
+      </RecoilRoot>
+    )
+
+    const inputQuantity = screen.getByPlaceholderText('Informe a quantidade')
+
+    fireEvent.change(inputQuantity, {
+      target: {
+        value: '3'
+      }
+    })
+
+    const btnBuy = screen.getByRole('button', {
+      name: /Comprar/i
+    })
+
+    fireEvent.click(btnBuy)
+
+    expect(onChange).toHaveBeenCalledTimes(1)
+  })
+
+  it('for digitado uma quantidade negativa', () => {
+    let show = true
+    function mockHandleShow() {
+      show = !show
+    }
+
+    const onChange = jest.fn()
+
+    const initializeState = ({ set }: any) => {
+      set(balanceUser, 1000)
+    }
+
+    render(
+      <RecoilRoot initializeState={initializeState}>
+        <RecoilObserver node={balanceUser} onChange={onChange} />
+        <TransactionModal
+          show={show}
+          handleShow={mockHandleShow}
+          action={actions[0]}
+        />
+      </RecoilRoot>
+    )
+
+    const inputQuantity = screen.getByPlaceholderText('Informe a quantidade')
+
+    fireEvent.change(inputQuantity, {
+      target: {
+        value: '-2'
+      }
+    })
+
+    const btnBuy = screen.getByRole('button', {
+      name: /Comprar/i
+    })
+
+    fireEvent.click(btnBuy)
+
+    expect(onChange).toHaveBeenCalledTimes(1)
+  })
+
+  it('for digitado uma quantidade com ponto flutuante', () => {
+    let show = true
+    function mockHandleShow() {
+      show = !show
+    }
+
+    const onChange = jest.fn()
+
+    const initializeState = ({ set }: any) => {
+      set(balanceUser, 2000)
+    }
+
+    render(
+      <RecoilRoot initializeState={initializeState}>
+        <RecoilObserver node={balanceUser} onChange={onChange} />
+        <TransactionModal
+          show={show}
+          handleShow={mockHandleShow}
+          action={actions[0]}
+        />
+      </RecoilRoot>
+    )
+
+    const inputQuantity = screen.getByPlaceholderText('Informe a quantidade')
+
+    fireEvent.change(inputQuantity, {
+      target: {
+        value: '2.5'
+      }
+    })
+
+    const btnBuy = screen.getByRole('button', {
+      name: /Comprar/i
+    })
+
+    fireEvent.click(btnBuy)
+
+    expect(onChange).toHaveBeenCalledTimes(1)
+  })
+})
+
+describe('Ao comprar uma nova ação que ja estava na carteira', () => {
+  it('essa ação deve ser exibida apenas uma vez no estado', () => {
+    let show = true
+    function mockHandleShow() {
+      show = !show
+    }
+
+    const onChange = jest.fn()
+
+    const initializeState = ({ set }: any) => {
+      set(balanceUser, 2000)
+      set(actionsWallet, [
+        {
+          name: actions[0].name,
+          quantity: 2,
+          value: 450
+        }
+      ])
+    }
+
+    render(
+      <RecoilRoot initializeState={initializeState}>
+        <RecoilObserver node={actionsWallet} onChange={onChange} />
+        <TransactionModal
+          show={show}
+          handleShow={mockHandleShow}
+          action={actions[0]}
+        />
+      </RecoilRoot>
+    )
+
+    const inputQuantity = screen.getByPlaceholderText('Informe a quantidade')
+
+    fireEvent.change(inputQuantity, {
+      target: {
+        value: '3'
+      }
+    })
+
+    const btnBuy = screen.getByRole('button', {
+      name: /Comprar/i
+    })
+
+    fireEvent.click(btnBuy)
+
+    expect(onChange).toHaveBeenCalledTimes(2)
+    expect(onChange).toHaveBeenCalledWith([
+      {
+        name: actions[0].name,
+        quantity: 2,
+        value: 450
+      }
+    ])
+    expect(onChange).toHaveBeenCalledWith([
+      {
+        name: actions[0].name,
+        quantity: 5,
+        value: 450
+      }
+    ])
+  })
+})
