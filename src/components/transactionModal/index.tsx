@@ -58,7 +58,7 @@ export default function TransactionModal({
       shouldCloseOnEsc={true}
       ariaHideApp={false}
       contentLabel="Interface para fazer depósito">
-      <h1>Comprar ação</h1>
+      <h1>{walletBuyAndSell ? 'Comprar ou Vender ação' : 'Comprar ação'}</h1>
       <table>
         <thead>
           <tr>
@@ -77,12 +77,24 @@ export default function TransactionModal({
           </tbody>
         )}
       </table>
-      <input
-        type="number"
-        placeholder="Informe a quantidade"
-        onChange={e => setValueInput(e.target.value)}
-      />
-      <button onClick={buyAction}>Comprar</button>
+      <div>
+        <input
+          type="number"
+          placeholder="Informe a quantidade"
+          onChange={e => setValueInput(e.target.value)}
+        />
+        <button onClick={buyAction}>Comprar</button>
+      </div>
+      {walletBuyAndSell && (
+        <div>
+          <input
+            type="number"
+            placeholder="Informe a quantidade"
+            onChange={e => setValueInput(e.target.value)}
+          />
+          <button onClick={buyAction}>Vender</button>
+        </div>
+      )}
       <button onClick={() => handleShow(!show)}>Fechar</button>
     </ReactModal>
   )
