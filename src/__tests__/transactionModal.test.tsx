@@ -550,6 +550,53 @@ describe('O saldo do cliente não deve ser alterado se', () => {
 
     expect(onChange).toHaveBeenCalledTimes(1)
   })
+
+  it('o usuario vender mais ações do que possui', () => {
+    let show = true
+    function mockHandleShow() {
+      show = !show
+    }
+
+    const onChange = jest.fn()
+
+    const initializeState = ({ set }: any) => {
+      set(actionsWallet, [
+        {
+          name: actions[0].name,
+          quantity: 2,
+          value: 450
+        }
+      ])
+    }
+
+    render(
+      <RecoilRoot initializeState={initializeState}>
+        <RecoilObserver node={actionsWallet} onChange={onChange} />
+        <TransactionModal
+          show={show}
+          handleShow={mockHandleShow}
+          action={actions[0]}
+          walletBuyAndSell={true}
+        />
+      </RecoilRoot>
+    )
+
+    const inputQuantity = screen.getAllByPlaceholderText('Informe a quantidade')
+
+    fireEvent.change(inputQuantity[1], {
+      target: {
+        value: '4'
+      }
+    })
+
+    const btnSell = screen.getByRole('button', {
+      name: /Vender/i
+    })
+
+    fireEvent.click(btnSell)
+
+    expect(onChange).toHaveBeenCalledTimes(1)
+  })
 })
 
 describe('Ao comprar uma nova ação que ja estava na carteira', () => {
