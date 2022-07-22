@@ -272,14 +272,16 @@ describe('Ao informar uma quantidade de ações e clicar em vender', () => {
 
     const onChange = jest.fn()
 
+    const testAction = [
+      {
+        name: actions[0].name,
+        quantity: 2,
+        value: 450
+      }
+    ]
+
     const initializeState = ({ set }: any) => {
-      set(actionsWallet, [
-        {
-          name: actions[0].name,
-          quantity: 2,
-          value: 450
-        }
-      ])
+      set(actionsWallet, testAction)
     }
 
     render(
@@ -288,7 +290,7 @@ describe('Ao informar uma quantidade de ações e clicar em vender', () => {
         <TransactionModal
           show={show}
           handleShow={mockHandleShow}
-          action={actions[0]}
+          action={testAction[0]}
           walletBuyAndSell={true}
         />
       </RecoilRoot>
@@ -382,14 +384,16 @@ describe('Ao informar uma quantidade de ações e clicar em vender', () => {
 
     const onChange = jest.fn()
 
+    const testAction = [
+      {
+        name: actions[0].name,
+        quantity: 2,
+        value: 450
+      }
+    ]
+
     const initializeState = ({ set }: any) => {
-      set(actionsWallet, [
-        {
-          name: actions[0].name,
-          quantity: 2,
-          value: 450
-        }
-      ])
+      set(actionsWallet, testAction)
     }
 
     render(
@@ -398,7 +402,7 @@ describe('Ao informar uma quantidade de ações e clicar em vender', () => {
         <TransactionModal
           show={show}
           handleShow={mockHandleShow}
-          action={actions[0]}
+          action={testAction[0]}
           walletBuyAndSell={true}
         />
       </RecoilRoot>
@@ -559,14 +563,16 @@ describe('O saldo do cliente não deve ser alterado se', () => {
 
     const onChange = jest.fn()
 
+    const testAction = [
+      {
+        name: actions[0].name,
+        quantity: 2,
+        value: 450
+      }
+    ]
+
     const initializeState = ({ set }: any) => {
-      set(actionsWallet, [
-        {
-          name: actions[0].name,
-          quantity: 2,
-          value: 450
-        }
-      ])
+      set(actionsWallet, testAction)
     }
 
     render(
@@ -575,7 +581,7 @@ describe('O saldo do cliente não deve ser alterado se', () => {
         <TransactionModal
           show={show}
           handleShow={mockHandleShow}
-          action={actions[0]}
+          action={testAction[0]}
           walletBuyAndSell={true}
         />
       </RecoilRoot>
