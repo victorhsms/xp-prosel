@@ -226,7 +226,7 @@ describe('o valor do saldo em conta deve mudar', () => {
     expect(onChange).toHaveBeenCalledWith(50)
   })
 
-  it('Ao clicar em Depositar, digitar um valor e clicar em confirmar', () => {
+  it('Ao clicar em Retirar, digitar um valor e clicar em confirmar', () => {
     let show = true
     function mockHandleShow() {
       show = !show
@@ -268,5 +268,91 @@ describe('o valor do saldo em conta deve mudar', () => {
     expect(onChange).toHaveBeenCalledTimes(2)
     expect(onChange).toHaveBeenCalledWith(100)
     expect(onChange).toHaveBeenCalledWith(70)
+  })
+})
+
+describe('O modal deve deverá fechar', () => {
+  const show = true
+  const mockHandleShow = jest.fn()
+  beforeEach(() => {
+    const initializeState = ({ set }: any) => {
+      set(balanceUser, 900)
+    }
+
+    render(
+      <RecoilRoot initializeState={initializeState}>
+        <WalletModal show={show} handleShow={mockHandleShow} />
+      </RecoilRoot>
+    )
+  })
+
+  afterEach(() => {
+    mockHandleShow.mockClear()
+  })
+
+  it('Ao clicar em voltar', () => {
+    const btnBack = screen.getByRole('button', {
+      name: /Voltar/i
+    })
+
+    fireEvent.click(btnBack)
+
+    expect(mockHandleShow).toHaveBeenCalled()
+    expect(mockHandleShow).toHaveBeenCalledTimes(1)
+  })
+
+  it('ao pressionar a tecla ESC', () => {
+    const titleAccount = screen.getByText('Minha conta:')
+
+    fireEvent.keyDown(titleAccount, {
+      key: 'Escape',
+      code: 'Escape',
+      keyCode: 27,
+      charCode: 27
+    })
+
+    expect(mockHandleShow).toHaveBeenCalled()
+    expect(mockHandleShow).toHaveBeenCalledTimes(1)
+  })
+
+  it('ao depositar com sucesso', () => {
+    const inputValue = screen.getByPlaceholderText('Informe um valor')
+    fireEvent.change(inputValue, {
+      target: {
+        value: '50'
+      }
+    })
+
+    const btnConfirme = screen.getByRole('button', {
+      name: /Confirmar/i
+    })
+    fireEvent.click(btnConfirme)
+
+    expect(mockHandleShow).toHaveBeenCalled()
+    expect(mockHandleShow).toHaveBeenCalledTimes(1)
+  })
+
+  it('ao sacar com sucesso', () => {
+    const btnRemove = screen.getByRole('button', {
+      name: /Retirar/i
+    })
+
+    fireEvent.click(btnRemove)
+
+    const inputValue = screen.getByPlaceholderText('Informe um valor')
+    fireEvent.change(inputValue, {
+      target: {
+        value: '30'
+      }
+    })
+
+    const btnConfirme = screen.getByRole('button', {
+      name: /Confirmar/i
+    })
+
+    fireEvent.click(btnConfirme)
+
+    expect(mockHandleShow).toHaveBeenCalled()
+    expect(mockHandleShow).toHaveBeenCalledTimes(1)
   })
 })
