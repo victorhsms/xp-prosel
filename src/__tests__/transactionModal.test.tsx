@@ -109,15 +109,31 @@ describe('O modal deve ser fechado ao', () => {
   const show = true
   const mockHandleShow = jest.fn()
   beforeEach(() => {
+    const initializeState = ({ set }: any) => {
+      set(balanceUser, 900),
+        set(actionsWallet, [
+          {
+            name: actions[0].name,
+            quantity: 2,
+            value: 450
+          }
+        ])
+    }
+
     render(
-      <RecoilRoot>
+      <RecoilRoot initializeState={initializeState}>
         <TransactionModal
           show={show}
           handleShow={mockHandleShow}
           action={actions[0]}
+          walletBuyAndSell={true}
         />
       </RecoilRoot>
     )
+  })
+
+  afterEach(() => {
+    mockHandleShow.mockClear()
   })
 
   it('clicar no botão "Fechar"', () => {
@@ -128,11 +144,12 @@ describe('O modal deve ser fechado ao', () => {
     fireEvent.click(btnClose)
 
     expect(mockHandleShow).toHaveBeenCalled()
+    expect(mockHandleShow).toHaveBeenCalledTimes(1)
   })
 
   it('ao pressionar a tecla ESC', () => {
     const titleBuy = screen.getByRole('heading', {
-      name: /Comprar ação/i
+      name: /Comprar ou Vender ação/i
     })
 
     fireEvent.keyDown(titleBuy, {
@@ -142,7 +159,46 @@ describe('O modal deve ser fechado ao', () => {
       charCode: 27
     })
 
-    expect(mockHandleShow).toBeCalled()
+    expect(mockHandleShow).toHaveBeenCalled()
+    expect(mockHandleShow).toHaveBeenCalledTimes(1)
+  })
+
+  it('Ao comprar com sucesso', () => {
+    const inputQuantity = screen.getAllByPlaceholderText('Informe a quantidade')
+
+    fireEvent.change(inputQuantity[0], {
+      target: {
+        value: '2'
+      }
+    })
+
+    const btnBuy = screen.getByRole('button', {
+      name: /Comprar/i
+    })
+
+    fireEvent.click(btnBuy)
+
+    expect(mockHandleShow).toHaveBeenCalled()
+    expect(mockHandleShow).toHaveBeenCalledTimes(1)
+  })
+
+  it('Ao vender com sucesso', () => {
+    const inputQuantity = screen.getAllByPlaceholderText('Informe a quantidade')
+
+    fireEvent.change(inputQuantity[1], {
+      target: {
+        value: '1'
+      }
+    })
+
+    const btnSell = screen.getByRole('button', {
+      name: /Vender/i
+    })
+
+    fireEvent.click(btnSell)
+
+    expect(mockHandleShow).toHaveBeenCalled()
+    expect(mockHandleShow).toHaveBeenCalledTimes(1)
   })
 })
 
