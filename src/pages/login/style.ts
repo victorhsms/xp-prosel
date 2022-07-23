@@ -34,3 +34,50 @@ export const HeaderLoginStyled = styled.header`
     }
   }
 `
+
+export const FormStyle = styled.form`
+  margin: 150px auto;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: max-content;
+  padding: 50px;
+  gap: 52px;
+
+  h1 {
+    font-size: 44px;
+  }
+
+  .inputs-container {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+  .email-container,
+  .password-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    label {
+      color: #1d1f1e;
+      font-weight: 700;
+      font-size: 20px;
+    }
+
+    input {
+      border-color: black;
+      border-style: solid;
+      border-width: 0 0 2.5px 0;
+      padding: 10px;
+      width: 400px;
+      text-align: center;
+
+      &:focus {
+        box-shadow: 0 0 0 0;
+        outline: 0;
+      }
+    }
+  }
+`
