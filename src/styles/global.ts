@@ -26,7 +26,7 @@ export const GlobalStyles = styled.createGlobalStyle`
 
   /* Global background */
   body {
-    background-color: #1b1b1b;
+    background-color: #252822;
   }
 
   /* Remove default margin and padding */

@@ -8,6 +8,7 @@ export const WalletStyled = styled.aside`
   display: flex;
   flex-direction: column;
   gap: 30px;
+  border-radius: 5px;
 
   h3 {
     font-size: 28px;
@@ -33,6 +34,7 @@ export const WalletStyled = styled.aside`
     font-weight: 500;
     background-color: #ffc709;
     cursor: pointer;
+    border-radius: 5px;
 
     &:hover {
       transition: 0.4s;
