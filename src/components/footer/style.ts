@@ -9,7 +9,16 @@ export const FooterStyled = styled.footer`
   width: 820px;
   line-height: 20px;
 
-  a {
+  .link-linkedin {
     text-decoration: underline;
+    color: white;
+  }
+
+  @media (max-width: 900px) {
+    width: 80%;
+  }
+
+  @media (max-width: 650px) {
+    width: 95%;
   }
 `
