@@ -3,7 +3,7 @@ import logotype from '../../../public/assets/logo.png'
 
 export default function Logo() {
   return (
-    <div>
+    <div className="logo-container">
       <div className="image-container">
         <Image
           src={logotype}

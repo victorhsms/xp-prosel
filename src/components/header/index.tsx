@@ -4,6 +4,8 @@ import { useAddUser } from '../../state/hooks/useAddUser'
 import { useRouter } from 'next/router'
 import { useRecoilValue } from 'recoil'
 import { loggedUser } from '../../state/atom'
+import Logo from '../logo'
+import { HeaderStyled } from './styled'
 
 export default function Header() {
   const router = useRouter()
@@ -23,13 +25,16 @@ export default function Header() {
   }
 
   return (
-    <header>
-      <div>
-        <span role="link" onClick={logoff}>
-          logoff
-        </span>
-        <img src={getGravatar()} alt="Foto de perfil" />
+    <HeaderStyled>
+      <div className="header-content">
+        <Logo />
+        <div className="profile">
+          <span role="link" onClick={logoff}>
+            logoff
+          </span>
+          <img src={getGravatar()} alt="Foto de perfil" />
+        </div>
       </div>
-    </header>
+    </HeaderStyled>
   )
 }
