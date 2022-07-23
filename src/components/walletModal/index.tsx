@@ -56,31 +56,41 @@ export default function WalletModal({
       shouldCloseOnOverlayClick={true}
       shouldCloseOnEsc={true}
       ariaHideApp={false}
+      className="modal-wallet"
+      overlayClassName="modal-wallet-overlay"
       contentLabel="Interface para fazer depósito">
       <ModalStyled deposit={selectDeposit} withdraw={selectWithdraw}>
         <h1>Minha conta:</h1>
-        <span>Saldo em Conta:</span>
-        <span data-testid="balance-wallet-modal">{`R$ ${balanceRecoilState}`}</span>
-        <button
-          className="select-operation-deposit"
-          onClick={() => changeOperation(selectDeposit)}>
-          Depositar
-        </button>
-        <button
-          className="select-operation-withdraw"
-          disabled={balanceRecoilState === 0}
-          onClick={() => changeOperation(selectWithdraw)}>
-          Retirar
-        </button>
+        <div className="balance-modal">
+          <span>Saldo em Conta:</span>
+          <span
+            className="balance-quantity"
+            data-testid="balance-wallet-modal">{`R$ ${balanceRecoilState}`}</span>
+        </div>
+        <div className="wallet-modal-buttons-operations">
+          <button
+            className="select-operation-deposit"
+            onClick={() => changeOperation(selectDeposit)}>
+            Depositar
+          </button>
+          <button
+            className="select-operation-withdraw"
+            disabled={balanceRecoilState === 0}
+            onClick={() => changeOperation(selectWithdraw)}>
+            Retirar
+          </button>
+        </div>
         <input
           type="number"
           placeholder="Informe um valor"
           onChange={e => setBalanceInput(e.target.value)}
         />
-        <button onClick={() => handleShow(!show)}>Voltar</button>
-        <button disabled={btnConfirmeStatus} onClick={setTransactionValue}>
-          Confirmar
-        </button>
+        <div className="wallet-modal-buttons">
+          <button onClick={() => handleShow(!show)}>Voltar</button>
+          <button disabled={btnConfirmeStatus} onClick={setTransactionValue}>
+            Confirmar
+          </button>
+        </div>
       </ModalStyled>
     </ReactModal>
   )

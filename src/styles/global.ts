@@ -146,4 +146,28 @@ export const GlobalStyles = styled.createGlobalStyle`
     background: transparent;
     border: none;
   }
+
+  input[type='number']::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+
+  .modal-wallet {
+    border: 1px solid rgb(204, 204, 204);
+    background: rgb(255, 255, 255);
+    overflow: auto;
+    border-radius: 4px;
+    outline: none;
+    padding: 30px 45px;
+    width: 90%;
+    max-width: 500px;
+  }
+
+  .modal-wallet-overlay {
+    position: fixed;
+    inset: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
 `
