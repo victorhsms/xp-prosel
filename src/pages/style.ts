@@ -6,6 +6,8 @@ export const HomeStyled = styled.main`
 
   .main-container {
     display: flex;
-    gap: 20px;
+    justify-content: space-between;
+    width: 80%;
+    gap: 30px;
   }
 `
