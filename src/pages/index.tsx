@@ -10,6 +10,7 @@ import IActions from '../interface/action'
 import { server } from '../config'
 import Wallet from '../components/wallet'
 import useUpdateDatabaseUser from '../state/hooks/useUpdateDatabaseUser'
+import Head from 'next/head'
 
 export default function Home({ actions }: { actions: IActions[] }) {
   const updateUserToDatabase = useUpdateDatabaseUser()
@@ -33,6 +34,9 @@ export default function Home({ actions }: { actions: IActions[] }) {
 
   return (
     <>
+      <Head>
+        <title>XP Prosel</title>
+      </Head>
       <Header />
       <WalletTable />
       <ActionsTable />
