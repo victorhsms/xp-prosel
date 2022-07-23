@@ -37,12 +37,10 @@ describe('Ao entrar na página home', () => {
     const name = screen.queryByTestId('actions-wallet-table')
     const quantity = screen.queryByTestId('quantity-wallet-table')
     const value = screen.queryByTestId('value-wallet-table')
-    const negotiate = screen.queryByTestId('negotiate-wallet-table')
 
     expect(name).toBeInTheDocument()
     expect(quantity).toBeInTheDocument()
     expect(value).toBeInTheDocument()
-    expect(negotiate).toBeInTheDocument()
   })
 })
 

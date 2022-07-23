@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const ActionsTableStyled = styled.div`
+export const TableStyled = styled.div`
   background-color: white;
   padding: 25px 40px 35px;
   display: flex;
@@ -16,16 +16,16 @@ export const ActionsTableStyled = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 20px;
 
     thead tr {
       display: flex;
       justify-content: space-between;
-      background-color: royalblue;
+      background-color: rgba(83, 179, 141, 1);
       color: black;
       font-size: 20px;
       border-radius: 5px;
-      padding: 8px 0;
+      padding: 12px 0;
 
       th {
         width: 25%;
@@ -35,19 +35,34 @@ export const ActionsTableStyled = styled.div`
     tbody {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 20px;
 
       tr {
         display: flex;
         justify-content: space-between;
         border-radius: 5px;
-        padding: 5px 0;
-        background-color: rgba(83, 179, 141, 1);
-        font-weight: 400;
+        padding: 10px 0;
+        background-color: rgba(255, 189, 20, 1);
+        cursor: pointer;
+        position: relative;
+
+        &:hover:not(.table-empty) {
+          top: -3px;
+          box-shadow: -4px 4px 8px rgba(0, 0, 0, 0.25);
+        }
 
         th {
+          font-weight: 400;
           width: 25%;
         }
+      }
+
+      .table-empty {
+        background-color: white;
+        font-weight: 700;
+        font-size: 20px;
+        cursor: default;
+        flex-grow: 1;
       }
     }
   }

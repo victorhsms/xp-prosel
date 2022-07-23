@@ -13,6 +13,9 @@ export const HomeStyled = styled.main`
     .tables-container {
       flex-grow: 1;
       margin: 50px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
     }
   }
 `
