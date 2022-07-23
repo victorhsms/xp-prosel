@@ -18,25 +18,20 @@ export default function ActionsTable() {
             <th data-testid="actions-actions-table">Ações</th>
             <th data-testid="quantity-actions-table">Quantidade</th>
             <th data-testid="value-actions-table">{'Valor (R$)'}</th>
-            <th data-testid="negotiate-actions-table">Negociar</th>
           </tr>
         </thead>
         <tbody>
           {actions.map(action => (
-            <tr key={action.name}>
+            <tr
+              key={action.name}
+              onClick={() => {
+                setActionSelected(action)
+                setShowModalBuy(!showModalBuy)
+              }}
+              data-testid={`${action.name}-buy-table`}>
               <th data-testid={`${action.name}-name-table`}>{action.name}</th>
               <th>{action.quantity}</th>
               <th>{action.value}</th>
-              <th>
-                <button
-                  data-testid={`${action.name}-buy-table`}
-                  onClick={() => {
-                    setActionSelected(action)
-                    setShowModalBuy(!showModalBuy)
-                  }}>
-                  Comprar
-                </button>
-              </th>
             </tr>
           ))}
         </tbody>

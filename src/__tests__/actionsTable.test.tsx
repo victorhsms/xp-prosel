@@ -41,7 +41,6 @@ describe('Ao entrar na página home', () => {
     expect(name).toBeInTheDocument()
     expect(quantity).toBeInTheDocument()
     expect(value).toBeInTheDocument()
-    expect(negotiate).toBeInTheDocument()
   })
 })
 
@@ -68,7 +67,7 @@ describe('Ao entrar na página home com um usuário novo', () => {
   })
 })
 
-describe('Ao clicar em "Comprar" alguma ação', () => {
+describe('Ao clicar em alguma ação', () => {
   beforeEach(() => {
     const dateNow = new Date().toLocaleString()
     localStorage.setItem(

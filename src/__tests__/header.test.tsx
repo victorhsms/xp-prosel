@@ -59,7 +59,7 @@ describe('Ao clicar no link de logoff', () => {
 
   it('o usuário não deve mais existir no localStorage', () => {
     const logoff = screen.getByRole('link', {
-      name: /logoff/i
+      name: /Sair/i
     })
 
     fireEvent.click(logoff)
@@ -75,7 +75,7 @@ describe('Ao clicar no link de logoff', () => {
     })
 
     const logoff = screen.getByRole('link', {
-      name: /logoff/i
+      name: /Sair/i
     })
 
     fireEvent.click(logoff)
