@@ -117,6 +117,7 @@ export const GlobalStyles = styled.createGlobalStyle`
   input:-webkit-autofill:focus,
   input:-webkit-autofill:active {
     -webkit-box-shadow: 0 0 0 30px white inset !important;
+    box-shadow: 0 0 0 30px white inset !important;
   }
 
   /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
