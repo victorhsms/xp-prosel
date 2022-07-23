@@ -8,7 +8,7 @@ interface PropsModal {
 const ModalStyled = styled.div<PropsModal>`
   display: flex;
   flex-direction: column;
-  gap: 50px;
+  gap: 40px;
 
   .balance-modal {
     display: flex;

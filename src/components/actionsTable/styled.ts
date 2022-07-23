@@ -62,7 +62,11 @@ export const TableStyled = styled.div`
         font-weight: 700;
         font-size: 20px;
         cursor: default;
-        flex-grow: 1;
+
+        td {
+          width: 100%;
+          text-align: center;
+        }
       }
     }
   }
