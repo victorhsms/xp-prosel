@@ -43,7 +43,7 @@ export const FormStyle = styled.form`
   align-items: center;
   width: max-content;
   padding: 50px;
-  gap: 52px;
+  gap: 60px;
 
   h1 {
     font-size: 44px;
@@ -71,13 +71,32 @@ export const FormStyle = styled.form`
       border-style: solid;
       border-width: 0 0 2.5px 0;
       padding: 10px;
-      width: 400px;
+      width: 500px;
       text-align: center;
 
       &:focus {
         box-shadow: 0 0 0 0;
         outline: 0;
       }
+    }
+  }
+
+  button {
+    width: 100%;
+    padding: 15px 0;
+    font-weight: 700;
+    background-color: #ffc709;
+    cursor: pointer;
+
+    &:hover {
+      transition: 0.4s;
+      background-color: rgba(255, 199, 9, 0.7);
+    }
+
+    &:disabled {
+      transition: 0.5s;
+      color: black;
+      background-color: #eeeeee;
     }
   }
 `
