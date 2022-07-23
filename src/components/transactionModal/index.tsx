@@ -7,7 +7,7 @@ import { useRecoilValue } from 'recoil'
 import { useAddActionWallet } from '../../state/hooks/useAddActionWallet'
 import useUpdateDatabaseUser from '../../state/hooks/useUpdateDatabaseUser'
 import validateQuantity from '../../helpers/validations/validateQuantity'
-import { useRemoveActionWallet } from '../../state/hooks/useRemoveActionWallet'
+import { useRemoveActionWallet } from '../../state/hooks/useRemoveStockWallet'
 
 export default function TransactionModal({
   show,

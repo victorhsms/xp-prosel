@@ -1,4 +1,3 @@
-import React from 'react'
 import validateEmail from '../../helpers/validations/validateEmail'
 
 describe('A função deve retornar "true"', () => {

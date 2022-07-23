@@ -1,4 +1,3 @@
-import React from 'react'
 import validatePassword from '../../helpers/validations/validatePassword'
 
 describe('A função deve retornar "true"', () => {

@@ -1,4 +1,3 @@
-import React from 'react'
 import { useRecoilValue } from 'recoil'
 import setDatabase from '../../helpers/data/setDatabase'
 import getDatabase from '../../helpers/data/getDatabase'

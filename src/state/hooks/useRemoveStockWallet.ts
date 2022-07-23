@@ -1,5 +1,4 @@
 import { useRecoilValue, useSetRecoilState } from 'recoil'
-import reorganizeAction from '../../helpers/reorganizeActions'
 import IActions from '../../interface/action'
 import { actionsWallet } from '../atom'
 
