@@ -380,13 +380,23 @@ describe('Ao informar uma quantidade de ações e clicar em vender', () => {
     const onChange = jest.fn()
 
     const initializeState = ({ set }: any) => {
-      set(actionsWallet, [
-        {
-          name: actions[0].name,
-          quantity: 2,
-          value: 450
-        }
-      ])
+      set(
+        actionsWallet,
+        [
+          {
+            name: actions[0].name,
+            quantity: 2,
+            value: 450
+          }
+        ],
+        [
+          {
+            name: actions[1].name,
+            quantity: 4,
+            value: actions[1].value
+          }
+        ]
+      )
     }
 
     render(
@@ -672,13 +682,23 @@ describe('Ao comprar uma nova ação que ja estava na carteira', () => {
 
     const initializeState = ({ set }: any) => {
       set(balanceUser, 2000)
-      set(actionsWallet, [
-        {
-          name: actions[0].name,
-          quantity: 2,
-          value: 450
-        }
-      ])
+      set(
+        actionsWallet,
+        [
+          {
+            name: actions[0].name,
+            quantity: 2,
+            value: 450
+          }
+        ],
+        [
+          {
+            name: actions[1].name,
+            quantity: 3,
+            value: actions[1].value
+          }
+        ]
+      )
     }
 
     render(
