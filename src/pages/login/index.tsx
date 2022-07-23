@@ -4,6 +4,8 @@ import { useAddUser } from '../../state/hooks/useAddUser'
 import validateLogin from '../../helpers/validations/validateLogin'
 import useRecouverSavedUser from '../../state/hooks/useRecouverSavedUser'
 import Head from 'next/head'
+import Logo from '../../components/logo'
+import { HeaderLoginStyled } from './style'
 
 export default function Login() {
   const [emailValue, setEmailValue] = useState<string>('')
@@ -49,7 +51,9 @@ export default function Login() {
       <Head>
         <title>XP Prosel - Login</title>
       </Head>
-
+      <HeaderLoginStyled>
+        <Logo />
+      </HeaderLoginStyled>
       <form onSubmit={setNewUser}>
         <h1>Login</h1>
         <label htmlFor="email-input">Email</label>

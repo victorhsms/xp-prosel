@@ -24,6 +24,11 @@ export const GlobalStyles = styled.createGlobalStyle`
     font-family: 'Noto Sans', sans-serif;
   }
 
+  /* Global background */
+  body {
+    background-color: #1b1b1b;
+  }
+
   /* Remove default margin and padding */
   body,
   h1,
