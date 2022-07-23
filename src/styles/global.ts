@@ -111,6 +111,14 @@ export const GlobalStyles = styled.createGlobalStyle`
     font: inherit;
   }
 
+  /* Change the white to any color */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+  }
+
   /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
   @media (prefers-reduced-motion: reduce) {
     html:focus-within {
