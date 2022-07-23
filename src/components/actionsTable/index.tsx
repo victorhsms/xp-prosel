@@ -3,13 +3,14 @@ import { useRecoilValue } from 'recoil'
 import IActions from 'src/interface/action'
 import { actionsStore } from '../../state/atom'
 import TransactionModal from '../transactionModal'
+import { ActionsTableStyled } from './styled'
 
 export default function ActionsTable() {
   const [showModalBuy, setShowModalBuy] = useState<boolean>(false)
   const actions = useRecoilValue(actionsStore)
   const [actionSelected, setActionSelected] = useState<IActions>(actions[0])
   return (
-    <div>
+    <ActionsTableStyled>
       <h3>Disponível para investir</h3>
       <table data-testid="actions-table">
         <thead>
@@ -45,6 +46,6 @@ export default function ActionsTable() {
         handleShow={setShowModalBuy}
         action={actionSelected}
       />
-    </div>
+    </ActionsTableStyled>
   )
 }
