@@ -28,7 +28,7 @@ export const TableStyled = styled.div`
       padding: 12px 0;
 
       th {
-        width: 25%;
+        width: 33%;
       }
     }
 
@@ -53,7 +53,7 @@ export const TableStyled = styled.div`
 
         th {
           font-weight: 400;
-          width: 25%;
+          width: 33%;
         }
       }
 
@@ -64,6 +64,29 @@ export const TableStyled = styled.div`
         cursor: default;
         flex-grow: 1;
       }
+    }
+  }
+
+  @media (max-width: 1250px) {
+    width: 100%;
+  }
+
+  @media (max-width: 768px) {
+    gap: 20px;
+    padding: 10px 25px 20px;
+
+    h3 {
+      font-size: 24px;
+    }
+
+    thead th {
+      font-size: 16px;
+    }
+  }
+
+  @media (max-width: 400px) {
+    thead th {
+      font-size: 12px;
     }
   }
 `

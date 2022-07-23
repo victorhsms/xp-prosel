@@ -17,5 +17,14 @@ export const HomeStyled = styled.main`
       flex-direction: column;
       gap: 30px;
     }
+
+    @media (max-width: 1250px) {
+      flex-direction: column-reverse;
+      gap: 10px;
+    }
+
+    @media (max-width: 768px) {
+      width: 90%;
+    }
   }
 `

@@ -36,9 +36,19 @@ export const WalletStyled = styled.aside`
     cursor: pointer;
     border-radius: 5px;
 
+    @media (max-width: 1250px) {
+      width: 100%;
+    }
+
     &:hover {
       transition: 0.4s;
       background-color: rgba(255, 199, 9, 0.7);
     }
+  }
+
+  @media (max-width: 1250px) {
+    width: 100%;
+    margin: 50px auto 0;
+    max-width: 450px;
   }
 `
