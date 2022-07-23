@@ -49,14 +49,14 @@ export default function Login() {
 
   return (
     <>
-      <main>
-        <Head>
-          <title>XP Prosel - Login</title>
-        </Head>
-        <HeaderLoginStyled>
-          <Logo />
-        </HeaderLoginStyled>
-        <FormStyle onSubmit={setNewUser}>
+      <Head>
+        <title>XP Prosel - Login</title>
+      </Head>
+      <HeaderLoginStyled>
+        <Logo />
+      </HeaderLoginStyled>
+      <FormStyle>
+        <form onSubmit={setNewUser}>
           <h1>Login</h1>
           <div className="inputs-container">
             <div className="email-container">
@@ -82,8 +82,8 @@ export default function Login() {
           <button type="submit" disabled={btnStatus}>
             Entrar
           </button>
-        </FormStyle>
-      </main>
+        </form>
+      </FormStyle>
       <Footer />
     </>
   )
