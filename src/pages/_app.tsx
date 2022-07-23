@@ -1,5 +1,6 @@
 import type { AppProps } from 'next/app'
 import { RecoilRoot } from 'recoil'
+import Footer from '../components/footer'
 import { GlobalStyles } from '../styles/global'
 
 export default function MyApp({ Component, pageProps }: AppProps) {
@@ -7,6 +8,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     <RecoilRoot>
       <GlobalStyles />
       <Component {...pageProps} />
+      <Footer />
     </RecoilRoot>
   )
 }
