@@ -11,6 +11,8 @@ import { server } from '../config'
 import Wallet from '../components/wallet'
 import useUpdateDatabaseUser from '../state/hooks/useUpdateDatabaseUser'
 import Head from 'next/head'
+import Footer from '../components/footer'
+import { HomeStyled } from './style'
 
 export default function Home({ actions }: { actions: IActions[] }) {
   const updateUserToDatabase = useUpdateDatabaseUser()
@@ -38,9 +40,16 @@ export default function Home({ actions }: { actions: IActions[] }) {
         <title>XP Prosel</title>
       </Head>
       <Header />
-      <WalletTable />
-      <ActionsTable />
-      <Wallet />
+      <HomeStyled>
+        <div className="main-container">
+          <div className="tables-container">
+            <WalletTable />
+            <ActionsTable />
+          </div>
+          <Wallet />
+        </div>
+      </HomeStyled>
+      <Footer />
     </>
   )
 }

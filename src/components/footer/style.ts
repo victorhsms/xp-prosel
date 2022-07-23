@@ -1,17 +1,17 @@
 import styled from 'styled-components'
 
 export const FooterStyled = styled.footer`
-  color: white;
+  background-color: white;
   font-size: 12px;
   margin: 0 auto;
   text-align: center;
-  padding-bottom: 40px;
-  width: 820px;
+  padding: 40px 0;
+
   line-height: 20px;
 
   .link-linkedin {
     text-decoration: underline;
-    color: white;
+    color: black;
   }
 
   @media (max-width: 900px) {
