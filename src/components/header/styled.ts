@@ -19,6 +19,10 @@ export const HeaderStyled = styled.header`
 
       .image-container {
         width: 180px;
+
+        @media (max-width: 750px) {
+          width: 160px;
+        }
       }
 
       span {
@@ -31,7 +35,7 @@ export const HeaderStyled = styled.header`
         padding-top: 5px;
       }
 
-      @media (max-width: 550px) {
+      @media (max-width: 750px) {
         span,
         p {
           display: none;
@@ -42,18 +46,27 @@ export const HeaderStyled = styled.header`
     .profile {
       display: flex;
       align-items: center;
-      gap: 30px;
+      gap: 25px;
 
       span {
         font-weight: 500;
         font-size: 18px;
         text-decoration: underline;
+        cursor: pointer;
       }
 
       img {
         width: 45px;
         border-radius: 40px;
       }
+
+      @media (max-width: 450px) {
+        gap: 10px;
+      }
+    }
+
+    @media (max-width: 530px) {
+      width: 90%;
     }
   }
 `

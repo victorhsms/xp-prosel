@@ -30,7 +30,7 @@ export default function Header() {
         <Logo />
         <div className="profile">
           <span role="link" onClick={logoff}>
-            logoff
+            Sair
           </span>
           <img src={getGravatar()} alt="Foto de perfil" />
         </div>

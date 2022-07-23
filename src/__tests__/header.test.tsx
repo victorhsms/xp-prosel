@@ -27,7 +27,7 @@ describe('Ao acessar a página Home, deve existir um header', () => {
 
   it('com um link de logoff', () => {
     const logoff = screen.queryByRole('link', {
-      name: /logoff/i
+      name: /Sair/i
     })
 
     expect(logoff).toBeInTheDocument()
