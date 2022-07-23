@@ -12,6 +12,7 @@ export default function Footer() {
         para o processo seletivo da XP Inc. O projeto e layout não tem qualquer
         relação com a financeira XP Inc.
       </p>
+      <p>Projeto desenvolvido com Nexjs, Recoil e Styled-Component</p>
     </FooterStyled>
   )
 }
