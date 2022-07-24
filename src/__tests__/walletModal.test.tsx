@@ -2,7 +2,7 @@ import { fireEvent, render, screen } from '@testing-library/react'
 import React from 'react'
 import { RecoilRoot } from 'recoil'
 import { RecoilObserver } from '../mock/recoilObserver'
-import { balanceUser } from '../state/atom'
+import { balanceUser, loggedUser } from '../state/atom'
 import WalletModal from '../components/walletModal'
 
 describe('Ao clicar no botão "Depósito/Retirada" deve exibir um modal', () => {
@@ -236,6 +236,7 @@ describe('O valor do saldo em conta deve mudar', () => {
 
     const initializeState = ({ set }: any) => {
       set(balanceUser, 100)
+      set(loggedUser, 'email@email.com')
     }
 
     render(
