@@ -28,7 +28,6 @@ export const useRemoveActionWallet = () => {
           }
           return newAction
         }
-        console.log('Aqui!')
         return action
       })
 

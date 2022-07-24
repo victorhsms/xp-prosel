@@ -7,7 +7,6 @@ import ActionsTable from '../components/actionsTable'
 import { GetServerSideProps } from 'next'
 import { useAddActionStore } from '../state/hooks/useAddActionStore'
 import IActions from '../interface/action'
-import { server } from '../config'
 import Wallet from '../components/wallet'
 import useUpdateDatabaseUser from '../state/hooks/useUpdateDatabaseUser'
 import Head from 'next/head'
@@ -55,7 +54,7 @@ export default function Home({ actions }: { actions: IActions[] }) {
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const urlSearch = `${server}/api/actions`
+  const urlSearch = `http://localhost:3000/api/actions`
   const result = await fetch(urlSearch)
   const actions = await result.json()
   return {

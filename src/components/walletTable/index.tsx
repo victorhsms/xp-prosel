@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useRecoilValue } from 'recoil'
 import IActions from 'src/interface/action'
 import { actionsWallet } from '../../state/atom'
