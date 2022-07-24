@@ -159,7 +159,11 @@ export const GlobalStyles = styled.createGlobalStyle`
     outline: none;
     padding: 30px 45px;
     width: 90%;
-    max-width: 500px;
+    max-width: max-content;
+
+    @media (max-width: 750px) {
+      padding: 15px 20px;
+    }
   }
 
   .modal-wallet-overlay {

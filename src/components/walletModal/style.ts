@@ -10,6 +10,10 @@ const ModalStyled = styled.div<PropsModal>`
   flex-direction: column;
   gap: 40px;
 
+  @media (max-width: 750px) {
+    gap: 30px;
+  }
+
   .balance-modal {
     display: flex;
     justify-content: space-between;
@@ -55,6 +59,12 @@ const ModalStyled = styled.div<PropsModal>`
       box-shadow: ${props =>
         props.withdraw ? '-4px 4px 8px rgba(0, 0, 0, 0.25)' : 'none'};
     }
+
+    @media (max-width: 750px) {
+      button {
+        padding: 5px 15px;
+      }
+    }
   }
 
   input {
@@ -68,6 +78,67 @@ const ModalStyled = styled.div<PropsModal>`
     &:focus {
       box-shadow: 0 0 0 0;
       outline: 0;
+    }
+  }
+
+  .wallet-modal-buttons {
+    display: flex;
+    justify-content: space-between;
+
+    button {
+      background-color: #252822;
+      padding: 15px 35px;
+      border-radius: 5px;
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+
+      &:hover {
+        box-shadow: -4px 4px 8px rgba(0, 0, 0, 0.25);
+        transition: 0.3s;
+      }
+    }
+    @media (max-width: 750px) {
+      justify-content: space-around;
+      button {
+        padding: 5px 15px;
+      }
+    }
+
+    .button-confirme {
+      background-color: rgba(83, 179, 141, 1);
+
+      &:disabled {
+        background-color: #eee;
+        box-shadow: none;
+        cursor: default;
+      }
+    }
+  }
+
+  .infos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+
+    h4 {
+      font-size: 20px;
+    }
+
+    ul {
+      list-style-type: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    @media (max-width: 570px) {
+      font-size: 14px;
+
+      h4 {
+        font-size: 16px;
+      }
     }
   }
 `

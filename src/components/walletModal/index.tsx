@@ -87,9 +87,20 @@ export default function WalletModal({
         />
         <div className="wallet-modal-buttons">
           <button onClick={() => handleShow(!show)}>Voltar</button>
-          <button disabled={btnConfirmeStatus} onClick={setTransactionValue}>
+          <button
+            className="button-confirme"
+            disabled={btnConfirmeStatus}
+            onClick={setTransactionValue}>
             Confirmar
           </button>
+        </div>
+        <div className="infos">
+          <h4>Informações importantes</h4>
+          <ul>
+            <li>Você precisa ter algum saldo para conseguir retirar.</li>
+            <li>Você só pode sacar e depositar valores válidos e positivos.</li>
+            <li>Você não pode retirar mais do que tem na conta.</li>
+          </ul>
         </div>
       </ModalStyled>
     </ReactModal>

@@ -69,7 +69,7 @@ export const FormStyle = styled.main`
       label {
         color: #1d1f1e;
         font-weight: 700;
-        font-size: 20px;
+        font-size: 24px;
       }
 
       input {
@@ -79,6 +79,7 @@ export const FormStyle = styled.main`
         padding: 10px;
         width: 100%;
         text-align: center;
+        font-size: 20px;
 
         &:focus {
           box-shadow: 0 0 0 0;
@@ -103,6 +104,7 @@ export const FormStyle = styled.main`
         transition: 0.5s;
         color: black;
         background-color: #eeeeee;
+        cursor: default;
       }
     }
   }
