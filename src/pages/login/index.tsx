@@ -83,6 +83,14 @@ export default function Login() {
             Entrar
           </button>
         </form>
+
+        <div className="infos">
+          <h4>Informações importantes</h4>
+          <ul>
+            <li>Você precisa informar uma senha com mais de 6 caracteres!</li>
+            <li>Você precisa informar um email válido. Ex: email@email.com</li>
+          </ul>
+        </div>
       </FormStyle>
       <Footer />
     </>

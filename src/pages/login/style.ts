@@ -37,8 +37,9 @@ export const HeaderLoginStyled = styled.header`
 
 export const FormStyle = styled.main`
   display: flex;
-  padding: 150px 0;
   justify-content: center;
+  padding: 150px 0;
+  gap: 50px;
 
   form {
     max-width: 700px;
@@ -49,6 +50,7 @@ export const FormStyle = styled.main`
     align-items: center;
     padding: 50px;
     gap: 60px;
+    border-radius: 5px;
 
     h1 {
       font-size: 44px;
@@ -93,7 +95,9 @@ export const FormStyle = styled.main`
       padding: 15px 0;
       font-weight: 700;
       background-color: #ffc709;
+      border-radius: 5px;
       cursor: pointer;
+      font-size: 24px;
 
       &:hover {
         transition: 0.4s;
@@ -109,12 +113,70 @@ export const FormStyle = styled.main`
     }
   }
 
+  .infos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    height: max-content;
+    padding: 20px 40px;
+    border-radius: 5px;
+    gap: 15px;
+
+    h4 {
+      font-size: 28px;
+    }
+
+    ul {
+      list-style-type: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    @media (max-width: 650px) {
+      width: 85%;
+      padding: 10px 20px;
+    }
+
+    @media (max-width: 570px) {
+      font-size: 14px;
+
+      h4 {
+        font-size: 20px;
+      }
+    }
+  }
+
+  @media (max-width: 1400px) {
+    flex-direction: column;
+    align-items: center;
+    justify-content: baseline;
+  }
+
   @media (max-width: 500px) {
     form {
       padding: 20px;
+      gap: 20px;
 
       h1 {
-        font-size: 36px;
+        font-size: 32px;
+      }
+
+      .email-container,
+      .password-container {
+        label {
+          font-size: 16px;
+        }
+
+        input {
+          font-size: 16px;
+        }
+      }
+
+      button {
+        font-size: 16px;
       }
     }
   }

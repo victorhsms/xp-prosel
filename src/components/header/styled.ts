@@ -68,6 +68,7 @@ export const HeaderStyled = styled.header`
         span {
           text-decoration: none;
           font-size: 14px;
+          cursor: default;
 
           @media (max-width: 950px) {
             display: none;
