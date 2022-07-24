@@ -55,9 +55,24 @@ export const HeaderStyled = styled.header`
         cursor: pointer;
       }
 
-      img {
-        width: 45px;
-        border-radius: 40px;
+      .user-info {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        img {
+          width: 45px;
+          border-radius: 40px;
+        }
+
+        span {
+          text-decoration: none;
+          font-size: 14px;
+
+          @media (max-width: 950px) {
+            display: none;
+          }
+        }
       }
 
       @media (max-width: 450px) {

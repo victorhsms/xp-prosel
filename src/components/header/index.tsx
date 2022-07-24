@@ -32,7 +32,10 @@ export default function Header() {
           <span role="link" onClick={logoff}>
             Sair
           </span>
-          <img src={getGravatar()} alt="Foto de perfil" />
+          <div className="user-info">
+            <img src={getGravatar()} alt="Foto de perfil" />
+            {user.length !== 0 && <span>{user}</span>}
+          </div>
         </div>
       </div>
     </HeaderStyled>
