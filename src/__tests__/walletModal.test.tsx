@@ -191,7 +191,7 @@ describe('O botão retirar deve estar desabilitado', () => {
   })
 })
 
-describe('o valor do saldo em conta deve mudar', () => {
+describe('O valor do saldo em conta deve mudar', () => {
   it('Ao clicar em Depositar, digitar um valor e clicar em confirmar', () => {
     let show = true
     function mockHandleShow() {
@@ -319,6 +319,49 @@ describe('o valor do saldo em conta deve mudar', () => {
     expect(onChange).toHaveBeenCalledTimes(2)
     expect(onChange).toHaveBeenCalledWith(100)
     expect(onChange).toHaveBeenCalledWith(70)
+  })
+})
+
+describe('O valor do saldo da conta não deve mudar', () => {
+  it('caso o valor retirado seja maior do que o saldo', () => {
+    let show = true
+    function mockHandleShow() {
+      show = !show
+    }
+
+    const onChange = jest.fn()
+
+    const initializeState = ({ set }: any) => {
+      set(balanceUser, 20)
+    }
+
+    render(
+      <RecoilRoot initializeState={initializeState}>
+        <RecoilObserver node={balanceUser} onChange={onChange} />
+        <WalletModal show={show} handleShow={mockHandleShow} />
+      </RecoilRoot>
+    )
+
+    const btnRemove = screen.getByRole('button', {
+      name: /Retirar/i
+    })
+
+    fireEvent.click(btnRemove)
+
+    const inputValue = screen.getByPlaceholderText('Informe um valor')
+    fireEvent.change(inputValue, {
+      target: {
+        value: '30'
+      }
+    })
+
+    const btnConfirme = screen.getByRole('button', {
+      name: /Confirmar/i
+    })
+    fireEvent.click(btnConfirme)
+
+    expect(onChange).toHaveBeenCalledTimes(1)
+    expect(onChange).toHaveBeenCalledWith(20)
   })
 })
 
