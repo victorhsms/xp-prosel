@@ -71,7 +71,7 @@ Caso a porta 3000 ja esteja ocupada e a url seja diferente de "http:localhost:30
 
 
 <details>
-<summary><strong>Por que essa stack?</strong></summary>
+<summary><strong>Por que essa stack?</strong></summary> </br>
 
 Na [Trybe](https://www.betrybe.com/), aprendemos React (class component e function component), React-Router, Redux e bem pouco de Jest/RTL ao longo de todo o módulo de Front end.
 
@@ -88,11 +88,15 @@ Eu sempre considerei o Redux uma ferramente muito útil e robusta, mas acredito 
 
 Eu quase nunca usei testes além do que foi necessário e o pouco que usei foi pra um projeto na Trybe, o qual não tive um rendimento muito bom. Fiz em TDD porque acredito que é uma metodologia objetiva, segura e de boas práticas. Desenvolver em TDD me garantiu que eu fizesse refatorações constantes sem medo da minha aplicação quebrar.
 
+#### Por que não criar uma API com banco de dados?
+
+Essa era minha intenção inicial, mas acredito que para uma vaga de front end e mobile seria mais proveitoso usar o tempo disponível para aprender e desenvolver técnicar mais voltadas para o dia a dia de uma possoa desenvolvedora em front/mobile. Com essa decisão eu acabei perdendo a oportunidade de trabalhar com async/await, porém ganhei tempo para me dedicar a aprender as tecnologias novas e fazer o TDD. Para criar um back-end também seria necessário me preocupar com questões como outros repositórios, configuração, stack do backend, garantir que ele esteja funcionando ou o front iria quebrar e etc.
+
 </details>
 
 <details>
 
-<summary><strong>Fluxo da aplicação</strong></summary>
+<summary><strong>Fluxo da aplicação</strong></summary> </br>
 
 Caso o cliente entre na página home e não esteja logado, ele é redirecionado à página '/login'. Um redirecionamento acontece ao tentar acessar a página de login quando já existe um usuário logado, o cliente é enviado para a página home. Dito isso, é válido informar que o usuário logado fica guardado no localStorage e só é deletado manualmente ou após dar Logoff na página home. 
 
@@ -104,6 +108,62 @@ Após clicar, abrirá um modal que vai permitir depósitos e retiradas. As retir
 
 Quando tiver um valor na conta, o usuário pode clicar em alguma ação e comprá-la. A ação irá para a lista de ações na carteira e, ao clicar nelas, o usuário poderá comprar mais (caso possua saldo para isso) ou vendê-las (somente a quantidade que ele possui) ao digitar um valor inteiro e positivo no input e confirmar.
 
+</details>
+
+<details>
+
+<summary><strong>Decisões sobre mockup e UX</strong></summary> </br>
+
+Escolhi colocar uma logo semelhante a da XP Inc para apresentar o projeto e sua identidade visual. O tema e valor "Sonhe Grande" foi o mantra que me guiou durante o desenvolvimento. Um footer foi criado para descrição para apresentar o projeto e também se desvincular da XP Inc, devido à logo semelhante. Todas as escolhas de design foram baseadas no site da XP Inc, exceto alguns detalhes, como as bordas arredondadas e algumas cores.
+
+Na página Home, o usuário poderá ver uma foto sua, caso o email informado seja vinculado a alguma imagem. Seu email também será exibido.
+
+Decidi tentar manter o valor de saldo na carteira visível na maior parte do tempo, para que o usuário não tenha dificuldades. Também troquei a posição do botão de depositar/transferir para a carteira, acredito que faça mais sentido na usabilidade.
+
+Decidi também que não seria necessário um botão de Compra/Venda, e adorei um layout mais limpo. Portanto, é necessário apenas clicar em qualquer local a ação para abrir um modal com informações sobre ela e permitir a compra/venda. Coloquei um hover para indicar a possibilidade de fazer isso e também um aviso indicativo quando a carteira de ações está vazia.
+</details>
+
+
+<details>
+
+<summary><strong>Problemas conhecidos</strong></summary>
+
+Aqui a lista de alguns problemas que notei e não tive tempo de resolver:
+
+ - Quando um usuario logado acessa a página home e atualiza a página (pelo navegador ou apertando F5) as informações sobre saldo e ações compradas são perdidas do estado da aplicação.
+   -  Além disso, na primeira ação após fazer o passo acima, os dados do usuario no localStorage são resetados.
+ - Retirar todo o saldo da conta, abrir o modal de "depositar/retirar" faz com que seja necessário clicar novamente na opção de "Depositar" ou não acontecerá nada ao clicar em confirmar.
+ - Vender apenas algumas quantidades de uma ação (não todas) não está atualizando o localStorage, o que faz com que o usuário perca essa informação caso não faça nenhuma outra transação antes de fechar a aplicação ou deslogar e atualizar a página.
+
+
+</details>
+
+<details>
+
+<summary><strong>Melhorias futuras</strong></summary>
+
+Aqui a lista de algumas melhorias que gostaria de fazer a curto prazo:
+
+ - Resolver os bugs conhecidos.
+ - Retirar as informações importantes dos modais e da página de login e criar alertas que respondam ao erro do usuário.
+ - Desenvolver uma forma de simular rendimentos e perdas nas ações do usuário
+ - Criar uma API simples para alterar os dados de cada cliente e retirar a necessidade de usar o localStorage
+ - Criar filtros para pesquisa de ações específicas por preço ou nome.
+ - Desenvolver uma lista de "usuarios logados recentemente" na página de login
+ 
+<details>
+
+<details>
+
+<summary><strong>Maiores dificuldades</strong></summary></br>
+
+Minha maior dificuldade foi fazer o TDD. Eu sabia apenas o  mínimo de jest e RTL e quase não tenho nada com testes no meu github. Além disso, eu também tive que aprender a testar funcionalidades do Nextjs e do Recoil. Eu passei várias horas de pesquisa e estudo e por diversas vezes acabei tento um feature aqui e alí que acabaram não sendo em TDD. Exemplo: Eu comecer a experimentar "será que daria pra criar algo assim" e acabou saindo algo que eu precisei criar os testes em seguida.
+
+Por diversas vezes o Nextjs era um grande impecilho com o next, visto que, por exemplo, o jest não consegue reconhecer alguns hooks do Nextjs. Precisei baixar a biblioteca next-router-mock para mockar o useRouter,
+
+O Nextjs, por diversas vezes, trouxe alguns bugs que precisei de bastante pesquisa para resolver, como, por exemplo, a renderização da estilização feita em servidor. As vezes, a aplicação simplesmente ficava sem estilo, o que me forçava a fechar o servidor para voltar a funcionar.
+
+No geral, a maior parte do desenvolvimento do projeto foi usada em pesquisas nas documentações e fóruns, resoluções de problemas e estruturação dos testes (visto que eu não sabia como testar algumas coisas). Coisas como o desenvolvimento de algumas novas features, estilização, documentação e, principalmente, o deploy foram as partes mais rápidas e tranquilas.
 </details>
 
 
