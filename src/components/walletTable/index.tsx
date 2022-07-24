@@ -44,7 +44,8 @@ export default function WalletTable() {
           ) : (
             <tr data-testid="wallet-table-empty" className="table-empty">
               <td colSpan={4}>
-                Você não tem nenhuma ação comprada no momento!
+                Você não tem nenhuma ação comprada. Clique em alguma para
+                comprar!
               </td>
             </tr>
           )}
