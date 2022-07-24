@@ -14,7 +14,6 @@ export default function reorganizeAction(
       }
       return newAction
     }
-    console.log('Aqui!')
     return action
   })
 }

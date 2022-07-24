@@ -44,7 +44,6 @@ export default function WalletModal({
       : balanceRecoilState - inputValue
     if (newValueToState < 0) return
     setBalanceRecoilState(newValueToState)
-    if (newValueToState === 0) changeOperation(false)
     handleShow(!show)
   }
 
