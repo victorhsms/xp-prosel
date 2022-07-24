@@ -76,7 +76,7 @@ Caso a porta 3000 já esteja ocupada e a url seja diferente de "http:localhost:3
 
 ## Maiores dificuldades
 
-Minha maior dificuldade foi fazer o TDD. Eu sabia apenas o mínimo de jest e RTL e quase não tenho nada com testes no meu github. Além disso, eu também tive que aprender a testar funcionalidades do Nextjs e do Recoil. Eu passei várias horas de pesquisa e estudo e por diversas vezes acabei tendo um feature aqui e alí que acabaram não sendo em TDD. Exemplo: Eu comecei a experimentar "será que daria pra criar algo assim" e acabou saindo algo que eu precisei criar os testes em seguida.
+Minha maior dificuldade foi fazer o TDD. Eu sabia apenas o mínimo de jest e RTL e quase não tenho nada com testes no meu github. Além disso, eu também tive que aprender a testar funcionalidades do Nextjs e do Recoil. Eu passei várias horas de pesquisa e estudo e algumas vezes acabei tendo um feature aqui e alí que acabaram não sendo em TDD. Exemplo: Eu comecei a experimentar "será que daria pra criar algo assim" e acabou saindo algo que eu precisei criar os testes em seguida.
 
 Por diversas vezes o Nextjs era um grande empecilho com o next, visto que, por exemplo, o jest não consegue reconhecer alguns hooks do Nextjs. Precisei baixar a biblioteca next-router-mock para mockar o useRouter,
 
