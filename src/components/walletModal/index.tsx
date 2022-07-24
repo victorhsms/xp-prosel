@@ -56,8 +56,8 @@ export default function WalletModal({
       shouldCloseOnOverlayClick={true}
       shouldCloseOnEsc={true}
       ariaHideApp={false}
-      className="modal-wallet"
-      overlayClassName="modal-wallet-overlay"
+      className="modal"
+      overlayClassName="modal-overlay"
       contentLabel="Interface para fazer depósito">
       <ModalStyled deposit={selectDeposit} withdraw={selectWithdraw}>
         <h1>Minha conta:</h1>

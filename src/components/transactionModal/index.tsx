@@ -8,6 +8,7 @@ import { useAddActionWallet } from '../../state/hooks/useAddActionWallet'
 import useUpdateDatabaseUser from '../../state/hooks/useUpdateDatabaseUser'
 import validateQuantity from '../../helpers/validations/validateQuantity'
 import { useRemoveActionWallet } from '../../state/hooks/useRemoveStockWallet'
+import { ModalTransactionStyled } from './style'
 
 export default function TransactionModal({
   show,
@@ -59,47 +60,63 @@ export default function TransactionModal({
       shouldCloseOnOverlayClick={true}
       shouldCloseOnEsc={true}
       ariaHideApp={false}
+      className="modal"
+      overlayClassName="modal-overlay"
       contentLabel="Interface para fazer depósito">
-      <h1>{walletBuyAndSell ? 'Comprar ou Vender ação' : 'Comprar ação'}</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>Ação</th>
-            <th>Quantidade</th>
-            <th>{'Valor (R$)'}</th>
-          </tr>
-        </thead>
-        {action && (
-          <tbody>
+      <ModalTransactionStyled>
+        <h1>{walletBuyAndSell ? 'Comprar ou Vender ação' : 'Comprar ação'}</h1>
+        <table>
+          <thead>
             <tr>
-              <th>{action.name}</th>
-              <th>{action.quantity}</th>
-              <th>{action.value}</th>
+              <th>Ação</th>
+              <th>Quantidade</th>
+              <th>{'Valor (R$)'}</th>
             </tr>
-          </tbody>
-        )}
-      </table>
-      <div>
-        <input
-          type="number"
-          placeholder="Informe a quantidade"
-          onChange={e => setQuantityBuy(e.target.value)}
-        />
-        <button onClick={() => negotiateAction(quantityBuy)}>Comprar</button>
-      </div>
-      {walletBuyAndSell && (
-        <div>
+          </thead>
+          {action && (
+            <tbody>
+              <tr>
+                <th>{action.name}</th>
+                <th>{action.quantity}</th>
+                <th>{action.value}</th>
+              </tr>
+            </tbody>
+          )}
+        </table>
+        <div className="input-transaction-modal">
           <input
             type="number"
             placeholder="Informe a quantidade"
-            onChange={e => setQuantitySell(e.target.value)}
+            onChange={e => setQuantityBuy(e.target.value)}
           />
-          <button onClick={() => negotiateAction(quantitySell, true)}>
-            Vender
-          </button>
+          <button onClick={() => negotiateAction(quantityBuy)}>Comprar</button>
         </div>
-      )}
-      <button onClick={() => handleShow(!show)}>Fechar</button>
+        {walletBuyAndSell && (
+          <div className="input-transaction-modal">
+            <input
+              type="number"
+              placeholder="Informe a quantidade"
+              onChange={e => setQuantitySell(e.target.value)}
+            />
+            <button
+              className="sell-button"
+              onClick={() => negotiateAction(quantitySell, true)}>
+              Vender
+            </button>
+          </div>
+        )}
+        <button className="close-button" onClick={() => handleShow(!show)}>
+          Fechar
+        </button>
+        <div className="infos">
+          <h4>Informações importantes</h4>
+          <ul>
+            <li>Você só pode informar valores inteiros e positivos.</li>
+            <li>Você só pode comprar com saldo suficiente.</li>
+            <li>Você só pode vender até a quantidade que possui.</li>
+          </ul>
+        </div>
+      </ModalTransactionStyled>
     </ReactModal>
   )
 }

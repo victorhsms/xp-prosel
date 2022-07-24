@@ -151,7 +151,7 @@ export const GlobalStyles = styled.createGlobalStyle`
     -webkit-appearance: none;
   }
 
-  .modal-wallet {
+  .modal {
     border: 1px solid rgb(204, 204, 204);
     background: rgb(255, 255, 255);
     overflow: auto;
@@ -166,7 +166,7 @@ export const GlobalStyles = styled.createGlobalStyle`
     }
   }
 
-  .modal-wallet-overlay {
+  .modal-overlay {
     position: fixed;
     inset: 0px;
     display: flex;
