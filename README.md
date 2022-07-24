@@ -67,6 +67,15 @@ Caso a porta 3000 ja esteja ocupada e a url seja diferente de "http:localhost:30
 
 </details>
 
+## Maiores dificuldades
+
+Minha maior dificuldade foi fazer o TDD. Eu sabia apenas o mínimo de jest e RTL e quase não tenho nada com testes no meu github. Além disso, eu também tive que aprender a testar funcionalidades do Nextjs e do Recoil. Eu passei várias horas de pesquisa e estudo e por diversas vezes acabei tento um feature aqui e alí que acabaram não sendo em TDD. Exemplo: Eu comecer a experimentar "será que daria pra criar algo assim" e acabou saindo algo que eu precisei criar os testes em seguida.
+
+Por diversas vezes o Nextjs era um grande impecilho com o next, visto que, por exemplo, o jest não consegue reconhecer alguns hooks do Nextjs. Precisei baixar a biblioteca next-router-mock para mockar o useRouter,
+
+O Nextjs, por diversas vezes, trouxe alguns bugs que precisei de bastante pesquisa para resolver, como, por exemplo, a renderização da estilização feita em servidor. As vezes, a aplicação simplesmente ficava sem estilo, o que me forçava a fechar o servidor para voltar a funcionar.
+
+No geral, a maior parte do desenvolvimento do projeto foi usada em pesquisas nas documentações e fóruns, resoluções de problemas e estruturação dos testes (visto que eu não sabia como testar algumas coisas). Coisas como o desenvolvimento de algumas novas features, estilização, documentação e, principalmente, o deploy foram as partes mais rápidas e tranquilas.
 ## Informações importantes
 
 
@@ -91,6 +100,16 @@ Eu quase nunca usei testes além do que foi necessário e o pouco que usei foi p
 #### Por que não criar uma API com banco de dados?
 
 Essa era minha intenção inicial, mas acredito que para uma vaga de front end e mobile seria mais proveitoso usar o tempo disponível para aprender e desenvolver técnicar mais voltadas para o dia a dia de uma possoa desenvolvedora em front/mobile. Com essa decisão eu acabei perdendo a oportunidade de trabalhar com async/await, porém ganhei tempo para me dedicar a aprender as tecnologias novas e fazer o TDD. Para criar um back-end também seria necessário me preocupar com questões como outros repositórios, configuração, stack do backend, garantir que ele esteja funcionando ou o front iria quebrar e etc.
+
+#### Commits em Português
+
+Eu escolhi fazer commits em português porque acreditei que seria mais fácil descrever o que fiz no commit e que outras pessoas que não são preficiêntes no inglês entendesse melhor. Porém eu acredito que isso mais me prejudicou do que ajudou, visto que eu ja estava acostumado a fazer commits em inglês e por diversas vezes eu começava a digitar em inglês, lembrava do padrão e tinha que apagar.
+
+#### ESLint e Prettier
+
+Eu usei uma configuração de [ESLint](https://www.npmjs.com/package/eslint-config-infojr-ts) e [Prettier](https://www.npmjs.com/package/prettier-config-infojr) que são o padrão do desenvolvimento na InfoJr (empresa júnior da UFBA que participo). Como podem ver por commits iniciais, eu fiz um template de configuração para front-end com Nextjs, TS, Jest, Styled-Component, ESlint e Prettier a dois meses atrás, justamente para o desenvolvimento de projetos pessoas. O repositório dessa configuração é encontrado [NESTE LINK](https://github.com/victorhsms/eslint-prettier-config).
+
+Porém, apesar do Prettier ter funcionado corretamente, eu acredito que aconteceu algum problema na configuação do ESLint e ele não funcionou. Como eu só notei isso quando a aplicação estava com o desenvolvimento avançado, resolvi ignorar esse fato e finalizar o projeto sem o ESLint.
 
 </details>
 
@@ -152,19 +171,3 @@ Aqui a lista de algumas melhorias que gostaria de fazer a curto prazo:
  - Desenvolver uma lista de "usuarios logados recentemente" na página de login
  
 <details>
-
-<details>
-
-<summary><strong>Maiores dificuldades</strong></summary></br>
-
-Minha maior dificuldade foi fazer o TDD. Eu sabia apenas o  mínimo de jest e RTL e quase não tenho nada com testes no meu github. Além disso, eu também tive que aprender a testar funcionalidades do Nextjs e do Recoil. Eu passei várias horas de pesquisa e estudo e por diversas vezes acabei tento um feature aqui e alí que acabaram não sendo em TDD. Exemplo: Eu comecer a experimentar "será que daria pra criar algo assim" e acabou saindo algo que eu precisei criar os testes em seguida.
-
-Por diversas vezes o Nextjs era um grande impecilho com o next, visto que, por exemplo, o jest não consegue reconhecer alguns hooks do Nextjs. Precisei baixar a biblioteca next-router-mock para mockar o useRouter,
-
-O Nextjs, por diversas vezes, trouxe alguns bugs que precisei de bastante pesquisa para resolver, como, por exemplo, a renderização da estilização feita em servidor. As vezes, a aplicação simplesmente ficava sem estilo, o que me forçava a fechar o servidor para voltar a funcionar.
-
-No geral, a maior parte do desenvolvimento do projeto foi usada em pesquisas nas documentações e fóruns, resoluções de problemas e estruturação dos testes (visto que eu não sabia como testar algumas coisas). Coisas como o desenvolvimento de algumas novas features, estilização, documentação e, principalmente, o deploy foram as partes mais rápidas e tranquilas.
-</details>
-
-
-
