@@ -8,12 +8,19 @@ Para essa aplicação, foi usado Nextjs, Recoil, Styled-Component, Typescript e 
 
 O deploy de XP Prosel foi realizado na vercel e você pode encontrar a aplicação online em https://xp-prosel.vercel.app/
 
+<div>
+  <img src="./public/images/login-print.png" width="400">
+  <img src="./public/images/home-print.png" width="400">
+  <img src="./public/images/wallet-print.png" width="400">
+  <img src="./public/images/actions-modal-print.png" width="400">
+</div>
+
 ## Como rodar a aplicação
 
 Você pode simplesmente acessar o deploy da aplicação [neste link](https://xp-prosel.vercel.app/) ou seguir às instruções abaixo:
 
 <details>
-  <summary><strong>Baixando repositório e entrando na pasta</strong></summary><br />
+  <summary><strong>👨‍💻 Baixando repositório e entrando na pasta</strong></summary><br />
 
   Caso não possua o git instalado, você pode clicar em "Code" (em verde) no topo do repositório e depois em "Download Zip".
   
@@ -28,7 +35,7 @@ Você pode simplesmente acessar o deploy da aplicação [neste link](https://xp-
 </details>
 
 <details>
-  <summary><strong>Instalando dependencias e executando aplicação</strong></summary> </br>
+  <summary><strong>🛠 Instalando dependencias e executando aplicação</strong></summary> </br>
 
   Após projeto baixado e que você entrou na pasta, certifiquese que você tem a versão mais atualizada do [NodeJS LTS](https://nodejs.org/en/) (você pode verificar a versão instalada digitando `node --version` no bash ou powershell). 
 
@@ -51,7 +58,7 @@ Caso a porta 3000 ja esteja ocupada e a url seja diferente de "http:localhost:30
 </details>
 
 <details>
-  <summary><strong>🛠 Rodando os testes</strong></summary><br />
+  <summary><strong>🧪 Rodando os testes</strong></summary><br />
 
   O projeto possui 100% de cobertura de testes. Você pode executar os testes localmente, digitando no terminal o comando `npm test`.
 
@@ -80,7 +87,7 @@ No geral, a maior parte do desenvolvimento do projeto foi usada em pesquisas nas
 
 
 <details>
-<summary><strong>Por que essa stack?</strong></summary> </br>
+<summary><strong>🤷 Por que essa stack?</strong></summary> </br>
 
 Na [Trybe](https://www.betrybe.com/), aprendemos React (class component e function component), React-Router, Redux e bem pouco de Jest/RTL ao longo de todo o módulo de Front end.
 
@@ -91,7 +98,9 @@ Dito isso, eu resolvi usar o <strong>Nextjs</strong> por ser um framewkork popul
 
 #### Recoil
 
-Eu sempre considerei o Redux uma ferramente muito útil e robusta, mas acredito que não é uma tecnologia pra ser usada em aplicações tão pequenas. Além disso, usar o useContext do React seria simples demais, previsivel e um pouco problemático, devido mudanças no estado renderizarem toda a página. O <strong>Recoil</strong> era um tecnologia que aprendi muito recentemente e o gerenciamento de estado atômico permite a re-renderização apenas dos componentes que usam aquele estado. Resolvi arriscar e esse foi meu primeiro projeto usando Recoil.
+Eu sempre considerei o Redux uma ferramente muito útil e robusta, mas acredito que não é uma tecnologia pra ser usada em aplicações tão pequenas. Além disso, usar o useContext do React seria simples demais, previsivel e um pouco problemático, devido mudanças no estado renderizarem toda a página. O <strong>Recoil</strong> era um tecnologia que aprendi muito recentemente e o gerenciamento de estado atômico permite a re-renderização apenas dos componentes que usam aquele estado. 
+
+Resolvi arriscar a esse ser meu primeiro projeto usando Recoil. Não me arrependo, foi extremamente simples de aprender, testar e desenvolver. Aprendi muito e desejo experimentar outras soluções de gerenciamento de estado atômico, como o [Jotai](https://jotai.org/).
 
 #### Desenvolvimento por TDD (Jest / RTL)
 
@@ -115,7 +124,7 @@ Porém, apesar do Prettier ter funcionado corretamente, eu acredito que acontece
 
 <details>
 
-<summary><strong>Fluxo da aplicação</strong></summary> </br>
+<summary><strong> 🌊 Fluxo da aplicação</strong></summary> </br>
 
 Caso o cliente entre na página home e não esteja logado, ele é redirecionado à página '/login'. Um redirecionamento acontece ao tentar acessar a página de login quando já existe um usuário logado, o cliente é enviado para a página home. Dito isso, é válido informar que o usuário logado fica guardado no localStorage e só é deletado manualmente ou após dar Logoff na página home. 
 
@@ -131,7 +140,7 @@ Quando tiver um valor na conta, o usuário pode clicar em alguma ação e compr�
 
 <details>
 
-<summary><strong>Decisões sobre mockup e UX</strong></summary> </br>
+<summary><strong> ✨ Decisões sobre mockup e UX</strong></summary> </br>
 
 Escolhi colocar uma logo semelhante a da XP Inc para apresentar o projeto e sua identidade visual. O tema e valor "Sonhe Grande" foi o mantra que me guiou durante o desenvolvimento. Um footer foi criado para descrição para apresentar o projeto e também se desvincular da XP Inc, devido à logo semelhante. Todas as escolhas de design foram baseadas no site da XP Inc, exceto alguns detalhes, como as bordas arredondadas e algumas cores.
 
@@ -145,7 +154,7 @@ Decidi também que não seria necessário um botão de Compra/Venda, e adorei um
 
 <details>
 
-<summary><strong>Problemas conhecidos</strong></summary>
+<summary><strong> 💀 Problemas conhecidos</strong></summary>
 
 Aqui a lista de alguns problemas que notei e não tive tempo de resolver:
 
@@ -159,7 +168,7 @@ Aqui a lista de alguns problemas que notei e não tive tempo de resolver:
 
 <details>
 
-<summary><strong>Melhorias futuras</strong></summary>
+<summary><strong> 🔥 Melhorias futuras</strong></summary>
 
 Aqui a lista de algumas melhorias que gostaria de fazer a curto prazo:
 
