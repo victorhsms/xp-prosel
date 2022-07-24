@@ -1,4 +1,4 @@
-import IActions from 'src/interface/action'
+import IActions from '../interface/action'
 
 export default function reorganizeAction(
   actionsInState: IActions[],
@@ -14,6 +14,7 @@ export default function reorganizeAction(
       }
       return newAction
     }
+    console.log('Aqui!')
     return action
   })
 }

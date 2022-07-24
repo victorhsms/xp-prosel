@@ -279,7 +279,18 @@ describe('Ao informar uma quantidade de ações e clicar em comprar', () => {
 
     const initializeState = ({ set }: any) => {
       set(balanceUser, 1000)
-      set(actionsWallet, [])
+      set(actionsWallet, [
+        {
+          name: actions[0].name,
+          quantity: 2,
+          value: actions[0].value
+        },
+        {
+          name: actions[1].name,
+          quantity: 2,
+          value: actions[1].value
+        }
+      ])
     }
 
     render(
@@ -308,12 +319,28 @@ describe('Ao informar uma quantidade de ações e clicar em comprar', () => {
     fireEvent.click(btnBuy)
 
     expect(onChange).toHaveBeenCalledTimes(2)
-    expect(onChange).toHaveBeenCalledWith([])
     expect(onChange).toHaveBeenCalledWith([
       {
         name: actions[0].name,
         quantity: 2,
-        value: 450
+        value: actions[0].value
+      },
+      {
+        name: actions[1].name,
+        quantity: 2,
+        value: actions[1].value
+      }
+    ])
+    expect(onChange).toHaveBeenCalledWith([
+      {
+        name: actions[0].name,
+        quantity: 4,
+        value: actions[0].value
+      },
+      {
+        name: actions[1].name,
+        quantity: 2,
+        value: actions[1].value
       }
     ])
   })
@@ -380,23 +407,18 @@ describe('Ao informar uma quantidade de ações e clicar em vender', () => {
     const onChange = jest.fn()
 
     const initializeState = ({ set }: any) => {
-      set(
-        actionsWallet,
-        [
-          {
-            name: actions[0].name,
-            quantity: 2,
-            value: 450
-          }
-        ],
-        [
-          {
-            name: actions[1].name,
-            quantity: 4,
-            value: actions[1].value
-          }
-        ]
-      )
+      set(actionsWallet, [
+        {
+          name: actions[0].name,
+          quantity: 2,
+          value: 450
+        },
+        {
+          name: actions[1].name,
+          quantity: 4,
+          value: actions[1].value
+        }
+      ])
     }
 
     render(
@@ -431,6 +453,11 @@ describe('Ao informar uma quantidade de ações e clicar em vender', () => {
         name: actions[0].name,
         quantity: 2,
         value: 450
+      },
+      {
+        name: actions[1].name,
+        quantity: 4,
+        value: actions[1].value
       }
     ])
     expect(onChange).toHaveBeenCalledWith([
@@ -438,6 +465,11 @@ describe('Ao informar uma quantidade de ações e clicar em vender', () => {
         name: actions[0].name,
         quantity: 1,
         value: 450
+      },
+      {
+        name: actions[1].name,
+        quantity: 4,
+        value: actions[1].value
       }
     ])
   })

@@ -30,7 +30,6 @@ export const useRemoveActionWallet = () => {
         }
         return action
       })
-
       return setActions(atualizatedAction)
     }
   }
